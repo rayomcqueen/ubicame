@@ -18,6 +18,11 @@ import property17Image from "@/assets/property-17.jpg";
 import property18Image from "@/assets/property-18.jpg";
 import property19Image from "@/assets/property-19.jpg";
 import property20Image from "@/assets/property-20.jpg";
+import property21Image from "@/assets/property-21.jpg";
+import property22Image from "@/assets/property-22.jpg";
+import property23Image from "@/assets/property-23.jpg";
+import property24Image from "@/assets/property-24.jpg";
+import property25Image from "@/assets/property-25.jpg";
 
 export interface Property {
   id: number;
@@ -282,7 +287,7 @@ export const properties: Property[] = [
     bedrooms: 4,
     beds: 5,
     price: 3200,
-    image: "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=800&q=80",
+    image: property21Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20Campestre%20Tepoztlán"
   },
   {
@@ -294,7 +299,7 @@ export const properties: Property[] = [
     bedrooms: 1,
     beds: 1,
     price: 2200,
-    image: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80",
+    image: property22Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Suite%20de%20Lujo%20Masaryk"
   },
   {
@@ -306,7 +311,7 @@ export const properties: Property[] = [
     bedrooms: 3,
     beds: 4,
     price: 1900,
-    image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80",
+    image: property23Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20Colonial%20Guanajuato"
   },
   {
@@ -318,7 +323,7 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 2100,
-    image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
+    image: property24Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Departamento%20Chapultepec"
   },
   {
@@ -330,7 +335,7 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 2,
     price: 2900,
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    image: property25Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Bungalow%20Tropical%20Holbox"
   }
 ];
