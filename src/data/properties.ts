@@ -32,6 +32,7 @@ export interface Property {
   guests: number;
   bedrooms: number;
   beds: number;
+  bathrooms?: number;
   price: number;
   image: string;
   whatsappLink: string;
@@ -60,6 +61,7 @@ export const properties: Property[] = [
     guests: 5,
     bedrooms: 2,
     beds: 3,
+    bathrooms: 2,
     price: 2100,
     image: property2Image,
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Vive%20la%20Americana",

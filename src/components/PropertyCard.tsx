@@ -1,4 +1,4 @@
-import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye } from "lucide-react";
+import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye, Bath } from "lucide-react";
 import type { Property } from "@/data/properties";
 
 const amenityIcons: Record<string, React.ReactNode> = {
@@ -53,7 +53,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
         </div>
 
         {/* Amenities */}
-        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3 flex-wrap">
           <div className="flex items-center gap-1.5">
             <Users className="w-4 h-4" />
             <span>{property.guests}</span>
@@ -66,6 +66,12 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
             <Bed className="w-4 h-4" />
             <span>{property.beds} camas</span>
           </div>
+          {property.bathrooms && (
+            <div className="flex items-center gap-1.5">
+              <Bath className="w-4 h-4" />
+              <span>{property.bathrooms} baños</span>
+            </div>
+          )}
         </div>
 
         {/* Extra Amenities */}
