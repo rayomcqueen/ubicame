@@ -17,8 +17,8 @@ export const properties: Property[] = [
   {
     id: 1,
     name: "Villa Mediterránea",
-    location: "Polanco",
-    city: "Ciudad de México",
+    location: "Puerta de Hierro",
+    city: "Guadalajara",
     guests: 6,
     bedrooms: 3,
     beds: 3,
