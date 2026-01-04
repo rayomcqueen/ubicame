@@ -19,8 +19,9 @@ const Hero = () => {
           Hospedaje con alma
         </span>
         
-        <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-semibold text-foreground mb-6 opacity-0 animate-fade-up stagger-1">
-          Encuentra tu espacio ideal en Guadalajara
+        <h1 className="font-serif text-foreground mb-6 opacity-0 animate-fade-up stagger-1">
+          <span className="block text-2xl md:text-3xl lg:text-4xl font-medium mb-2">Encuentra tu espacio ideal en</span>
+          <span className="block text-5xl md:text-7xl lg:text-8xl font-semibold">Guadalajara</span>
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed opacity-0 animate-fade-up stagger-2">
