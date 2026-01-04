@@ -23,11 +23,11 @@ interface PropertyCardProps {
 const PropertyCard = ({ property, index }: PropertyCardProps) => {
   return (
     <article
-      className="group bg-card rounded-xl overflow-hidden shadow-soft card-hover opacity-0 animate-fade-up"
+      className="group bg-card rounded-xl overflow-hidden shadow-soft card-hover opacity-0 animate-fade-up h-full flex flex-col"
       style={{ animationDelay: `${index * 0.1}s`, animationFillMode: "forwards" }}
     >
       {/* Image Container */}
-      <div className="relative h-56 overflow-hidden">
+      <div className="relative h-56 overflow-hidden flex-shrink-0">
         <img
           src={property.image}
           alt={property.name}
@@ -44,7 +44,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
       </div>
 
       {/* Content */}
-      <div className="p-5">
+      <div className="p-5 flex flex-col flex-grow">
         <h3 className="font-serif text-xl font-semibold text-foreground mb-1 line-clamp-1">
           {property.name}
         </h3>
@@ -77,30 +77,32 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
         </div>
 
         {/* Extra Amenities */}
-        {property.amenities && property.amenities.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4 pb-4 border-b border-border">
-            {property.amenities.map((amenity) => (
-              <span
-                key={amenity}
-                className="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary text-xs rounded-full"
-              >
-                {amenityIcons[amenity] || null}
-                {amenity}
-              </span>
-            ))}
-          </div>
-        )}
+        <div className="flex-grow">
+          {property.amenities && property.amenities.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4 pb-4 border-b border-border">
+              {property.amenities.map((amenity) => (
+                <span
+                  key={amenity}
+                  className="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary text-xs rounded-full"
+                >
+                  {amenityIcons[amenity] || null}
+                  {amenity}
+                </span>
+              ))}
+            </div>
+          )}
 
-        {!property.amenities?.length && (
-          <div className="mb-5 pb-4 border-b border-border" />
-        )}
+          {!property.amenities?.length && (
+            <div className="mb-5 pb-4 border-b border-border" />
+          )}
+        </div>
 
         {/* CTA Button */}
         <a
           href={property.whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-full text-center py-3 px-4 btn-whatsapp rounded-lg font-medium text-sm transition-all duration-300 hover:shadow-md"
+          className="block w-full text-center py-3 px-4 btn-whatsapp rounded-lg font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto"
         >
           Reservar ahora
         </a>
