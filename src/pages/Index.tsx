@@ -10,20 +10,20 @@ import Footer from "@/components/Footer";
 import { properties } from "@/data/properties";
 
 const Index = () => {
-  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedZone, setSelectedZone] = useState("");
   const [selectedGuests, setSelectedGuests] = useState(0);
   const [selectedPriceRange, setSelectedPriceRange] = useState({ min: 0, max: Infinity });
 
   const filteredProperties = useMemo(() => {
     return properties.filter((property) => {
-      const matchesCity = !selectedCity || property.city === selectedCity;
+      const matchesZone = !selectedZone || property.location === selectedZone;
       const matchesGuests = selectedGuests === 0 || 
         (selectedGuests === 7 ? property.guests >= 7 : property.guests <= selectedGuests && property.guests >= selectedGuests - 1);
       const matchesPrice = property.price >= selectedPriceRange.min && property.price <= selectedPriceRange.max;
       
-      return matchesCity && matchesGuests && matchesPrice;
+      return matchesZone && matchesGuests && matchesPrice;
     });
-  }, [selectedCity, selectedGuests, selectedPriceRange]);
+  }, [selectedZone, selectedGuests, selectedPriceRange]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -48,8 +48,8 @@ const Index = () => {
           </div>
 
           <FilterBar
-            selectedCity={selectedCity}
-            setSelectedCity={setSelectedCity}
+            selectedZone={selectedZone}
+            setSelectedZone={setSelectedZone}
             selectedGuests={selectedGuests}
             setSelectedGuests={setSelectedGuests}
             selectedPriceRange={selectedPriceRange}
@@ -69,7 +69,7 @@ const Index = () => {
               </p>
               <button
                 onClick={() => {
-                  setSelectedCity("");
+                  setSelectedZone("");
                   setSelectedGuests(0);
                   setSelectedPriceRange({ min: 0, max: Infinity });
                 }}
