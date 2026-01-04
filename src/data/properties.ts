@@ -1,4 +1,12 @@
 import property1Image from "@/assets/property-1.jpg";
+import property2Image from "@/assets/property-2.jpg";
+import property3Image from "@/assets/property-3.jpg";
+import property4Image from "@/assets/property-4.jpg";
+import property5Image from "@/assets/property-5.jpg";
+import property6Image from "@/assets/property-6.jpg";
+import property7Image from "@/assets/property-7.jpg";
+import property8Image from "@/assets/property-8.jpg";
+import property9Image from "@/assets/property-9.jpg";
 
 export interface Property {
   id: number;
@@ -35,7 +43,7 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 2,
     price: 1950,
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80",
+    image: property2Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Loft%20Industrial%20Condesa"
   },
   {
@@ -47,7 +55,7 @@ export const properties: Property[] = [
     bedrooms: 4,
     beds: 5,
     price: 4500,
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80",
+    image: property3Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Penthouse%20Vista%20al%20Mar"
   },
   {
@@ -59,7 +67,7 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 1600,
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    image: property4Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20Colonial%20Centro"
   },
   {
@@ -71,7 +79,7 @@ export const properties: Property[] = [
     bedrooms: 1,
     beds: 1,
     price: 1200,
-    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
+    image: property5Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Studio%20Minimalista%20Roma"
   },
   {
@@ -83,7 +91,7 @@ export const properties: Property[] = [
     bedrooms: 3,
     beds: 4,
     price: 2200,
-    image: "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=800&q=80",
+    image: property6Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Cabaña%20en%20el%20Bosque"
   },
   {
@@ -95,7 +103,7 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 2,
     price: 2600,
-    image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+    image: property7Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Departamento%20Frente%20al%20Mar"
   },
   {
@@ -107,7 +115,7 @@ export const properties: Property[] = [
     bedrooms: 4,
     beds: 5,
     price: 3800,
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80",
+    image: property8Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20Artística%20San%20Miguel"
   },
   {
@@ -119,7 +127,7 @@ export const properties: Property[] = [
     bedrooms: 1,
     beds: 2,
     price: 1450,
-    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80",
+    image: property9Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Loft%20Bohemio%20Coyoacán"
   },
   {
