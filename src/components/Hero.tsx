@@ -20,7 +20,7 @@ const Hero = () => {
         </span>
         
         <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-semibold text-foreground mb-6 opacity-0 animate-fade-up stagger-1">
-          Propiedades en Guadalajara
+          Espacios Únicos en Guadalajara
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed opacity-0 animate-fade-up stagger-2">
