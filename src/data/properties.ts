@@ -55,15 +55,15 @@ export const properties: Property[] = [
   {
     id: 2,
     name: "Vive la Americana",
-    location: "Americana",
+    location: "La Americana",
     city: "Guadalajara",
-    guests: 7,
+    guests: 5,
     bedrooms: 2,
-    beds: 4,
-    price: 2200,
+    beds: 3,
+    price: 2100,
     image: property2Image,
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Vive%20la%20Americana",
-    amenities: ["Estacionamiento", "Gimnasio", "Seguridad", "Rooftop"]
+    amenities: ["Estacionamiento", "Gimnasio", "Seguridad 24/7", "Rooftop", "Vistas Panorámicas"]
   },
   {
     id: 3,

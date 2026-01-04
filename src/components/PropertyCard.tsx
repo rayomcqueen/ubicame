@@ -1,4 +1,4 @@
-import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building } from "lucide-react";
+import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye } from "lucide-react";
 import type { Property } from "@/data/properties";
 
 const amenityIcons: Record<string, React.ReactNode> = {
@@ -8,8 +8,9 @@ const amenityIcons: Record<string, React.ReactNode> = {
   "Cocina": <Utensils className="w-3.5 h-3.5" />,
   "Gimnasio": <Dumbbell className="w-3.5 h-3.5" />,
   "TV": <Tv className="w-3.5 h-3.5" />,
-  "Seguridad": <Shield className="w-3.5 h-3.5" />,
+  "Seguridad 24/7": <Shield className="w-3.5 h-3.5" />,
   "Rooftop": <Building className="w-3.5 h-3.5" />,
+  "Vistas Panorámicas": <Eye className="w-3.5 h-3.5" />,
 };
 
 interface PropertyCardProps {
