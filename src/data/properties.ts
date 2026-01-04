@@ -1,3 +1,5 @@
+import property1Image from "@/assets/property-1.jpg";
+
 export interface Property {
   id: number;
   name: string;
@@ -21,7 +23,7 @@ export const properties: Property[] = [
     bedrooms: 3,
     beds: 3,
     price: 2800,
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    image: property1Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Villa%20Mediterránea"
   },
   {
