@@ -8,6 +8,16 @@ import property7Image from "@/assets/property-7.jpg";
 import property8Image from "@/assets/property-8.jpg";
 import property9Image from "@/assets/property-9.jpg";
 import property10Image from "@/assets/property-10.jpg";
+import property11Image from "@/assets/property-11.jpg";
+import property12Image from "@/assets/property-12.jpg";
+import property13Image from "@/assets/property-13.jpg";
+import property14Image from "@/assets/property-14.jpg";
+import property15Image from "@/assets/property-15.jpg";
+import property16Image from "@/assets/property-16.jpg";
+import property17Image from "@/assets/property-17.jpg";
+import property18Image from "@/assets/property-18.jpg";
+import property19Image from "@/assets/property-19.jpg";
+import property20Image from "@/assets/property-20.jpg";
 
 export interface Property {
   id: number;
@@ -152,7 +162,7 @@ export const properties: Property[] = [
     bedrooms: 1,
     beds: 1,
     price: 1800,
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
+    image: property11Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Apartamento%20Ejecutivo%20Santa%20Fe"
   },
   {
@@ -164,7 +174,7 @@ export const properties: Property[] = [
     bedrooms: 4,
     beds: 5,
     price: 4200,
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80",
+    image: property12Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20con%20Jardín%20Reforma"
   },
   {
@@ -176,7 +186,7 @@ export const properties: Property[] = [
     bedrooms: 1,
     beds: 1,
     price: 1100,
-    image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80",
+    image: property13Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Estudio%20Acogedor%20Zona%20Rosa"
   },
   {
@@ -188,7 +198,7 @@ export const properties: Property[] = [
     bedrooms: 6,
     beds: 8,
     price: 6000,
-    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
+    image: property14Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Hacienda%20Tradicional"
   },
   {
@@ -200,7 +210,7 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 2,
     price: 1700,
-    image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80",
+    image: property15Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Departamento%20Moderno%20Anzures"
   },
   {
@@ -212,7 +222,7 @@ export const properties: Property[] = [
     bedrooms: 3,
     beds: 4,
     price: 2400,
-    image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=80",
+    image: property16Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20Playa%20Puerto%20Escondido"
   },
   {
@@ -224,7 +234,7 @@ export const properties: Property[] = [
     bedrooms: 3,
     beds: 3,
     price: 3500,
-    image: "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&q=80",
+    image: property17Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Penthouse%20de%20Lujo%20Interlomas"
   },
   {
@@ -236,7 +246,7 @@ export const properties: Property[] = [
     bedrooms: 1,
     beds: 2,
     price: 1550,
-    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80",
+    image: property18Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Loft%20con%20Terraza%20Nápoles"
   },
   {
@@ -248,7 +258,7 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 2,
     price: 2800,
-    image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80",
+    image: property19Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Villa%20Romántica%20Sayulita"
   },
   {
@@ -260,7 +270,7 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 2,
     price: 1600,
-    image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80",
+    image: property20Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Apartamento%20Vista%20Ciudad"
   },
   {
