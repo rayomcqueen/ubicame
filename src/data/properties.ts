@@ -7,6 +7,7 @@ import property6Image from "@/assets/property-6.jpg";
 import property7Image from "@/assets/property-7.jpg";
 import property8Image from "@/assets/property-8.jpg";
 import property9Image from "@/assets/property-9.jpg";
+import property10Image from "@/assets/property-10.jpg";
 
 export interface Property {
   id: number;
@@ -139,7 +140,7 @@ export const properties: Property[] = [
     bedrooms: 5,
     beds: 6,
     price: 5500,
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+    image: property10Image,
     whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Villa%20con%20Alberca%20Privada"
   },
   {
