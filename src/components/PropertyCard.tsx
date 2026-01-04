@@ -11,6 +11,8 @@ const amenityIcons: Record<string, React.ReactNode> = {
   "Seguridad 24/7": <Shield className="w-3.5 h-3.5" />,
   "Rooftop": <Building className="w-3.5 h-3.5" />,
   "Vistas Panorámicas": <Eye className="w-3.5 h-3.5" />,
+  "A/C": <Waves className="w-3.5 h-3.5" />,
+  "Cama King": <Bed className="w-3.5 h-3.5" />,
 };
 
 interface PropertyCardProps {

@@ -65,7 +65,7 @@ export const properties: Property[] = [
     price: 2100,
     image: property2Image,
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Vive%20la%20Americana",
-    amenities: ["Estacionamiento", "Gimnasio", "Seguridad 24/7", "Rooftop", "Vistas Panorámicas"]
+    amenities: ["Estacionamiento", "Gimnasio", "Seguridad 24/7", "Rooftop", "Vistas Panorámicas", "A/C", "Cama King"]
   },
   {
     id: 3,
