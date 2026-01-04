@@ -70,15 +70,16 @@ export const properties: Property[] = [
   },
   {
     id: 3,
-    name: "Penthouse Vista al Mar",
-    location: "Zona Hotelera",
-    city: "Cancún",
-    guests: 8,
-    bedrooms: 4,
-    beds: 5,
-    price: 4500,
+    name: "Torre Anuva",
+    location: "Puerta de Hierro",
+    city: "Guadalajara",
+    guests: 5,
+    bedrooms: 2,
+    beds: 3,
+    price: 2300,
     image: property3Image,
-    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Penthouse%20Vista%20al%20Mar"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Torre%20Anuva",
+    amenities: ["Estacionamiento", "Alberca", "Gimnasio", "Seguridad 24/7", "Rooftop", "Vistas Panorámicas"]
   },
   {
     id: 4,
