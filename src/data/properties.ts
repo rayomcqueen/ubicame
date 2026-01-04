@@ -54,15 +54,16 @@ export const properties: Property[] = [
   },
   {
     id: 2,
-    name: "Loft Industrial Condesa",
-    location: "Condesa",
-    city: "Ciudad de México",
-    guests: 4,
+    name: "Vive la Americana",
+    location: "Americana",
+    city: "Guadalajara",
+    guests: 7,
     bedrooms: 2,
-    beds: 2,
-    price: 1950,
+    beds: 4,
+    price: 2200,
     image: property2Image,
-    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Loft%20Industrial%20Condesa"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Vive%20la%20Americana",
+    amenities: ["Estacionamiento", "Gimnasio", "Seguridad", "Rooftop"]
   },
   {
     id: 3,
