@@ -48,7 +48,7 @@ export const properties: Property[] = [
     beds: 3,
     price: 2800,
     image: property1Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Villa%20Mediterránea"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Villa%20Mediterránea"
   },
   {
     id: 2,
@@ -60,7 +60,7 @@ export const properties: Property[] = [
     beds: 2,
     price: 1950,
     image: property2Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Loft%20Industrial%20Condesa"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Loft%20Industrial%20Condesa"
   },
   {
     id: 3,
@@ -72,7 +72,7 @@ export const properties: Property[] = [
     beds: 5,
     price: 4500,
     image: property3Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Penthouse%20Vista%20al%20Mar"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Penthouse%20Vista%20al%20Mar"
   },
   {
     id: 4,
@@ -84,7 +84,7 @@ export const properties: Property[] = [
     beds: 3,
     price: 1600,
     image: property4Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20Colonial%20Centro"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Casa%20Colonial%20Centro"
   },
   {
     id: 5,
@@ -96,7 +96,7 @@ export const properties: Property[] = [
     beds: 1,
     price: 1200,
     image: property5Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Studio%20Minimalista%20Roma"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Studio%20Minimalista%20Roma"
   },
   {
     id: 6,
@@ -108,7 +108,7 @@ export const properties: Property[] = [
     beds: 4,
     price: 2200,
     image: property6Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Cabaña%20en%20el%20Bosque"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Cabaña%20en%20el%20Bosque"
   },
   {
     id: 7,
@@ -120,7 +120,7 @@ export const properties: Property[] = [
     beds: 2,
     price: 2600,
     image: property7Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Departamento%20Frente%20al%20Mar"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Departamento%20Frente%20al%20Mar"
   },
   {
     id: 8,
@@ -132,7 +132,7 @@ export const properties: Property[] = [
     beds: 5,
     price: 3800,
     image: property8Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20Artística%20San%20Miguel"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Casa%20Artística%20San%20Miguel"
   },
   {
     id: 9,
@@ -144,7 +144,7 @@ export const properties: Property[] = [
     beds: 2,
     price: 1450,
     image: property9Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Loft%20Bohemio%20Coyoacán"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Loft%20Bohemio%20Coyoacán"
   },
   {
     id: 10,
@@ -156,7 +156,7 @@ export const properties: Property[] = [
     beds: 6,
     price: 5500,
     image: property10Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Villa%20con%20Alberca%20Privada"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Villa%20con%20Alberca%20Privada"
   },
   {
     id: 11,
@@ -168,7 +168,7 @@ export const properties: Property[] = [
     beds: 1,
     price: 1800,
     image: property11Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Apartamento%20Ejecutivo%20Santa%20Fe"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Apartamento%20Ejecutivo%20Santa%20Fe"
   },
   {
     id: 12,
@@ -180,7 +180,7 @@ export const properties: Property[] = [
     beds: 5,
     price: 4200,
     image: property12Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20con%20Jardín%20Reforma"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Casa%20con%20Jardín%20Reforma"
   },
   {
     id: 13,
@@ -192,7 +192,7 @@ export const properties: Property[] = [
     beds: 1,
     price: 1100,
     image: property13Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Estudio%20Acogedor%20Zona%20Rosa"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Estudio%20Acogedor%20Zona%20Rosa"
   },
   {
     id: 14,
@@ -204,7 +204,7 @@ export const properties: Property[] = [
     beds: 8,
     price: 6000,
     image: property14Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Hacienda%20Tradicional"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Hacienda%20Tradicional"
   },
   {
     id: 15,
@@ -216,7 +216,7 @@ export const properties: Property[] = [
     beds: 2,
     price: 1700,
     image: property15Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Departamento%20Moderno%20Anzures"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Departamento%20Moderno%20Anzures"
   },
   {
     id: 16,
@@ -228,7 +228,7 @@ export const properties: Property[] = [
     beds: 4,
     price: 2400,
     image: property16Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20Playa%20Puerto%20Escondido"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Casa%20Playa%20Puerto%20Escondido"
   },
   {
     id: 17,
@@ -240,7 +240,7 @@ export const properties: Property[] = [
     beds: 3,
     price: 3500,
     image: property17Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Penthouse%20de%20Lujo%20Interlomas"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Penthouse%20de%20Lujo%20Interlomas"
   },
   {
     id: 18,
@@ -252,7 +252,7 @@ export const properties: Property[] = [
     beds: 2,
     price: 1550,
     image: property18Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Loft%20con%20Terraza%20Nápoles"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Loft%20con%20Terraza%20Nápoles"
   },
   {
     id: 19,
@@ -264,7 +264,7 @@ export const properties: Property[] = [
     beds: 2,
     price: 2800,
     image: property19Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Villa%20Romántica%20Sayulita"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Villa%20Romántica%20Sayulita"
   },
   {
     id: 20,
@@ -276,7 +276,7 @@ export const properties: Property[] = [
     beds: 2,
     price: 1600,
     image: property20Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Apartamento%20Vista%20Ciudad"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Apartamento%20Vista%20Ciudad"
   },
   {
     id: 21,
@@ -288,7 +288,7 @@ export const properties: Property[] = [
     beds: 5,
     price: 3200,
     image: property21Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20Campestre%20Tepoztlán"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Casa%20Campestre%20Tepoztlán"
   },
   {
     id: 22,
@@ -300,7 +300,7 @@ export const properties: Property[] = [
     beds: 1,
     price: 2200,
     image: property22Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Suite%20de%20Lujo%20Masaryk"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Suite%20de%20Lujo%20Masaryk"
   },
   {
     id: 23,
@@ -312,7 +312,7 @@ export const properties: Property[] = [
     beds: 4,
     price: 1900,
     image: property23Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Casa%20Colonial%20Guanajuato"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Casa%20Colonial%20Guanajuato"
   },
   {
     id: 24,
@@ -324,7 +324,7 @@ export const properties: Property[] = [
     beds: 3,
     price: 2100,
     image: property24Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Departamento%20Chapultepec"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Departamento%20Chapultepec"
   },
   {
     id: 25,
@@ -336,7 +336,7 @@ export const properties: Property[] = [
     beds: 2,
     price: 2900,
     image: property25Image,
-    whatsappLink: "https://wa.me/5215512345678?text=Hola,%20me%20interesa%20Bungalow%20Tropical%20Holbox"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Bungalow%20Tropical%20Holbox"
   }
 ];
 

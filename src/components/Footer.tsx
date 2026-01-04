@@ -19,20 +19,14 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Contacto</h4>
             <ul className="space-y-3">
               <li>
-                <a href="mailto:contacto@mispropiedades.com" className="flex items-center gap-3 text-background/70 hover:text-background transition-colors">
-                  <Mail className="w-4 h-4" />
-                  contacto@mispropiedades.com
-                </a>
-              </li>
-              <li>
-                <a href="https://wa.me/5215512345678" className="flex items-center gap-3 text-background/70 hover:text-background transition-colors">
+                <a href="https://api.whatsapp.com/send/?phone=523333260013&text&type=phone_number&app_absent=0&wame_ctl=1&source_surface=20" className="flex items-center gap-3 text-background/70 hover:text-background transition-colors">
                   <Phone className="w-4 h-4" />
-                  +52 55 1234 5678
+                  +52 33 3326 0013
                 </a>
               </li>
               <li className="flex items-center gap-3 text-background/70">
                 <MapPin className="w-4 h-4" />
-                Ciudad de México, México
+                Guadalajara, Jalisco
               </li>
             </ul>
           </div>
@@ -42,7 +36,7 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Sígueme</h4>
             <div className="flex gap-4">
               <a
-                href="https://wa.me/5215512345678"
+                href="https://api.whatsapp.com/send/?phone=523333260013&text&type=phone_number&app_absent=0&wame_ctl=1&source_surface=20"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-background/20 transition-colors"
@@ -51,7 +45,7 @@ const Footer = () => {
                 <MessageCircle className="w-5 h-5" />
               </a>
               <a
-                href="https://instagram.com/tu_usuario"
+                href="https://instagram.com/ubicamegdl"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-background/20 transition-colors"
