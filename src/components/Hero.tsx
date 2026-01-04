@@ -24,9 +24,7 @@ const Hero = () => {
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed opacity-0 animate-fade-up stagger-2">
-          Bienvenido a mi colección de espacios únicos. Cada propiedad ha sido cuidadosamente 
-          seleccionada para ofrecerte una experiencia memorable, con atención personal y los 
-          mejores precios al reservar directamente.
+          Hospédate diferente. Mejor precio, trato directo, experiencias auténticas.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-up stagger-3">
