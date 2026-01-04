@@ -1,3 +1,5 @@
+import aboutImage from "@/assets/about-image.png";
+
 const AboutSection = () => {
   return (
     <section id="sobre-mi" className="py-20 px-6 bg-secondary/30">
@@ -7,9 +9,9 @@ const AboutSection = () => {
           <div className="relative">
             <div className="absolute -inset-4 bg-primary/10 rounded-2xl transform rotate-3" />
             <img
-              src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80"
-              alt="Interior de una propiedad"
-              className="relative rounded-2xl shadow-elegant w-full h-80 lg:h-96 object-cover"
+              src={aboutImage}
+              alt="Guadalajara 2026 Ready"
+              className="relative rounded-2xl shadow-elegant w-full h-80 lg:h-96 object-contain bg-white p-6"
             />
           </div>
 
