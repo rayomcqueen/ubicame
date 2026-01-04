@@ -5,7 +5,7 @@ const FloatingButtons = () => {
     <>
       {/* WhatsApp Button */}
       <a
-        href="https://wa.me/5215512345678?text=Hola,%20me%20interesa%20una%20propiedad"
+        href="https://api.whatsapp.com/send/?phone=523333260013&text&type=phone_number&app_absent=0&wame_ctl=1&source_surface=20"
         target="_blank"
         rel="noopener noreferrer"
         className="floating-btn bottom-6 right-6 w-14 h-14 btn-whatsapp flex items-center justify-center"
@@ -16,7 +16,7 @@ const FloatingButtons = () => {
 
       {/* Instagram Button */}
       <a
-        href="https://instagram.com/tu_usuario"
+        href="https://instagram.com/ubicamegdl"
         target="_blank"
         rel="noopener noreferrer"
         className="floating-btn bottom-6 right-24 w-14 h-14 bg-gradient-to-tr from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white flex items-center justify-center"
