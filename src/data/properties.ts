@@ -42,16 +42,17 @@ export interface Property {
 export const properties: Property[] = [
   {
     id: 1,
-    name: "Lujo en Zapopan",
+    name: "Departamento de Lujo",
     location: "Andares",
     city: "Guadalajara",
     guests: 5,
     bedrooms: 2,
-    beds: 3,
-    price: 2200,
+    beds: 2,
+    bathrooms: 2,
+    price: 2500,
     image: property1Image,
-    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Lujo%20en%20Zapopan",
-    amenities: ["Estacionamiento"]
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Departamento%20de%20Lujo",
+    amenities: ["Estacionamiento", "Cama King", "A/C"]
   },
   {
     id: 2,
