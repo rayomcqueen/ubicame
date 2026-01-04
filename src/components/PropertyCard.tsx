@@ -99,7 +99,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
 
         {/* CTA Button */}
         <a
-          href={property.whatsappLink}
+          href="https://api.whatsapp.com/send/?phone=523333260013&text&type=phone_number&app_absent=0&wame_ctl=1&source_surface=20"
           target="_blank"
           rel="noopener noreferrer"
           className="block w-full text-center py-3 px-4 btn-whatsapp rounded-lg font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto"
