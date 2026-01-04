@@ -1,5 +1,14 @@
-import { Users, Bed, DoorOpen, MapPin } from "lucide-react";
+import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv } from "lucide-react";
 import type { Property } from "@/data/properties";
+
+const amenityIcons: Record<string, React.ReactNode> = {
+  "Estacionamiento": <Car className="w-3.5 h-3.5" />,
+  "WiFi": <Wifi className="w-3.5 h-3.5" />,
+  "Alberca": <Waves className="w-3.5 h-3.5" />,
+  "Cocina": <Utensils className="w-3.5 h-3.5" />,
+  "Gimnasio": <Dumbbell className="w-3.5 h-3.5" />,
+  "TV": <Tv className="w-3.5 h-3.5" />,
+};
 
 interface PropertyCardProps {
   property: Property;
@@ -41,7 +50,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
         </div>
 
         {/* Amenities */}
-        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-5 pb-4 border-b border-border">
+        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
           <div className="flex items-center gap-1.5">
             <Users className="w-4 h-4" />
             <span>{property.guests}</span>
@@ -55,6 +64,25 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
             <span>{property.beds} camas</span>
           </div>
         </div>
+
+        {/* Extra Amenities */}
+        {property.amenities && property.amenities.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4 pb-4 border-b border-border">
+            {property.amenities.map((amenity) => (
+              <span
+                key={amenity}
+                className="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary text-xs rounded-full"
+              >
+                {amenityIcons[amenity] || null}
+                {amenity}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {!property.amenities?.length && (
+          <div className="mb-5 pb-4 border-b border-border" />
+        )}
 
         {/* CTA Button */}
         <a

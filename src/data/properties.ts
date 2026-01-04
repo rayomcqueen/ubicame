@@ -35,20 +35,22 @@ export interface Property {
   price: number;
   image: string;
   whatsappLink: string;
+  amenities?: string[];
 }
 
 export const properties: Property[] = [
   {
     id: 1,
-    name: "Villa Mediterránea",
-    location: "Puerta de Hierro",
+    name: "Lujo en Zapopan",
+    location: "Andares",
     city: "Guadalajara",
-    guests: 6,
-    bedrooms: 3,
+    guests: 5,
+    bedrooms: 2,
     beds: 3,
-    price: 2800,
+    price: 2200,
     image: property1Image,
-    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Villa%20Mediterránea"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Lujo%20en%20Zapopan",
+    amenities: ["Estacionamiento"]
   },
   {
     id: 2,
