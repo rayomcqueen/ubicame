@@ -370,6 +370,7 @@ export const properties: Property[] = [
 ];
 
 export const cities = [...new Set(properties.map(p => p.city))];
+export const zones = [...new Set(properties.map(p => p.location))].sort();
 export const priceRanges = [
   { label: "Todos", min: 0, max: Infinity },
   { label: "Menos de $1,500", min: 0, max: 1500 },
