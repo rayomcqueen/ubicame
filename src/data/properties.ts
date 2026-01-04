@@ -83,15 +83,16 @@ export const properties: Property[] = [
   },
   {
     id: 4,
-    name: "Casa Colonial Centro",
-    location: "Centro Histórico",
-    city: "Oaxaca",
+    name: "Cerca de Estadio Akron",
+    location: "Guadalupe",
+    city: "Guadalajara",
     guests: 5,
     bedrooms: 2,
     beds: 3,
-    price: 1600,
+    price: 2200,
     image: property4Image,
-    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Casa%20Colonial%20Centro"
+    whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Cerca%20de%20Estadio%20Akron",
+    amenities: ["Estacionamiento", "Gimnasio", "Seguridad 24/7", "Rooftop", "Vistas Panorámicas"]
   },
   {
     id: 5,
