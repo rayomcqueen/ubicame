@@ -18,6 +18,8 @@ const Hero = () => {
         src={property4}
         alt="Propiedad con vista panorámica"
         className="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+        fetchPriority="high"
       />
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/55" />
