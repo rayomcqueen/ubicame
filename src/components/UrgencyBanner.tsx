@@ -1,5 +1,6 @@
-const WHATSAPP_URL =
-  "https://api.whatsapp.com/send/?phone=523333260013&text=Hola!%20Quiero%20consultar%20fechas%20disponibles&type=phone_number&app_absent=0";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+
+const WHATSAPP_URL = buildWhatsAppUrl("Hola! Vi la oferta especial en ubicame.com.mx. Me gustaría reservar con el descuento.");
 
 const UrgencyBanner = () => {
   return (

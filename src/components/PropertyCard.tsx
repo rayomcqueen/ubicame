@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye, Bath, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import type { Property } from "@/data/properties";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 const amenityIcons: Record<string, React.ReactNode> = {
   "Estacionamiento": <Car className="w-3.5 h-3.5" />,
@@ -37,10 +38,8 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  const whatsappMessage = encodeURIComponent(
-    `Hola! Me interesa ${property.name} para [fechas]. ¿Está disponible?`
-  );
-  const whatsappUrl = `https://api.whatsapp.com/send/?phone=523333260013&text=${whatsappMessage}&type=phone_number&app_absent=0`;
+  const whatsappMessage = `Hola! Me interesa la propiedad '${property.name}' en ${property.location} ($${property.price.toLocaleString()}/noche). ¿Tiene disponibilidad para ?`;
+  const whatsappUrl = buildWhatsAppUrl(whatsappMessage);
 
   const airbnbPrice = property.airbnbPrice ?? Math.round(property.price * 1.1);
   const savings = airbnbPrice - property.price;

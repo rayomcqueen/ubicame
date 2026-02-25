@@ -1,7 +1,7 @@
 import property4 from "@/assets/property-4.jpg";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
-const WHATSAPP_URL =
-  "https://api.whatsapp.com/send/?phone=523333260013&text&type=phone_number&app_absent=0&wame_ctl=1&source_surface=20";
+const WHATSAPP_URL = buildWhatsAppUrl("Hola Pablo! Estoy buscando hospedaje en Guadalajara. Vi tu página ubicame.com.mx y me gustaría cotizar.");
 
 const trustBadges = [
   "✓ Superhost desde 2019",
