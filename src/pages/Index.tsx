@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import Hero from "@/components/Hero";
+import BenefitsSection from "@/components/BenefitsSection";
 import FilterBar from "@/components/FilterBar";
 import PropertyCard from "@/components/PropertyCard";
 import AboutSection from "@/components/AboutSection";
@@ -39,6 +40,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Hero />
+      <BenefitsSection />
 
       {/* Properties Section */}
       <section id="propiedades" className="py-20 px-6">
