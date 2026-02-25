@@ -1,9 +1,10 @@
 import { useEffect, useState, useCallback } from "react";
 import { X } from "lucide-react";
 
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+
 const STORAGE_KEY = "ubicame_exit_popup_shown";
-const WHATSAPP_URL =
-  "https://api.whatsapp.com/send/?phone=523333260013&text=Hola!%20Vi%20la%20oferta%20de%2015%25%20de%20descuento%20en%20ubicame.com.mx.%20Me%20interesa%20reservar.&type=phone_number&app_absent=0";
+const WHATSAPP_URL = buildWhatsAppUrl("Hola! Vi la oferta de 15% de descuento en ubicame.com.mx. Me interesa reservar.");
 
 const ExitIntentPopup = () => {
   const [show, setShow] = useState(false);

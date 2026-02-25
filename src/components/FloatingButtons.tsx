@@ -1,9 +1,13 @@
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+
+const WHATSAPP_URL = buildWhatsAppUrl("Hola! Tengo una pregunta sobre las propiedades en ubicame.com.mx");
+
 const FloatingButtons = () => {
   return (
     <>
       {/* WhatsApp Button */}
       <a
-        href="https://api.whatsapp.com/send/?phone=523333260013&text&type=phone_number&app_absent=0&wame_ctl=1&source_surface=20"
+        href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="floating-btn bottom-6 right-6 w-14 h-14 btn-whatsapp flex items-center justify-center"

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
-const WHATSAPP_URL =
-  "https://api.whatsapp.com/send/?phone=523333260013&text&type=phone_number&app_absent=0&wame_ctl=1&source_surface=20";
+const WHATSAPP_URL = buildWhatsAppUrl("Hola! Estoy buscando hospedaje en Guadalajara. ¿Qué opciones tienes disponibles?");
 
 const MobileStickyBar = () => {
   const [visible, setVisible] = useState(false);

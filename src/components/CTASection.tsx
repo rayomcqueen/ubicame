@@ -1,4 +1,7 @@
 import { Sparkles } from "lucide-react";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+
+const WHATSAPP_URL = buildWhatsAppUrl("Hola Pablo! Estoy buscando hospedaje en Guadalajara. Vi tu página ubicame.com.mx y me gustaría cotizar.");
 
 const CTASection = () => {
   return (
@@ -25,7 +28,7 @@ const CTASection = () => {
         </p>
 
         <a
-          href="https://wa.me/5215512345678?text=Hola,%20me%20gustaría%20reservar%20una%20propiedad"
+          href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block px-10 py-4 bg-white text-primary rounded-full font-semibold text-lg shadow-elegant hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
