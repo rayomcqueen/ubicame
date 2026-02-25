@@ -42,7 +42,8 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
   );
   const whatsappUrl = `https://api.whatsapp.com/send/?phone=523333260013&text=${whatsappMessage}&type=phone_number&app_absent=0`;
 
-  const savings = property.airbnbPrice - property.price;
+  const airbnbPrice = property.airbnbPrice ?? Math.round(property.price * 1.1);
+  const savings = airbnbPrice - property.price;
 
   return (
     <article
@@ -130,7 +131,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
 
         {/* Pricing with strikethrough */}
         <div className="flex items-baseline gap-2 mb-3">
-          <span className="text-muted-foreground line-through text-sm">${property.airbnbPrice.toLocaleString()}</span>
+          <span className="text-muted-foreground line-through text-sm">${airbnbPrice.toLocaleString()}</span>
           <span className="text-lg font-bold text-[hsl(142,70%,40%)]">${property.price.toLocaleString()}<span className="text-sm font-normal text-muted-foreground">/noche</span></span>
           <span className="text-xs bg-[hsl(142,70%,45%)]/15 text-[hsl(142,70%,35%)] px-2 py-0.5 rounded-full font-medium">
             Ahorras ${savings.toLocaleString()}
