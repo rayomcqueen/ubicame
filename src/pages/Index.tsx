@@ -6,6 +6,7 @@ import AboutSection from "@/components/AboutSection";
 import Testimonials from "@/components/Testimonials";
 import CTASection from "@/components/CTASection";
 import FloatingButtons from "@/components/FloatingButtons";
+import MobileStickyBar from "@/components/MobileStickyBar";
 import Footer from "@/components/Footer";
 import { properties } from "@/data/properties";
 
@@ -93,6 +94,7 @@ const Index = () => {
       <CTASection />
       <Footer />
       <FloatingButtons />
+      <MobileStickyBar />
     </div>
   );
 };
