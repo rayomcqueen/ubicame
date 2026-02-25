@@ -50,12 +50,14 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
       style={{ animationDelay: `${index * 0.1}s`, animationFillMode: "forwards" }}
     >
       {/* Image Carousel */}
-      <div className="relative h-56 overflow-hidden flex-shrink-0">
+      <div className="relative overflow-hidden flex-shrink-0" style={{ aspectRatio: "16/9" }}>
         {images.map((img, i) => (
           <img
             key={i}
             src={img}
             alt={`${property.name} - foto ${i + 1}`}
+            width={400}
+            height={225}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
               i === currentImage ? "opacity-100" : "opacity-0"
             }`}
