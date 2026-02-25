@@ -5,6 +5,7 @@ import FilterBar from "@/components/FilterBar";
 import PropertyCard from "@/components/PropertyCard";
 import AboutSection from "@/components/AboutSection";
 import Testimonials from "@/components/Testimonials";
+import UrgencyBanner from "@/components/UrgencyBanner";
 import CTASection from "@/components/CTASection";
 import FloatingButtons from "@/components/FloatingButtons";
 import MobileStickyBar from "@/components/MobileStickyBar";
@@ -112,6 +113,7 @@ const Index = () => {
       </section>
 
       <AboutSection />
+      <UrgencyBanner />
       <Testimonials />
       <CTASection />
       <Footer />
