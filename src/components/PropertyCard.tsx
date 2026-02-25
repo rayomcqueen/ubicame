@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye, Bath, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import type { Property } from "@/data/properties";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
 const amenityIcons: Record<string, React.ReactNode> = {
   "Estacionamiento": <Car className="w-3.5 h-3.5" />,
@@ -184,6 +184,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick("property_card", property.name, property.price.toString())}
           className="block w-full text-center py-3 px-4 btn-whatsapp rounded-lg font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto"
         >
           💬 Consultar disponibilidad

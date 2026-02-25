@@ -1,5 +1,5 @@
 import { Sparkles } from "lucide-react";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
 const WHATSAPP_URL = buildWhatsAppUrl("Hola Pablo! Estoy buscando hospedaje en Guadalajara. Vi tu página ubicame.com.mx y me gustaría cotizar.");
 
@@ -31,6 +31,7 @@ const CTASection = () => {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick("footer_cta")}
           className="inline-block px-10 py-4 bg-white text-primary rounded-full font-semibold text-lg shadow-elegant hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
         >
           Reservar ahora por WhatsApp

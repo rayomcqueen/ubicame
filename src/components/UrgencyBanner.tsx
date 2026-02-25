@@ -1,4 +1,4 @@
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
 const WHATSAPP_URL = buildWhatsAppUrl("Hola! Vi la oferta especial en ubicame.com.mx. Me gustaría reservar con el descuento.");
 
@@ -25,6 +25,7 @@ const UrgencyBanner = () => {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick("urgency_banner")}
             className="inline-flex items-center gap-2 btn-whatsapp font-semibold px-8 py-3.5 rounded-full shadow-md transition-transform hover:scale-105"
           >
             💬 Consultar fechas disponibles

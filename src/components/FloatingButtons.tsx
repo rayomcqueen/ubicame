@@ -1,4 +1,4 @@
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
 const WHATSAPP_URL = buildWhatsAppUrl("Hola! Tengo una pregunta sobre las propiedades en ubicame.com.mx");
 
@@ -10,6 +10,7 @@ const FloatingButtons = () => {
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackWhatsAppClick("floating")}
         className="floating-btn bottom-6 right-6 w-14 h-14 btn-whatsapp flex items-center justify-center"
         aria-label="Contactar por WhatsApp"
       >
