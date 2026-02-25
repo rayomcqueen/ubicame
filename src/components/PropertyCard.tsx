@@ -1,4 +1,5 @@
-import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye, Bath } from "lucide-react";
+import { useState } from "react";
+import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye, Bath, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import type { Property } from "@/data/properties";
 
 const amenityIcons: Record<string, React.ReactNode> = {
@@ -21,25 +22,98 @@ interface PropertyCardProps {
 }
 
 const PropertyCard = ({ property, index }: PropertyCardProps) => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const images = property.images?.length ? property.images : [property.image];
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentImage((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const whatsappMessage = encodeURIComponent(
+    `Hola! Me interesa ${property.name} para [fechas]. ¿Está disponible?`
+  );
+  const whatsappUrl = `https://api.whatsapp.com/send/?phone=523333260013&text=${whatsappMessage}&type=phone_number&app_absent=0`;
+
+  const savings = property.airbnbPrice - property.price;
+
   return (
     <article
-      className="group bg-card rounded-xl overflow-hidden shadow-soft card-hover opacity-0 animate-fade-up h-full flex flex-col"
+      className="group bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-out opacity-0 animate-fade-up h-full flex flex-col"
       style={{ animationDelay: `${index * 0.1}s`, animationFillMode: "forwards" }}
     >
-      {/* Image Container */}
+      {/* Image Carousel */}
       <div className="relative h-56 overflow-hidden flex-shrink-0">
-        <img
-          src={property.image}
-          alt={property.name}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
-        {/* Price Badge */}
-        <div className="absolute top-4 right-4 bg-card/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md">
-          <span className="font-semibold text-foreground">${property.price.toLocaleString()}</span>
-          <span className="text-muted-foreground text-sm"> /noche</span>
+        {images.map((img, i) => (
+          <img
+            key={i}
+            src={img}
+            alt={`${property.name} - foto ${i + 1}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+              i === currentImage ? "opacity-100" : "opacity-0"
+            }`}
+            loading="lazy"
+          />
+        ))}
+
+        {/* Carousel Controls */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={prevImage}
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-card/80 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-card"
+              aria-label="Foto anterior"
+            >
+              <ChevronLeft className="w-4 h-4 text-foreground" />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-card/80 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-card"
+              aria-label="Siguiente foto"
+            >
+              <ChevronRight className="w-4 h-4 text-foreground" />
+            </button>
+
+            {/* Dots */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCurrentImage(i); }}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    i === currentImage ? "bg-white w-4" : "bg-white/60"
+                  }`}
+                  aria-label={`Ver foto ${i + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
+
+        {/* Badge */}
+        {property.badge && (
+          <div className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold shadow-md ${
+            property.badge === "popular"
+              ? "bg-amber-500 text-white"
+              : "bg-red-500 text-white"
+          }`}>
+            {property.badge === "popular" ? "⭐ Más popular" : "🔥 Alta demanda"}
+          </div>
+        )}
+
+        {/* Rating */}
+        <div className="absolute top-3 right-3 bg-card/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md flex items-center gap-1">
+          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+          <span className="text-sm font-semibold text-foreground">{property.rating}</span>
         </div>
       </div>
 
@@ -48,13 +122,22 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
         <h3 className="font-serif text-xl font-semibold text-foreground mb-1 line-clamp-1">
           {property.name}
         </h3>
-        
-        <div className="flex items-center text-muted-foreground text-sm mb-4">
+
+        <div className="flex items-center text-muted-foreground text-sm mb-3">
           <MapPin className="w-4 h-4 mr-1 text-primary" />
           <span>{property.location}, {property.city}</span>
         </div>
 
-        {/* Amenities */}
+        {/* Pricing with strikethrough */}
+        <div className="flex items-baseline gap-2 mb-3">
+          <span className="text-muted-foreground line-through text-sm">${property.airbnbPrice.toLocaleString()}</span>
+          <span className="text-lg font-bold text-[hsl(142,70%,40%)]">${property.price.toLocaleString()}<span className="text-sm font-normal text-muted-foreground">/noche</span></span>
+          <span className="text-xs bg-[hsl(142,70%,45%)]/15 text-[hsl(142,70%,35%)] px-2 py-0.5 rounded-full font-medium">
+            Ahorras ${savings.toLocaleString()}
+          </span>
+        </div>
+
+        {/* Stats */}
         <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3 flex-wrap">
           <div className="flex items-center gap-1.5">
             <Users className="w-4 h-4" />
@@ -76,36 +159,38 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           )}
         </div>
 
-        {/* Extra Amenities */}
+        {/* Amenities */}
         <div className="flex-grow">
           {property.amenities && property.amenities.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-4 pb-4 border-b border-border">
-              {property.amenities.map((amenity) => (
+            <div className="flex flex-wrap gap-1.5 mb-4 pb-4 border-b border-border">
+              {property.amenities.slice(0, 5).map((amenity) => (
                 <span
                   key={amenity}
-                  className="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary text-xs rounded-full"
+                  className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full"
                 >
                   {amenityIcons[amenity] || null}
                   {amenity}
                 </span>
               ))}
+              {property.amenities.length > 5 && (
+                <span className="text-xs text-muted-foreground px-2 py-0.5">+{property.amenities.length - 5} más</span>
+              )}
             </div>
-          )}
-
-          {!property.amenities?.length && (
-            <div className="mb-5 pb-4 border-b border-border" />
           )}
         </div>
 
-        {/* CTA Button */}
+        {/* CTA */}
         <a
-          href="https://api.whatsapp.com/send/?phone=523333260013&text&type=phone_number&app_absent=0&wame_ctl=1&source_surface=20"
+          href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="block w-full text-center py-3 px-4 btn-whatsapp rounded-lg font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto"
         >
-          Reservar ahora
+          💬 Consultar disponibilidad
         </a>
+        <p className="text-center text-xs text-muted-foreground mt-1.5">
+          Respuesta en menos de 5 minutos
+        </p>
       </div>
     </article>
   );

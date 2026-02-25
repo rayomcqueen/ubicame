@@ -34,9 +34,13 @@ export interface Property {
   beds: number;
   bathrooms?: number;
   price: number;
+  airbnbPrice: number;
+  rating: number;
   image: string;
+  images: string[];
   whatsappLink: string;
   amenities?: string[];
+  badge?: "popular" | "demand";
 }
 
 export const properties: Property[] = [
@@ -50,9 +54,13 @@ export const properties: Property[] = [
     beds: 2,
     bathrooms: 2,
     price: 2500,
+    airbnbPrice: 2778,
+    rating: 4.9,
     image: property1Image,
+    images: [property1Image, property5Image, property11Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Departamento%20de%20Lujo",
-    amenities: ["Estacionamiento", "Cama King", "A/C"]
+    amenities: ["Estacionamiento", "Cama King", "A/C"],
+    badge: "popular"
   },
   {
     id: 2,
@@ -64,9 +72,13 @@ export const properties: Property[] = [
     beds: 3,
     bathrooms: 2,
     price: 2100,
+    airbnbPrice: 2333,
+    rating: 4.9,
     image: property2Image,
+    images: [property2Image, property15Image, property16Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Vive%20la%20Americana",
-    amenities: ["Estacionamiento", "Gimnasio", "Seguridad 24/7", "Rooftop", "Vistas Panorámicas", "A/C", "Cama King"]
+    amenities: ["Estacionamiento", "Gimnasio", "Seguridad 24/7", "Rooftop", "Vistas Panorámicas", "A/C", "Cama King"],
+    badge: "popular"
   },
   {
     id: 3,
@@ -77,9 +89,13 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 2300,
+    airbnbPrice: 2556,
+    rating: 4.8,
     image: property3Image,
+    images: [property3Image, property12Image, property24Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Torre%20Anuva",
-    amenities: ["Estacionamiento", "Alberca", "Gimnasio", "Seguridad 24/7", "Rooftop", "Vistas Panorámicas"]
+    amenities: ["Estacionamiento", "Alberca", "Gimnasio", "Seguridad 24/7", "Rooftop", "Vistas Panorámicas"],
+    badge: "demand"
   },
   {
     id: 4,
@@ -90,7 +106,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 2200,
+    airbnbPrice: 2444,
+    rating: 4.7,
     image: property4Image,
+    images: [property4Image, property8Image, property10Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Cerca%20de%20Estadio%20Akron",
     amenities: ["Estacionamiento", "Gimnasio", "Seguridad 24/7", "Rooftop", "Vistas Panorámicas"]
   },
@@ -103,7 +122,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 2,
     price: 2100,
+    airbnbPrice: 2333,
+    rating: 4.8,
     image: property5Image,
+    images: [property5Image, property1Image, property25Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Cocina%20completa%20y%20lujosa",
     amenities: ["Estacionamiento", "Seguridad 24/7", "Rooftop"]
   },
@@ -116,7 +138,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 1900,
+    airbnbPrice: 2111,
+    rating: 4.9,
     image: property6Image,
+    images: [property6Image, property7Image, property13Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Encantador%20con%20Jardín%20Privado",
     amenities: ["Estacionamiento", "Seguridad 24/7", "Rooftop", "Planta Baja"]
   },
@@ -129,7 +154,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 5,
     price: 1999,
+    airbnbPrice: 2221,
+    rating: 4.7,
     image: property7Image,
+    images: [property7Image, property6Image, property14Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20En%20Chapultepec",
     amenities: ["Estacionamiento", "Seguridad 24/7", "Rooftop"]
   },
@@ -142,7 +170,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 2,
     price: 1999,
+    airbnbPrice: 2221,
+    rating: 4.8,
     image: property8Image,
+    images: [property8Image, property9Image, property10Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Vista%20Majestuosa",
     amenities: ["Estacionamiento", "Seguridad 24/7", "A/C", "Rooftop"]
   },
@@ -155,7 +186,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 2199,
+    airbnbPrice: 2443,
+    rating: 4.7,
     image: property9Image,
+    images: [property9Image, property8Image, property4Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Super%20Moderno%20cama%20King",
     amenities: ["Estacionamiento", "Seguridad 24/7", "A/C"]
   },
@@ -168,7 +202,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 2,
     price: 1999,
+    airbnbPrice: 2221,
+    rating: 4.6,
     image: property10Image,
+    images: [property10Image, property8Image, property9Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Vista%20Majestuosa",
     amenities: ["Estacionamiento", "Seguridad 24/7", "A/C", "Rooftop"]
   },
@@ -181,7 +218,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 4,
     price: 2300,
+    airbnbPrice: 2556,
+    rating: 4.8,
     image: property11Image,
+    images: [property11Image, property1Image, property5Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Departamento%20con%20Alberca",
     amenities: ["Estacionamiento", "Alberca", "Gimnasio", "Seguridad 24/7", "A/C", "Rooftop", "Área de Trabajo"]
   },
@@ -194,7 +234,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 4,
     price: 2300,
+    airbnbPrice: 2556,
+    rating: 4.8,
     image: property12Image,
+    images: [property12Image, property3Image, property24Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Torre%20Anuva",
     amenities: ["Estacionamiento", "Alberca", "Gimnasio", "Seguridad 24/7", "A/C", "Rooftop", "Área de Trabajo"]
   },
@@ -207,7 +250,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 4,
     price: 1800,
+    airbnbPrice: 2000,
+    rating: 4.7,
     image: property13Image,
+    images: [property13Image, property14Image, property7Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Living%20Chapultepec",
     amenities: ["Estacionamiento", "Seguridad 24/7", "A/C", "Rooftop", "Área de Trabajo"]
   },
@@ -220,7 +266,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 4,
     price: 1900,
+    airbnbPrice: 2111,
+    rating: 4.7,
     image: property14Image,
+    images: [property14Image, property13Image, property6Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Living%20Chapultepec",
     amenities: ["Estacionamiento", "Seguridad 24/7", "A/C", "Rooftop", "Área de Trabajo"]
   },
@@ -233,7 +282,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 4,
     price: 1900,
+    airbnbPrice: 2111,
+    rating: 4.8,
     image: property15Image,
+    images: [property15Image, property16Image, property2Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Americana%20Rooftop",
     amenities: ["Estacionamiento", "A/C", "Rooftop", "Área de Trabajo"]
   },
@@ -246,7 +298,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 4,
     price: 1900,
+    airbnbPrice: 2111,
+    rating: 4.6,
     image: property16Image,
+    images: [property16Image, property15Image, property2Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Americana%20Rooftop",
     amenities: ["Estacionamiento", "A/C", "Rooftop", "Área de Trabajo"]
   },
@@ -259,7 +314,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 2400,
+    airbnbPrice: 2667,
+    rating: 4.7,
     image: property17Image,
+    images: [property17Image, property18Image, property19Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Zona%20Real%20Ventura",
     amenities: ["Estacionamiento", "Alberca", "A/C", "Rooftop", "Área de Trabajo"]
   },
@@ -272,7 +330,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 2400,
+    airbnbPrice: 2667,
+    rating: 4.6,
     image: property18Image,
+    images: [property18Image, property19Image, property20Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Glorieta%20Chapalita",
     amenities: ["Rooftop", "Área de Trabajo"]
   },
@@ -285,7 +346,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 2800,
+    airbnbPrice: 3111,
+    rating: 4.8,
     image: property19Image,
+    images: [property19Image, property18Image, property20Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Glorieta%20Chapalita",
     amenities: ["Rooftop", "Área de Trabajo"]
   },
@@ -298,7 +362,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 1900,
+    airbnbPrice: 2111,
+    rating: 4.5,
     image: property20Image,
+    images: [property20Image, property18Image, property21Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Glorieta%20Chapalita",
     amenities: ["Rooftop", "Área de Trabajo"]
   },
@@ -311,7 +378,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 2300,
+    airbnbPrice: 2556,
+    rating: 4.7,
     image: property21Image,
+    images: [property21Image, property20Image, property25Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Andares%20con%20cama%20King",
     amenities: ["Rooftop", "Área de Trabajo"]
   },
@@ -324,7 +394,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 1600,
+    airbnbPrice: 1778,
+    rating: 4.6,
     image: property22Image,
+    images: [property22Image, property23Image, property6Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Privado%20con%20Terraza",
     amenities: ["Rooftop", "Área de Trabajo"]
   },
@@ -337,7 +410,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 1600,
+    airbnbPrice: 1778,
+    rating: 4.5,
     image: property23Image,
+    images: [property23Image, property22Image, property14Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Privado%20con%20Terraza",
     amenities: ["Rooftop", "Área de Trabajo"]
   },
@@ -350,7 +426,10 @@ export const properties: Property[] = [
     bedrooms: 2,
     beds: 3,
     price: 2200,
+    airbnbPrice: 2444,
+    rating: 4.7,
     image: property24Image,
+    images: [property24Image, property3Image, property12Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Torre%20Anuva",
     amenities: ["Rooftop", "Área de Trabajo"]
   },
@@ -363,7 +442,10 @@ export const properties: Property[] = [
     bedrooms: 1,
     beds: 1,
     price: 1999,
+    airbnbPrice: 2221,
+    rating: 4.8,
     image: property25Image,
+    images: [property25Image, property1Image, property11Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Loft%20de%20Doble%20altura",
     amenities: ["Alberca", "Seguridad 24/7", "Rooftop", "Área de Trabajo"]
   }

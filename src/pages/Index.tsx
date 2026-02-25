@@ -9,11 +9,15 @@ import FloatingButtons from "@/components/FloatingButtons";
 import MobileStickyBar from "@/components/MobileStickyBar";
 import Footer from "@/components/Footer";
 import { properties } from "@/data/properties";
+import { ChevronDown } from "lucide-react";
+
+const INITIAL_COUNT = 6;
 
 const Index = () => {
   const [selectedZone, setSelectedZone] = useState("");
   const [selectedGuests, setSelectedGuests] = useState(0);
   const [selectedPriceRange, setSelectedPriceRange] = useState({ min: 0, max: Infinity });
+  const [showAll, setShowAll] = useState(false);
 
   const filteredProperties = useMemo(() => {
     return properties.filter((property) => {
@@ -26,10 +30,14 @@ const Index = () => {
     });
   }, [selectedZone, selectedGuests, selectedPriceRange]);
 
+  const isFiltering = selectedZone || selectedGuests > 0 || selectedPriceRange.min > 0 || selectedPriceRange.max < Infinity;
+  const displayedProperties = isFiltering || showAll
+    ? filteredProperties
+    : filteredProperties.slice(0, INITIAL_COUNT);
+  const hasMore = !isFiltering && !showAll && filteredProperties.length > INITIAL_COUNT;
+
   return (
     <div className="min-h-screen bg-background">
-      {/* SEO Meta handled in index.html */}
-      
       <Hero />
 
       {/* Properties Section */}
@@ -40,7 +48,7 @@ const Index = () => {
               Explora
             </span>
             <h2 className="font-serif text-4xl md:text-5xl font-semibold text-foreground mt-3 mb-4">
-              Propiedades disponibles
+              Propiedades destacadas
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Descubre espacios únicos en las mejores ubicaciones. Cada propiedad ha sido 
@@ -57,9 +65,9 @@ const Index = () => {
             setSelectedPriceRange={setSelectedPriceRange}
           />
 
-          {filteredProperties.length > 0 ? (
+          {displayedProperties.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProperties.map((property, index) => (
+              {displayedProperties.map((property, index) => (
                 <PropertyCard key={property.id} property={property} index={index} />
               ))}
             </div>
@@ -81,9 +89,21 @@ const Index = () => {
             </div>
           )}
 
-          <div className="text-center mt-12">
-            <p className="text-muted-foreground">
-              Mostrando {filteredProperties.length} de {properties.length} propiedades
+          {hasMore && (
+            <div className="text-center mt-12">
+              <button
+                onClick={() => setShowAll(true)}
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground rounded-full font-medium text-base transition-all duration-300 hover:shadow-lg hover:scale-105"
+              >
+                Ver las {filteredProperties.length} propiedades
+                <ChevronDown className="w-5 h-5" />
+              </button>
+            </div>
+          )}
+
+          <div className="text-center mt-8">
+            <p className="text-muted-foreground text-sm">
+              Mostrando {displayedProperties.length} de {filteredProperties.length} propiedades
             </p>
           </div>
         </div>
