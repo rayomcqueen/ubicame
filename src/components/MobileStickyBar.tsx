@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
 const WHATSAPP_URL = buildWhatsAppUrl("Hola! Estoy buscando hospedaje en Guadalajara. ¿Qué opciones tienes disponibles?");
 
@@ -34,6 +34,7 @@ const MobileStickyBar = () => {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick("mobile_sticky")}
           className="flex-1 flex items-center justify-center gap-2 btn-whatsapp font-bold py-3.5 rounded-full text-sm"
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

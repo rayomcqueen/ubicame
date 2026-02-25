@@ -1,5 +1,5 @@
 import { Camera, CheckCircle } from "lucide-react";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
 const WHATSAPP_URL = buildWhatsAppUrl("Hola Pablo! Vi tu perfil en ubicame.com.mx y me gustaría hablar sobre hospedaje en Guadalajara.");
 
@@ -56,6 +56,7 @@ const AboutSection = () => {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick("about")}
                 className="inline-flex items-center gap-2 btn-whatsapp font-semibold px-8 py-3.5 rounded-full shadow-md transition-transform hover:scale-105"
               >
                 💬 Habla conmigo directo

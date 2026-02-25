@@ -1,5 +1,5 @@
 import property4 from "@/assets/property-4.jpg";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
 const WHATSAPP_URL = buildWhatsAppUrl("Hola Pablo! Estoy buscando hospedaje en Guadalajara. Vi tu página ubicame.com.mx y me gustaría cotizar.");
 
@@ -53,6 +53,7 @@ const Hero = () => {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick("hero")}
             className="inline-flex items-center gap-3 btn-whatsapp text-lg font-bold px-10 py-5 rounded-full shadow-[0_4px_30px_hsl(142,70%,45%,0.45)] animate-[pulse_2.5s_ease-in-out_infinite]"
           >
             <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">

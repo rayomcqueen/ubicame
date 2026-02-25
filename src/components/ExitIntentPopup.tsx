@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { X } from "lucide-react";
 
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
 const STORAGE_KEY = "ubicame_exit_popup_shown";
 const WHATSAPP_URL = buildWhatsAppUrl("Hola! Vi la oferta de 15% de descuento en ubicame.com.mx. Me interesa reservar.");
@@ -74,6 +74,7 @@ const ExitIntentPopup = () => {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick("popup")}
           className="block w-full btn-whatsapp font-semibold py-4 rounded-full text-center shadow-md transition-transform hover:scale-105 mb-4"
         >
           💬 Obtener mi descuento por WhatsApp
