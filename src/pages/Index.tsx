@@ -10,6 +10,7 @@ import CTASection from "@/components/CTASection";
 import FloatingButtons from "@/components/FloatingButtons";
 import MobileStickyBar from "@/components/MobileStickyBar";
 import Footer from "@/components/Footer";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 import { properties } from "@/data/properties";
 import { ChevronDown } from "lucide-react";
 
@@ -119,6 +120,7 @@ const Index = () => {
       <Footer />
       <FloatingButtons />
       <MobileStickyBar />
+      <ExitIntentPopup />
     </div>
   );
 };
