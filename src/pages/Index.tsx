@@ -118,16 +118,12 @@ const Index = () => {
       <BenefitsSection />
 
       {/* Properties Section */}
-      <section id="propiedades" className="py-20 px-6">
+      <section id="propiedades" className="section-padding">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#6B7B3F", textTransform: "uppercase" as const }}>
-              Explora
-            </span>
-            <h2 className="font-serif mt-2 mb-4" style={{ fontSize: 32, fontWeight: 600, color: "#2D2D2D" }}>
-              Propiedades destacadas
-            </h2>
-            <p className="max-w-2xl mx-auto" style={{ fontSize: 16, color: "#6B6B6B", lineHeight: 1.6 }}>
+          <div className="text-center mb-12">
+            <span className="section-label">Explora</span>
+            <h2 className="section-title">Propiedades destacadas</h2>
+            <p className="section-subtitle">
               Descubre espacios únicos en las mejores ubicaciones. Cada propiedad ha sido 
               seleccionada para ofrecerte una experiencia excepcional.
             </p>
@@ -145,11 +141,11 @@ const Index = () => {
           {/* Live indicator */}
           <div className="flex items-center justify-center gap-2 mb-6">
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: "#E85D04" }}></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5" style={{ background: "#E85D04" }}></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
             </span>
-            <span style={{ fontSize: 14, color: "#E85D04", fontWeight: 500 }}>
-              🔥 12 personas están viendo propiedades ahora mismo
+            <span className="text-sm font-medium text-primary">
+              12 personas están viendo propiedades ahora mismo
             </span>
           </div>
 
@@ -203,10 +199,7 @@ const Index = () => {
                   (window as any).dataLayer = (window as any).dataLayer || [];
                   (window as any).dataLayer.push({ event: "view_all_properties" });
                 }}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-medium text-base transition-all duration-300 hover:shadow-lg hover:scale-105"
-                style={{ border: "1.5px solid #25D366", color: "#25D366", background: "transparent" }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "#25D366"; e.currentTarget.style.color = "#fff"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#25D366"; }}
+                className="btn-outline rounded-full"
               >
                 Ver las {filteredProperties.length}+ propiedades →
               </button>

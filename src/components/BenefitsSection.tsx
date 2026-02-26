@@ -29,12 +29,7 @@ const BenefitsSection = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect(); } },
       { threshold: 0.15 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -42,32 +37,26 @@ const BenefitsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 px-6 bg-muted/30">
+    <section ref={sectionRef} className="section-padding bg-muted/30">
       <div className="max-w-6xl mx-auto">
-        <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#6B7B3F", textTransform: "uppercase" as const }}>
-          Beneficios
-        </span>
-        <h2 className="font-serif mt-2" style={{ fontSize: 32, fontWeight: 600, color: "#2D2D2D" }}>
-          ¿Por qué reservar directo?
-        </h2>
-        <p className="text-center mt-2 mb-10 max-w-xl mx-auto" style={{ fontSize: 16, color: "#6B6B6B", lineHeight: 1.6 }}>
-          Más barato, más flexible, más personal.
-        </p>
+        <div className="text-center mb-12">
+          <span className="section-label">Beneficios</span>
+          <h2 className="section-title">¿Por qué reservar directo?</h2>
+          <p className="section-subtitle">Más barato, más flexible, más personal.</p>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map((b, i) => (
             <div
               key={b.title}
-              className={`bg-card rounded-2xl p-6 shadow-sm border border-border/50 text-center transition-all duration-500 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
+              className={`bg-card rounded-lg p-6 shadow-system-sm border border-border/50 text-center transition-all duration-500 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
               style={{ transitionDelay: isVisible ? `${i * 120}ms` : "0ms" }}
             >
               <span className="text-4xl block mb-3">{b.emoji}</span>
-              <h3 className="font-semibold mb-2" style={{ fontSize: 20, fontWeight: 600, color: "#2D2D2D" }}>{b.title}</h3>
-              <p style={{ fontSize: 14, color: "#6B6B6B", lineHeight: 1.6 }}>{b.description}</p>
+              <h3 className="font-serif font-semibold text-heading text-lg mb-2">{b.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{b.description}</p>
             </div>
           ))}
         </div>

@@ -58,8 +58,8 @@ const Navbar = () => {
 
         {/* Price indicator — desktop only, visible after scroll */}
         {scrolled && (
-          <span className="hidden md:block" style={{ color: "#6B6B6B", fontSize: 14 }}>
-            Desde <strong className="text-foreground" style={{ fontWeight: 700 }}>$1,900</strong>/noche
+          <span className="hidden md:block text-sm text-muted-foreground">
+            Desde <strong className="text-heading font-bold">$1,500</strong>/noche
           </span>
         )}
 
