@@ -5,7 +5,7 @@ const WA_MESSAGE = "Hola! Me interesa hospedarme en Guadalajara. Vi tu página u
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[85svh] flex items-center justify-center overflow-hidden">
+    <section className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: '80svh' }}>
       {/* Background image */}
       <img
         src={property3}
@@ -16,40 +16,114 @@ const Hero = () => {
         loading="eager"
         fetchPriority="high"
       />
-      {/* Gradient overlay — transparent top, dark bottom */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent" />
+      {/* Gradient overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%)',
+        }}
+      />
 
-      <div className="relative z-10 text-center px-4 max-w-3xl mx-auto flex flex-col items-center gap-6 md:gap-8 pt-20 pb-12">
+      <div className="relative z-10 text-center px-4 max-w-3xl mx-auto flex flex-col items-center" style={{ paddingTop: 120, paddingBottom: 48 }}>
         {/* H1 */}
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-tight opacity-0 animate-fade-up">
+        <h1
+          className="font-serif opacity-0 animate-fade-up"
+          style={{
+            fontSize: 48,
+            lineHeight: 1.2,
+            fontWeight: 700,
+            color: '#FFFFFF',
+            letterSpacing: '-0.02em',
+            textShadow: '0 2px 8px rgba(0,0,0,0.3)',
+            marginBottom: 16,
+          }}
+        >
           Hospédate en Guadalajara
         </h1>
 
-        {/* Sub-headline */}
-        <p className="text-lg md:text-xl text-white/90 opacity-0 animate-fade-up stagger-1">
-          Desde <span className="text-[hsl(var(--gold))] font-semibold">$1,900/noche</span> · Ahorra 10% vs Airbnb
+        {/* Subline */}
+        <p
+          className="opacity-0 animate-fade-up stagger-1"
+          style={{
+            fontSize: 18,
+            fontWeight: 400,
+            color: 'rgba(255,255,255,0.85)',
+            textShadow: '0 1px 4px rgba(0,0,0,0.3)',
+            marginBottom: 32,
+          }}
+        >
+          Desde $1,900/noche · Ahorra 20% vs Airbnb
         </p>
 
         {/* CTA */}
-        <div className="opacity-0 animate-fade-up stagger-2">
+        <div className="opacity-0 animate-fade-up stagger-2" style={{ marginBottom: 12 }}>
           <a
             href={buildWhatsAppUrl(WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppClick("hero")}
             aria-label="Reservar por WhatsApp"
-            className="inline-flex items-center gap-2 btn-whatsapp text-lg font-bold px-10 py-4 rounded-full cta-pulse"
+            style={{
+              display: 'inline-block',
+              fontSize: 18,
+              fontWeight: 600,
+              padding: '16px 48px',
+              background: '#25D366',
+              color: '#FFFFFF',
+              borderRadius: 12,
+              textDecoration: 'none',
+              boxShadow: '0 4px 16px rgba(37,211,102,0.3)',
+              transition: 'background 0.2s, box-shadow 0.2s',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#128C7E';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#25D366';
+            }}
           >
-            💬 Reservar por WhatsApp
+            Reservar por WhatsApp
           </a>
-          <p className="text-white/60 text-sm mt-3">Respuesta en &lt;5 min</p>
         </div>
 
-        {/* Trust badges */}
-        <p className="text-white/70 text-sm opacity-0 animate-fade-up stagger-3">
+        {/* Texto bajo el botón */}
+        <p
+          className="opacity-0 animate-fade-up stagger-2"
+          style={{
+            fontSize: 14,
+            fontWeight: 400,
+            color: 'rgba(255,255,255,0.5)',
+            marginBottom: 24,
+          }}
+        >
+          Respuesta en menos de 5 minutos
+        </p>
+
+        {/* Trust line */}
+        <p
+          className="opacity-0 animate-fade-up stagger-3"
+          style={{
+            fontSize: 13,
+            fontWeight: 400,
+            color: 'rgba(255,255,255,0.5)',
+            letterSpacing: '0.02em',
+          }}
+        >
           Superhost 4.9★ · +1,500 huéspedes · Respuesta inmediata
         </p>
       </div>
+
+      {/* Mobile responsive overrides */}
+      <style>{`
+        @media (max-width: 768px) {
+          section > .relative h1 {
+            font-size: 32px !important;
+          }
+          section > .relative p:first-of-type {
+            font-size: 16px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
