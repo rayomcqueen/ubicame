@@ -1,4 +1,5 @@
-import { Camera, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
+import perfilImg from "@/assets/perfil.jpg";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 import { useScrollReveal, useCountUp } from "@/hooks/use-scroll-reveal";
 
@@ -28,10 +29,11 @@ const AboutSection = () => {
         <div className="flex flex-col lg:flex-row gap-8 items-center">
           {/* Photo */}
           <div className="flex-shrink-0 flex flex-col items-center gap-2">
-            <div className="w-[140px] h-[140px] lg:w-[180px] lg:h-[180px] rounded-full bg-muted border-4 border-primary/20 flex flex-col items-center justify-center text-muted-foreground">
-              <Camera className="w-8 h-8 mb-1" aria-hidden="true" />
-              <span className="text-xs">Foto del anfitrión</span>
-            </div>
+            <img
+              src={perfilImg}
+              alt="Pablo, tu anfitrión"
+              className="w-[140px] h-[140px] lg:w-[180px] lg:h-[180px] rounded-full border-4 border-primary/20 object-cover"
+            />
             <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
               <CheckCircle className="w-4 h-4" aria-hidden="true" />
               Superhost verificado
