@@ -1,4 +1,6 @@
 import { useState, useMemo, useEffect, lazy, Suspense } from "react";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import BenefitsSection from "@/components/BenefitsSection";
@@ -22,7 +24,8 @@ const INITIAL_COUNT = 6;
 const Index = () => {
   const [selectedZone, setSelectedZone] = useState("");
   const [selectedGuests, setSelectedGuests] = useState(0);
-  const [selectedPriceRange, setSelectedPriceRange] = useState({ min: 0, max: Infinity });
+  const [checkIn, setCheckIn] = useState<Date | undefined>();
+  const [checkOut, setCheckOut] = useState<Date | undefined>();
   const [showAll, setShowAll] = useState(false);
   const [showUrgencyBanner, setShowUrgencyBanner] = useState(() => {
     return sessionStorage.getItem("urgency-banner-closed") !== "true";
@@ -56,21 +59,38 @@ const Index = () => {
       const matchesZone = !selectedZone || property.location === selectedZone;
       const matchesGuests = selectedGuests === 0 || 
         (selectedGuests === 7 ? property.guests >= 7 : property.guests >= selectedGuests - 1 && property.guests <= selectedGuests);
-      const matchesPrice = property.price >= selectedPriceRange.min && property.price <= selectedPriceRange.max;
-      return matchesZone && matchesGuests && matchesPrice;
+      return matchesZone && matchesGuests;
     });
     return filtered.sort((a, b) => {
       const badgeWeight = (p: typeof a) => (p.badge === "popular" ? 2 : p.badge === "demand" ? 1 : 0);
       const diff = badgeWeight(b) - badgeWeight(a);
       return diff !== 0 ? diff : b.rating - a.rating;
     });
-  }, [selectedZone, selectedGuests, selectedPriceRange]);
+  }, [selectedZone, selectedGuests]);
 
-  const isFiltering = selectedZone || selectedGuests > 0 || selectedPriceRange.min > 0 || selectedPriceRange.max < Infinity;
+  const isFiltering = selectedZone || selectedGuests > 0;
   const displayedProperties = isFiltering || showAll
     ? filteredProperties
     : filteredProperties.slice(0, INITIAL_COUNT);
   const hasMore = !isFiltering && !showAll && filteredProperties.length > INITIAL_COUNT;
+
+  const buildSearchWhatsApp = () => {
+    const parts: string[] = [];
+    if (checkIn) parts.push(`Check-in: ${format(checkIn, "d MMM yyyy", { locale: es })}`);
+    if (checkOut) parts.push(`Check-out: ${format(checkOut, "d MMM yyyy", { locale: es })}`);
+    if (selectedGuests > 0) parts.push(`Huéspedes: ${selectedGuests}`);
+    if (selectedZone) parts.push(`Zona: ${selectedZone}`);
+    const details = parts.length > 0 ? `\n${parts.join("\n")}` : "";
+    return buildWhatsAppUrl(`Hola! Busco hospedaje en Guadalajara.${details} [desde buscador]`);
+  };
+
+  const handleSearch = () => {
+    const el = document.getElementById("propiedades");
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -115,8 +135,11 @@ const Index = () => {
                 setSelectedZone={setSelectedZone}
                 selectedGuests={selectedGuests}
                 setSelectedGuests={setSelectedGuests}
-                selectedPriceRange={selectedPriceRange}
-                setSelectedPriceRange={setSelectedPriceRange}
+                checkIn={checkIn}
+                setCheckIn={setCheckIn}
+                checkOut={checkOut}
+                setCheckOut={setCheckOut}
+                onSearch={handleSearch}
               />
 
               {displayedProperties.length > 0 ? (
@@ -131,12 +154,12 @@ const Index = () => {
                     <Home className="w-8 h-8 text-muted-foreground" aria-hidden="true" />
                   </div>
                   <p className="text-foreground text-lg font-medium mb-2">No encontramos propiedades con esos filtros</p>
-                  <p className="text-muted-foreground mb-6 max-w-md mx-auto">Contáctanos por WhatsApp y te ayudamos.</p>
+                  <p className="text-muted-foreground mb-6 max-w-md mx-auto">Escríbenos y te buscamos la opción ideal.</p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <button onClick={() => { setSelectedZone(""); setSelectedGuests(0); setSelectedPriceRange({ min: 0, max: Infinity }); }} className="btn-primary rounded-lg">
+                    <button onClick={() => { setSelectedZone(""); setSelectedGuests(0); setCheckIn(undefined); setCheckOut(undefined); }} className="btn-primary rounded-lg">
                       Limpiar filtros
                     </button>
-                    <a href={buildWhatsAppUrl("Hola! No encuentro una propiedad con los filtros que busco [desde filtros]")} target="_blank" rel="noopener noreferrer" onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl("Hola! No encuentro una propiedad con los filtros que busco [desde filtros]"), "empty_filters")} className="btn-whatsapp rounded-lg">
+                    <a href={buildSearchWhatsApp()} target="_blank" rel="noopener noreferrer" onClick={(e) => trackAndOpenWhatsApp(e, buildSearchWhatsApp(), "empty_filters")} className="btn-whatsapp rounded-lg">
                       💬 Ayúdame a encontrar
                     </a>
                   </div>
