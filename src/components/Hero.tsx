@@ -4,7 +4,7 @@ import property8 from "@/assets/property-8.jpg";
 import property12 from "@/assets/property-12.jpg";
 import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
-const WA_MESSAGE = "Hola! Vi ubicame.com.mx y me interesa hospedarme en Guadalajara [desde hero]";
+const WA_MESSAGE = "Hola! 👋 Vi tu página y me interesa hospedarme en Guadalajara. ¿Me podrías ayudar con opciones disponibles? [desde hero]";
 
 const photos = [
   { src: property1, alt: "Departamento moderno en Guadalajara", rotate: "-2deg" },

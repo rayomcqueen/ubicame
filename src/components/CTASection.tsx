@@ -1,7 +1,7 @@
 import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 import property5 from "@/assets/property-5.jpg";
 
-const WA_MESSAGE = "Hola! Quiero reservar en Guadalajara [desde cta-final]";
+const WA_MESSAGE = "Hola! Quiero reservar un hospedaje en Guadalajara. ¿Qué opciones me recomiendas? 🌮 [desde cta-final]";
 
 const CTASection = () => {
   return (
