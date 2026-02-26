@@ -1,7 +1,7 @@
 import { Star } from "lucide-react";
 
 const stats = [
-  { value: "1,500+", label: "Huéspedes satisfechos" },
+  { value: "10,000+", label: "Huéspedes satisfechos" },
   { value: "4.9", label: "Rating en Airbnb", icon: true },
   { value: "Superhost", label: "Desde 2019" },
 ];
