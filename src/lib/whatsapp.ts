@@ -49,10 +49,20 @@ export const trackWhatsAppClick = (
   propertyPrice = ""
 ) => {
   (window as any).dataLayer = (window as any).dataLayer || [];
+
+  // Existing whatsapp_click event
   (window as any).dataLayer.push({
     event: "whatsapp_click",
     property_name: propertyName,
     property_price: propertyPrice,
+    click_location: clickLocation,
+  });
+
+  // generate_lead event for conversion tracking
+  (window as any).dataLayer.push({
+    event: "generate_lead",
+    lead_source: "whatsapp",
+    property_name: propertyName,
     click_location: clickLocation,
   });
 

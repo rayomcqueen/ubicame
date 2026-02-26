@@ -1,7 +1,10 @@
 import { useState, useRef, useCallback } from "react";
 import { Users, Bed, ChevronLeft, ChevronRight, Home } from "lucide-react";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
 import type { Property } from "@/data/properties";
 import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
+import { useSearchContext } from "@/lib/search-context";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface PropertyCardProps {
@@ -37,7 +40,15 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
 
   const openLightbox = (i: number) => { setLightboxIndex(i); setLightboxOpen(true); };
 
-  const whatsappMessage = `Hola! Me interesa "${property.name}" en ${property.location}. ¿Está disponible? Precio $${property.price.toLocaleString()}/noche [desde card]`;
+  const search = useSearchContext();
+
+  const dateParts: string[] = [];
+  if (search.checkIn) dateParts.push(`Check-in: ${format(search.checkIn, "d MMM yyyy", { locale: es })}`);
+  if (search.checkOut) dateParts.push(`Check-out: ${format(search.checkOut, "d MMM yyyy", { locale: es })}`);
+  if (search.guests > 0) dateParts.push(`Huéspedes: ${search.guests}`);
+  const dateInfo = dateParts.length > 0 ? `\n${dateParts.join("\n")}` : "";
+
+  const whatsappMessage = `Hola! Me interesa "${property.name}" en ${property.location}. Precio $${property.price.toLocaleString()}/noche.${dateInfo} [desde card]`;
   const whatsappUrl = buildWhatsAppUrl(whatsappMessage);
 
   // Single badge logic: "popular" → "Top", "demand" → "Nuevo"
