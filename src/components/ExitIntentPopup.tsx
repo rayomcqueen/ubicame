@@ -87,7 +87,7 @@ const ExitIntentPopup = () => {
         <button
           onClick={dismiss}
           className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-          aria-label="Cerrar"
+          aria-label="Cerrar oferta"
         >
           <X className="w-5 h-5" />
         </button>
@@ -120,7 +120,7 @@ const ExitIntentPopup = () => {
         <button
           onClick={dismiss}
           className="text-sm transition-colors min-h-[44px]"
-          style={{ color: "#999" }}
+          style={{ color: "#757575" }}
         >
           No gracias
         </button>
