@@ -68,7 +68,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
   const whatsappMessage = `Hola! Me interesa ${property.name} en ${property.location} ($${property.price.toLocaleString()}/noche). ¿Hay disponibilidad?`;
   const whatsappUrl = buildWhatsAppUrl(whatsappMessage);
 
-  const airbnbPrice = property.airbnbPrice ?? Math.round(property.price * 1.1);
+  const airbnbPrice = Math.round(property.price / 0.80);
   const savings = airbnbPrice - property.price;
 
   return (
