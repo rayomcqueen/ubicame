@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import BenefitsSection from "@/components/BenefitsSection";
 import FilterBar from "@/components/FilterBar";
@@ -49,6 +50,8 @@ const Index = () => {
       >
         Saltar al contenido
       </a>
+
+      <Navbar />
 
       <header>
         <Hero />
