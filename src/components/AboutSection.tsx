@@ -11,11 +11,11 @@ const AboutSection = () => {
           {/* Photo */}
           <div className="flex-shrink-0 flex flex-col items-center gap-3">
             <div className="w-48 h-48 md:w-56 md:h-56 rounded-full bg-muted border-4 border-primary/20 flex flex-col items-center justify-center text-muted-foreground">
-              <Camera className="w-10 h-10 mb-2" />
+              <Camera className="w-10 h-10 mb-2" aria-hidden="true" />
               <span className="text-xs">Foto del anfitrión</span>
             </div>
             <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
-              <CheckCircle className="w-4 h-4" />
+              <CheckCircle className="w-4 h-4" aria-hidden="true" />
               Superhost verificado
             </span>
           </div>
@@ -57,6 +57,7 @@ const AboutSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick("about")}
+                aria-label="Reservar por WhatsApp"
                 className="inline-flex items-center gap-2 btn-whatsapp font-semibold px-8 py-3.5 rounded-full shadow-md transition-transform hover:scale-105"
               >
                 💬 Habla conmigo directo

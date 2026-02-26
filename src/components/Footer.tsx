@@ -26,7 +26,7 @@ const Footer = () => {
                   href="tel:+523333260013"
                   className="flex items-center gap-3 text-background/70 hover:text-background transition-colors min-h-[44px]"
                 >
-                  <Phone className="w-5 h-5" />
+                  <Phone className="w-5 h-5" aria-hidden="true" />
                   +52 33 3326 0013
                 </a>
               </li>
@@ -38,12 +38,12 @@ const Footer = () => {
                   onClick={() => trackWhatsAppClick("footer")}
                   className="flex items-center gap-3 text-background/70 hover:text-background transition-colors min-h-[44px]"
                 >
-                  <MessageCircle className="w-5 h-5" />
+                  <MessageCircle className="w-5 h-5" aria-hidden="true" />
                   WhatsApp
                 </a>
               </li>
               <li className="flex items-center gap-3 text-background/70">
-                <MapPin className="w-5 h-5" />
+                <MapPin className="w-5 h-5" aria-hidden="true" />
                 Guadalajara, Jalisco
               </li>
             </ul>
@@ -61,7 +61,7 @@ const Footer = () => {
                 className="w-11 h-11 rounded-full bg-background/10 flex items-center justify-center hover:bg-background/20 transition-colors min-w-[44px] min-h-[44px]"
                 aria-label="WhatsApp"
               >
-                <MessageCircle className="w-5 h-5" />
+                <MessageCircle className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
                 href="https://instagram.com/ubicamegdl"
@@ -70,7 +70,7 @@ const Footer = () => {
                 className="w-11 h-11 rounded-full bg-background/10 flex items-center justify-center hover:bg-background/20 transition-colors min-w-[44px] min-h-[44px]"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-5 h-5" aria-hidden="true" />
               </a>
             </div>
           </div>

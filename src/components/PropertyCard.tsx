@@ -4,17 +4,17 @@ import type { Property } from "@/data/properties";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
 const amenityIcons: Record<string, React.ReactNode> = {
-  "Estacionamiento": <Car className="w-3.5 h-3.5" />,
-  "WiFi": <Wifi className="w-3.5 h-3.5" />,
-  "Alberca": <Waves className="w-3.5 h-3.5" />,
-  "Cocina": <Utensils className="w-3.5 h-3.5" />,
-  "Gimnasio": <Dumbbell className="w-3.5 h-3.5" />,
-  "TV": <Tv className="w-3.5 h-3.5" />,
-  "Seguridad 24/7": <Shield className="w-3.5 h-3.5" />,
-  "Rooftop": <Building className="w-3.5 h-3.5" />,
-  "Vistas Panorámicas": <Eye className="w-3.5 h-3.5" />,
-  "A/C": <Waves className="w-3.5 h-3.5" />,
-  "Cama King": <Bed className="w-3.5 h-3.5" />,
+  "Estacionamiento": <Car className="w-3.5 h-3.5" aria-hidden="true" />,
+  "WiFi": <Wifi className="w-3.5 h-3.5" aria-hidden="true" />,
+  "Alberca": <Waves className="w-3.5 h-3.5" aria-hidden="true" />,
+  "Cocina": <Utensils className="w-3.5 h-3.5" aria-hidden="true" />,
+  "Gimnasio": <Dumbbell className="w-3.5 h-3.5" aria-hidden="true" />,
+  "TV": <Tv className="w-3.5 h-3.5" aria-hidden="true" />,
+  "Seguridad 24/7": <Shield className="w-3.5 h-3.5" aria-hidden="true" />,
+  "Rooftop": <Building className="w-3.5 h-3.5" aria-hidden="true" />,
+  "Vistas Panorámicas": <Eye className="w-3.5 h-3.5" aria-hidden="true" />,
+  "A/C": <Waves className="w-3.5 h-3.5" aria-hidden="true" />,
+  "Cama King": <Bed className="w-3.5 h-3.5" aria-hidden="true" />,
 };
 
 interface PropertyCardProps {
@@ -55,7 +55,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           <img
             key={i}
             src={img}
-            alt={`${property.name} - foto ${i + 1}`}
+            alt={`${property.name} en ${property.location}, Guadalajara — ${property.bedrooms} habitaciones para ${property.guests} huéspedes, foto ${i + 1}`}
             width={400}
             height={225}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
@@ -114,7 +114,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
 
         {/* Rating */}
         <div className="absolute top-3 right-3 bg-card/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md flex items-center gap-1">
-          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" aria-hidden="true" />
           <span className="text-sm font-semibold text-foreground">{property.rating}</span>
         </div>
       </div>
@@ -126,7 +126,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
         </h3>
 
         <div className="flex items-center text-muted-foreground text-sm mb-3">
-          <MapPin className="w-4 h-4 mr-1 text-primary" />
+          <MapPin className="w-4 h-4 mr-1 text-primary" aria-hidden="true" />
           <span>{property.location}, {property.city}</span>
         </div>
 
@@ -142,20 +142,20 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
         {/* Stats */}
         <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3 flex-wrap">
           <div className="flex items-center gap-1.5">
-            <Users className="w-4 h-4" />
-            <span>{property.guests}</span>
+            <Users className="w-4 h-4" aria-hidden="true" />
+            <span>{property.guests} huéspedes</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <DoorOpen className="w-4 h-4" />
+            <DoorOpen className="w-4 h-4" aria-hidden="true" />
             <span>{property.bedrooms} hab</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Bed className="w-4 h-4" />
+            <Bed className="w-4 h-4" aria-hidden="true" />
             <span>{property.beds} camas</span>
           </div>
           {property.bathrooms && (
             <div className="flex items-center gap-1.5">
-              <Bath className="w-4 h-4" />
+              <Bath className="w-4 h-4" aria-hidden="true" />
               <span>{property.bathrooms} baños</span>
             </div>
           )}
@@ -187,6 +187,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick("property_card", property.name, property.price.toString())}
+          aria-label={`Reservar ${property.name} por WhatsApp`}
           className="block w-full text-center py-3 px-4 btn-whatsapp rounded-lg font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto"
         >
           💬 Consultar disponibilidad

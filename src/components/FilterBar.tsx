@@ -27,7 +27,7 @@ const FilterBar = ({
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div className="space-y-2">
         <label className="flex items-center text-sm font-medium text-foreground">
-          <MapPin className="w-4 h-4 mr-2 text-primary" />
+          <MapPin className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
           Zona
         </label>
         <select
@@ -44,7 +44,7 @@ const FilterBar = ({
 
       <div className="space-y-2">
         <label className="flex items-center text-sm font-medium text-foreground">
-          <Users className="w-4 h-4 mr-2 text-primary" />
+          <Users className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
           Huéspedes
         </label>
         <select
@@ -60,7 +60,7 @@ const FilterBar = ({
 
       <div className="space-y-2">
         <label className="flex items-center text-sm font-medium text-foreground">
-          <DollarSign className="w-4 h-4 mr-2 text-primary" />
+          <DollarSign className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
           Precio por noche
         </label>
         <select
@@ -89,7 +89,7 @@ const FilterBar = ({
           onClick={() => setOpen(true)}
           className="w-full flex items-center justify-center gap-2 bg-card rounded-xl shadow-soft px-4 py-3.5 text-foreground font-medium min-h-[48px]"
         >
-          <SlidersHorizontal className="w-5 h-5 text-primary" />
+          <SlidersHorizontal className="w-5 h-5 text-primary" aria-hidden="true" />
           Filtrar propiedades
           {hasFilters && (
             <span className="bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">!</span>

@@ -26,6 +26,7 @@ const UrgencyBanner = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppClick("urgency_banner")}
+            aria-label="Reservar por WhatsApp"
             className="inline-flex items-center gap-2 btn-whatsapp font-semibold px-8 py-3.5 rounded-full shadow-md transition-transform hover:scale-105"
           >
             💬 Consultar fechas disponibles

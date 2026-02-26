@@ -42,7 +42,19 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Hero />
+      {/* Skip to content link */}
+      <a
+        href="#propiedades"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium"
+      >
+        Saltar al contenido
+      </a>
+
+      <header>
+        <Hero />
+      </header>
+
+      <main>
       <BenefitsSection />
 
       {/* Properties Section */}
@@ -119,6 +131,8 @@ const Index = () => {
       <Testimonials />
       <CTASection />
       <FAQSection />
+      </main>
+
       <Footer />
       <FloatingButtons />
       <MobileStickyBar />

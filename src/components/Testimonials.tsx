@@ -107,7 +107,7 @@ const Testimonials = () => {
             <span className="text-4xl md:text-5xl font-bold text-foreground">4.9</span>
             <div className="flex gap-0.5">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-6 h-6 fill-[hsl(var(--gold))] text-[hsl(var(--gold))]" />
+                <Star key={i} className="w-6 h-6 fill-[hsl(var(--gold))] text-[hsl(var(--gold))]" aria-hidden="true" />
               ))}
             </div>
           </div>
@@ -128,12 +128,12 @@ const Testimonials = () => {
               key={index}
               className="flex-shrink-0 w-[85vw] sm:w-[340px] md:w-auto bg-card rounded-2xl p-6 shadow-sm border border-border/50 relative snap-start"
             >
-              <Quote className="absolute top-5 right-5 w-7 h-7 text-primary/15" />
+              <Quote className="absolute top-5 right-5 w-7 h-7 text-primary/15" aria-hidden="true" />
 
               {/* Stars */}
               <div className="flex gap-0.5 mb-4">
                 {[...Array(t.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[hsl(var(--gold))] text-[hsl(var(--gold))]" />
+                  <Star key={i} className="w-4 h-4 fill-[hsl(var(--gold))] text-[hsl(var(--gold))]" aria-hidden="true" />
                 ))}
               </div>
 
