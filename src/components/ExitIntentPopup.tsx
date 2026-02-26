@@ -30,6 +30,8 @@ const ExitIntentPopup = () => {
     if (wasDismissedRecently() || hasClickedWhatsApp()) return;
     triggered.current = true;
     setShow(true);
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({ event: "popup_shown" });
   }, []);
 
   const dismiss = useCallback(() => {
@@ -120,6 +122,8 @@ const ExitIntentPopup = () => {
           rel="noopener noreferrer"
           onClick={() => {
             trackWhatsAppClick("popup");
+            (window as any).dataLayer = (window as any).dataLayer || [];
+            (window as any).dataLayer.push({ event: "popup_cta_click" });
             localStorage.setItem(WA_CLICKED_KEY, "1");
             dismiss();
           }}

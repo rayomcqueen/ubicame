@@ -153,7 +153,11 @@ const Index = () => {
           {hasMore && (
             <div className="text-center mt-12">
               <button
-                onClick={() => setShowAll(true)}
+                onClick={() => {
+                  setShowAll(true);
+                  (window as any).dataLayer = (window as any).dataLayer || [];
+                  (window as any).dataLayer.push({ event: "view_all_properties" });
+                }}
                 className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground rounded-full font-medium text-base transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
                 Ver las {filteredProperties.length} propiedades →
