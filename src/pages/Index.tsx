@@ -169,12 +169,12 @@ const Index = () => {
         </div>
       </section>
 
-      <ComparisonSection />
       <GuadalajaraSection />
       <MapSection />
       <AboutSection />
       <UrgencyBanner />
       <Testimonials />
+      <ComparisonSection />
       <CTASection />
       <FAQSection />
       </main>

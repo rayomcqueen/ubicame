@@ -1,4 +1,3 @@
-import { Check, X } from "lucide-react";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
@@ -33,40 +32,46 @@ const ComparisonSection = () => {
         </div>
 
         {/* Desktop table */}
-        <div className="hidden md:block bg-card rounded-lg shadow-md overflow-hidden border border-border">
+        <div className="hidden md:block rounded-xl shadow-md overflow-hidden border border-border">
           <table className="w-full">
             <thead>
               <tr>
                 <th className="text-left py-4 px-6 text-sm font-semibold text-muted-foreground bg-muted/50 w-1/3">
                   Aspecto
                 </th>
-                <th className="text-center py-4 px-6 text-sm font-semibold bg-destructive/5 text-destructive w-1/3">
+                <th className="text-center py-4 px-6 text-sm font-semibold w-1/3" style={{ backgroundColor: "#FFF5F5", color: "#DC2626" }}>
                   Airbnb
                 </th>
-                <th className="text-center py-4 px-6 text-sm font-semibold bg-accent/10 text-primary w-1/3">
+                <th className="text-center py-4 px-6 text-sm font-semibold w-1/3" style={{ backgroundColor: "#F0FFF4", color: "#16A34A" }}>
                   Reserva Directa ✨
                 </th>
               </tr>
             </thead>
             <tbody>
               {rows.map((row, i) => (
-                <tr key={row.aspect} className={i % 2 === 0 ? "bg-card" : "bg-muted/20"}>
-                  <td className="py-4 px-6 text-sm font-medium text-foreground">
+                <tr key={row.aspect}>
+                  <td className={`py-4 px-6 text-sm font-medium text-foreground ${i % 2 === 0 ? "bg-white" : "bg-muted/20"}`}>
                     {row.aspect}
                   </td>
-                  <td className="py-4 px-6 text-center">
-                    <div className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-                      <X className="w-4 h-4 text-destructive flex-shrink-0" aria-hidden="true" />
+                  <td
+                    className="py-4 px-6 text-center"
+                    style={{ backgroundColor: i % 2 === 0 ? "#FFF5F5" : "#FEF0F0" }}
+                  >
+                    <div className="inline-flex items-center gap-1.5 text-sm" style={{ color: "#6B7280" }}>
+                      <span className="text-base" aria-hidden="true">❌</span>
                       {row.airbnb}
                     </div>
                   </td>
-                  <td className="py-4 px-6 text-center">
-                    <div className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
-                      <Check className="w-4 h-4 text-accent flex-shrink-0" aria-hidden="true" />
+                  <td
+                    className="py-4 px-6 text-center"
+                    style={{ backgroundColor: i % 2 === 0 ? "#F0FFF4" : "#E8FAED" }}
+                  >
+                    <div className="inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: "#111827" }}>
+                      <span className="text-base" aria-hidden="true">✅</span>
                       {row.ubicame}
                     </div>
                     {row.ubicameNote && (
-                      <span className="block text-xs text-accent mt-0.5 font-medium">{row.ubicameNote}</span>
+                      <span className="block text-xs mt-0.5 font-medium" style={{ color: "#16A34A" }}>{row.ubicameNote}</span>
                     )}
                   </td>
                 </tr>
@@ -80,37 +85,35 @@ const ComparisonSection = () => {
           {rows.map((row, i) => (
             <div
               key={row.aspect}
-              className={`bg-card rounded-lg border border-border p-4 reveal ${isVisible ? "visible" : ""}`}
+              className={`rounded-xl border border-border overflow-hidden reveal ${isVisible ? "visible" : ""}`}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                {row.aspect}
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-destructive/5 rounded-md p-3 text-center">
-                  <p className="text-[10px] text-muted-foreground mb-1 font-medium">Airbnb</p>
-                  <div className="flex items-center justify-center gap-1 text-sm text-muted-foreground">
-                    <X className="w-3.5 h-3.5 text-destructive" aria-hidden="true" />
-                    <span>{row.airbnb}</span>
-                  </div>
-                </div>
-                <div className="bg-accent/10 rounded-md p-3 text-center">
-                  <p className="text-[10px] text-primary mb-1 font-medium">Directo</p>
-                  <div className="flex items-center justify-center gap-1 text-sm font-medium text-foreground">
-                    <Check className="w-3.5 h-3.5 text-accent" aria-hidden="true" />
-                    <span>{row.ubicame}</span>
-                  </div>
+              <div className="bg-muted/50 px-4 py-2.5">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                  {row.aspect}
+                </p>
+              </div>
+              <div className="px-4 py-3 flex items-center gap-2" style={{ backgroundColor: "#FFF5F5" }}>
+                <span className="text-sm">❌</span>
+                <span className="text-xs font-medium" style={{ color: "#6B7280" }}>Airbnb:</span>
+                <span className="text-sm" style={{ color: "#6B7280" }}>{row.airbnb}</span>
+              </div>
+              <div className="px-4 py-3 flex items-center gap-2" style={{ backgroundColor: "#F0FFF4" }}>
+                <span className="text-sm">✅</span>
+                <span className="text-xs font-medium" style={{ color: "#16A34A" }}>Ubicame:</span>
+                <span className="text-sm font-medium" style={{ color: "#111827" }}>
+                  {row.ubicame}
                   {row.ubicameNote && (
-                    <span className="text-[10px] text-accent font-medium">{row.ubicameNote}</span>
+                    <span className="ml-1 text-xs" style={{ color: "#16A34A" }}>({row.ubicameNote})</span>
                   )}
-                </div>
+                </span>
               </div>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-10">
+        <div className="text-center mt-12">
           <a
             href={buildWhatsAppUrl(WA_MESSAGE)}
             target="_blank"
