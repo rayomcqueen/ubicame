@@ -15,9 +15,11 @@ import FloatingButtons from "@/components/FloatingButtons";
 import MobileStickyBar from "@/components/MobileStickyBar";
 import Footer from "@/components/Footer";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
+import OfflineBanner from "@/components/OfflineBanner";
 import FAQSection from "@/components/FAQSection";
 import { properties } from "@/data/properties";
-import { ChevronDown } from "lucide-react";
+import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { ChevronDown, Home } from "lucide-react";
 
 const INITIAL_COUNT = 6;
 
@@ -107,19 +109,37 @@ const Index = () => {
             </div>
           ) : (
             <div className="text-center py-16">
-              <p className="text-muted-foreground text-lg">
-                No se encontraron propiedades con los filtros seleccionados.
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
+                <Home className="w-8 h-8 text-muted-foreground" aria-hidden="true" />
+              </div>
+              <p className="text-foreground text-lg font-medium mb-2">
+                No hay propiedades con estos filtros
               </p>
-              <button
-                onClick={() => {
-                  setSelectedZone("");
-                  setSelectedGuests(0);
-                  setSelectedPriceRange({ min: 0, max: Infinity });
-                }}
-                className="mt-4 px-6 py-2 btn-primary rounded-lg"
-              >
-                Limpiar filtros
-              </button>
+              <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+                Prueba ajustando tus criterios o contáctame y te ayudo a encontrar tu lugar ideal.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <button
+                  onClick={() => {
+                    setSelectedZone("");
+                    setSelectedGuests(0);
+                    setSelectedPriceRange({ min: 0, max: Infinity });
+                  }}
+                  className="px-6 py-2.5 btn-primary rounded-lg"
+                >
+                  Limpiar filtros
+                </button>
+                <a
+                  href={buildWhatsAppUrl("Hola! No encuentro una propiedad con los filtros que busco. ¿Me ayudas?")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick("empty_filters")}
+                  aria-label="Pedir ayuda por WhatsApp"
+                  className="inline-flex items-center justify-center gap-2 btn-whatsapp px-6 py-2.5 rounded-lg text-sm"
+                >
+                  💬 Ayúdame a encontrar
+                </a>
+              </div>
             </div>
           )}
 
@@ -157,6 +177,7 @@ const Index = () => {
       <FloatingButtons />
       <MobileStickyBar />
       <ExitIntentPopup />
+      <OfflineBanner />
     </div>
   );
 };
