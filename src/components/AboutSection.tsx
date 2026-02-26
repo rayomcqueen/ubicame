@@ -1,11 +1,15 @@
 import { CheckCircle, User } from "lucide-react";
 import perfilImg from "@/assets/perfil.jpg";
 import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
+import { useCountUp } from "@/hooks/use-scroll-reveal";
 
 const WA_MESSAGE = "Hola Pablo! Tengo preguntas sobre tus propiedades en Guadalajara";
 
 const AboutSection = () => {
   const waUrl = buildWhatsAppUrl(WA_MESSAGE);
+  const { ref: propRef, count: propCount } = useCountUp(25, 1500);
+  const { ref: guestRef, count: guestCount } = useCountUp(1500, 1500);
+  const { ref: ratingRef, count: ratingCount } = useCountUp(49, 1500);
 
   return (
     <section id="sobre-mi" className="px-6" style={{ paddingTop: 48, paddingBottom: 48, background: "hsl(var(--secondary) / 0.3)" }}>
@@ -43,18 +47,26 @@ const AboutSection = () => {
               Soy Pablo, Superhost en Airbnb desde 2019. Administro 25+ propiedades en las mejores zonas de Guadalajara con atención directa y personalizada.
             </p>
 
-            {/* Stats row */}
+            {/* Stats row with count-up */}
             <div className="flex justify-center sm:justify-start gap-6">
-              {[
-                { value: "25+", label: "Propiedades" },
-                { value: "1,500+", label: "Huéspedes" },
-                { value: "4.9★", label: "Rating" },
-              ].map((s) => (
-                <div key={s.label} className="text-center sm:text-left">
-                  <p className="font-serif font-bold text-primary" style={{ fontSize: 24 }}>{s.value}</p>
-                  <p style={{ fontSize: 13, color: "#6B6B6B" }}>{s.label}</p>
-                </div>
-              ))}
+              <div className="text-center sm:text-left">
+                <p className="font-serif font-bold text-primary" style={{ fontSize: 24 }}>
+                  <span ref={propRef}>{propCount}</span>+
+                </p>
+                <p style={{ fontSize: 13, color: "#6B6B6B" }}>Propiedades</p>
+              </div>
+              <div className="text-center sm:text-left">
+                <p className="font-serif font-bold text-primary" style={{ fontSize: 24 }}>
+                  <span ref={guestRef}>{guestCount.toLocaleString()}</span>+
+                </p>
+                <p style={{ fontSize: 13, color: "#6B6B6B" }}>Huéspedes</p>
+              </div>
+              <div className="text-center sm:text-left">
+                <p className="font-serif font-bold text-primary" style={{ fontSize: 24 }}>
+                  <span ref={ratingRef}>{(ratingCount / 10).toFixed(1)}</span>★
+                </p>
+                <p style={{ fontSize: 13, color: "#6B6B6B" }}>Rating</p>
+              </div>
             </div>
 
             <a
