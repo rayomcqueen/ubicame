@@ -67,7 +67,7 @@ const Hero = () => {
               marginBottom: 32,
             }}
           >
-            Desde <span style={{ fontSize: 24, fontWeight: 700, color: "#6B7B3F" }}>$1,500/noche</span> · <span style={{ fontWeight: 600 }}>Ahorra hasta 20% vs Airbnb</span>
+            Desde <span style={{ fontSize: 24, fontWeight: 700, color: "#6B7B3F" }}>$1,500/noche</span> · <span style={{ fontWeight: 600 }}>Hasta 50% más barato que un hotel</span>
           </p>
 
           {/* CTA */}
