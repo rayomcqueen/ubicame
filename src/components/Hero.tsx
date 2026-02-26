@@ -44,8 +44,8 @@ const Hero = () => {
             maxWidth: 560,
           }}
         >
-          Superhost con <strong>1,500+ huéspedes</strong> satisfechos. Desde{" "}
-          <strong style={{ fontSize: "1.15em" }}>$1,500/noche</strong> — sin comisiones de plataforma.
+          Con más de <strong>10,000 huéspedes</strong> satisfechos, reserva con nosotros desde tan solo{" "}
+          <strong style={{ fontSize: "1.15em" }}>$1,500 MXN</strong> la noche.
         </p>
 
         {/* CTAs */}
