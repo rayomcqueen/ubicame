@@ -455,10 +455,9 @@ export const cities = [...new Set(properties.map(p => p.city))];
 export const zones = [...new Set(properties.map(p => p.location))].sort();
 export const priceRanges = [
   { label: "Todos", min: 0, max: Infinity },
-  { label: "Menos de $1,500", min: 0, max: 1500 },
-  { label: "$1,500 - $2,500", min: 1500, max: 2500 },
-  { label: "$2,500 - $4,000", min: 2500, max: 4000 },
-  { label: "Más de $4,000", min: 4000, max: Infinity }
+  { label: "Hasta $2,000", min: 0, max: 2000 },
+  { label: "$2,000 - $2,500", min: 2000, max: 2500 },
+  { label: "$2,500+", min: 2500, max: Infinity },
 ];
 export const guestOptions = [
   { label: "Cualquiera", value: 0 },
