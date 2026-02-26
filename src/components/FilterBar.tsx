@@ -1,13 +1,22 @@
-import { MapPin, Users, DollarSign, X } from "lucide-react";
-import { zones, priceRanges, guestOptions } from "@/data/properties";
+import { useState } from "react";
+import { MapPin, Users, CalendarDays, Search, X } from "lucide-react";
+import { zones, guestOptions } from "@/data/properties";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 
 interface FilterBarProps {
   selectedZone: string;
   setSelectedZone: (zone: string) => void;
   selectedGuests: number;
   setSelectedGuests: (guests: number) => void;
-  selectedPriceRange: { min: number; max: number };
-  setSelectedPriceRange: (range: { min: number; max: number }) => void;
+  checkIn: Date | undefined;
+  setCheckIn: (d: Date | undefined) => void;
+  checkOut: Date | undefined;
+  setCheckOut: (d: Date | undefined) => void;
+  onSearch: () => void;
 }
 
 const FilterBar = ({
@@ -15,153 +24,226 @@ const FilterBar = ({
   setSelectedZone,
   selectedGuests,
   setSelectedGuests,
-  selectedPriceRange,
-  setSelectedPriceRange,
+  checkIn,
+  setCheckIn,
+  checkOut,
+  setCheckOut,
+  onSearch,
 }: FilterBarProps) => {
-  const hasFilters = selectedZone || selectedGuests > 0 || selectedPriceRange.min > 0 || selectedPriceRange.max < Infinity;
+  const hasFilters = selectedZone || selectedGuests > 0 || checkIn || checkOut;
 
   const clearAll = () => {
     setSelectedZone("");
     setSelectedGuests(0);
-    setSelectedPriceRange({ min: 0, max: Infinity });
+    setCheckIn(undefined);
+    setCheckOut(undefined);
   };
 
-  const chevronSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const formatDate = (d: Date | undefined, placeholder: string) =>
+    d ? format(d, "d MMM", { locale: es }) : placeholder;
+
+  const selectClass = (active: boolean) =>
+    cn(
+      "appearance-none border rounded-lg px-3 py-2.5 text-sm bg-background cursor-pointer min-h-[44px] focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+      active ? "border-primary text-foreground font-medium" : "border-border text-foreground"
+    );
 
   return (
     <>
-      {/* Desktop: inline grid */}
-      <div className="hidden md:block bg-card rounded-xl shadow-soft p-6 mb-10">
-        <div className="grid grid-cols-3 gap-4">
-          <div className="space-y-2">
-            <label className="flex items-center text-sm font-medium text-foreground">
-              <MapPin className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
-              Zona
-            </label>
-            <select
-              value={selectedZone}
-              onChange={(e) => setSelectedZone(e.target.value)}
-              className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground text-base focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 cursor-pointer min-h-[44px]"
-            >
-              <option value="">Todas las zonas</option>
-              {zones.map((zone) => (
-                <option key={zone} value={zone}>{zone}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="space-y-2">
-            <label className="flex items-center text-sm font-medium text-foreground">
-              <Users className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
-              Huéspedes
-            </label>
-            <select
-              value={selectedGuests}
-              onChange={(e) => setSelectedGuests(Number(e.target.value))}
-              className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground text-base focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 cursor-pointer min-h-[44px]"
-            >
-              {guestOptions.map((option) => (
-                <option key={option.value} value={option.value}>{option.label}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="space-y-2">
-            <label className="flex items-center text-sm font-medium text-foreground">
-              <DollarSign className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
-              Precio por noche
-            </label>
-            <select
-              value={JSON.stringify(selectedPriceRange)}
-              onChange={(e) => setSelectedPriceRange(JSON.parse(e.target.value))}
-              className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground text-base focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 cursor-pointer min-h-[44px]"
-            >
-              {priceRanges.map((range) => (
-                <option key={range.label} value={JSON.stringify({ min: range.min, max: range.max })}>{range.label}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {hasFilters && (
-          <div className="mt-4 text-center">
-            <button
-              onClick={clearAll}
-              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors min-h-[44px]"
-            >
-              <X className="w-3.5 h-3.5" aria-hidden="true" />
-              Limpiar filtros
-            </button>
-          </div>
-        )}
-      </div>
-
-      {/* Mobile: horizontal scrollable row */}
-      <div className="md:hidden mb-6 -mx-6 px-6">
-        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide" style={{ WebkitOverflowScrolling: "touch" }}>
-          <div className="shrink-0">
-            <select
-              value={selectedZone}
-              onChange={(e) => setSelectedZone(e.target.value)}
-              className={`appearance-none border rounded-full px-4 py-2.5 text-sm min-h-[44px] min-w-[44px] pr-8 cursor-pointer ${
-                selectedZone ? "bg-primary/10 border-primary text-foreground font-medium" : "bg-card border-border text-foreground"
-              }`}
-              style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}
-            >
-              <option value="">🏘 Zona</option>
-              {zones.map((zone) => (
-                <option key={zone} value={zone}>{zone}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="shrink-0">
-            <select
-              value={selectedGuests}
-              onChange={(e) => setSelectedGuests(Number(e.target.value))}
-              className={`appearance-none border rounded-full px-4 py-2.5 text-sm min-h-[44px] min-w-[44px] pr-8 cursor-pointer ${
-                selectedGuests > 0 ? "bg-primary/10 border-primary text-foreground font-medium" : "bg-card border-border text-foreground"
-              }`}
-              style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}
-            >
-              {guestOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.value === 0 ? "👥 Huéspedes" : option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="shrink-0">
-            <select
-              value={JSON.stringify(selectedPriceRange)}
-              onChange={(e) => setSelectedPriceRange(JSON.parse(e.target.value))}
-              className={`appearance-none border rounded-full px-4 py-2.5 text-sm min-h-[44px] min-w-[44px] pr-8 cursor-pointer ${
-                selectedPriceRange.min > 0 || selectedPriceRange.max < Infinity ? "bg-primary/10 border-primary text-foreground font-medium" : "bg-card border-border text-foreground"
-              }`}
-              style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}
-            >
-              {priceRanges.map((range) => (
-                <option key={range.label} value={JSON.stringify({ min: range.min, max: range.max })}>
-                  {range.min === 0 && range.max === Infinity ? "💰 Precio" : range.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {hasFilters && (
-            <div className="shrink-0">
-              <button
-                onClick={clearAll}
-                className="flex items-center gap-1.5 bg-muted border border-border rounded-full px-4 py-2.5 text-sm text-muted-foreground min-h-[44px] whitespace-nowrap"
-              >
-                <X className="w-3.5 h-3.5" aria-hidden="true" />
-                Limpiar
+      {/* Desktop: single-row search bar */}
+      <div className="hidden md:flex items-end gap-3 bg-card rounded-xl shadow-soft p-4 mb-10">
+        {/* Check-in */}
+        <div className="flex-1 space-y-1.5">
+          <label className="flex items-center text-xs font-medium text-muted-foreground">
+            <CalendarDays className="w-3.5 h-3.5 mr-1.5 text-primary" aria-hidden="true" />
+            Check-in
+          </label>
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className={cn(selectClass(!!checkIn), "w-full text-left")}>
+                {formatDate(checkIn, "Fecha entrada")}
               </button>
-            </div>
-          )}
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                selected={checkIn}
+                onSelect={(d) => {
+                  setCheckIn(d);
+                  if (d && checkOut && d >= checkOut) setCheckOut(undefined);
+                }}
+                disabled={(d) => d < today}
+                initialFocus
+                className="p-3 pointer-events-auto"
+              />
+            </PopoverContent>
+          </Popover>
         </div>
+
+        {/* Check-out */}
+        <div className="flex-1 space-y-1.5">
+          <label className="flex items-center text-xs font-medium text-muted-foreground">
+            <CalendarDays className="w-3.5 h-3.5 mr-1.5 text-primary" aria-hidden="true" />
+            Check-out
+          </label>
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className={cn(selectClass(!!checkOut), "w-full text-left")}>
+                {formatDate(checkOut, "Fecha salida")}
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                selected={checkOut}
+                onSelect={setCheckOut}
+                disabled={(d) => d < (checkIn ? new Date(checkIn.getTime() + 86400000) : today)}
+                initialFocus
+                className="p-3 pointer-events-auto"
+              />
+            </PopoverContent>
+          </Popover>
+        </div>
+
+        {/* Guests */}
+        <div className="flex-1 space-y-1.5">
+          <label className="flex items-center text-xs font-medium text-muted-foreground">
+            <Users className="w-3.5 h-3.5 mr-1.5 text-primary" aria-hidden="true" />
+            Huéspedes
+          </label>
+          <select
+            value={selectedGuests}
+            onChange={(e) => setSelectedGuests(Number(e.target.value))}
+            className={selectClass(selectedGuests > 0) + " w-full"}
+          >
+            {guestOptions.map((o) => (
+              <option key={o.value} value={o.value}>{o.label}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Zone */}
+        <div className="flex-1 space-y-1.5">
+          <label className="flex items-center text-xs font-medium text-muted-foreground">
+            <MapPin className="w-3.5 h-3.5 mr-1.5 text-primary" aria-hidden="true" />
+            Zona
+          </label>
+          <select
+            value={selectedZone}
+            onChange={(e) => setSelectedZone(e.target.value)}
+            className={selectClass(!!selectedZone) + " w-full"}
+          >
+            <option value="">Todas las zonas</option>
+            {zones.map((z) => (
+              <option key={z} value={z}>{z}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Search button */}
+        <button
+          onClick={onSearch}
+          className="btn-primary rounded-lg px-6 min-h-[44px] flex items-center gap-2 shrink-0"
+        >
+          <Search className="w-4 h-4" aria-hidden="true" />
+          Buscar
+        </button>
       </div>
+
+      {/* Mobile: stacked compact */}
+      <div className="md:hidden bg-card rounded-xl shadow-soft p-4 mb-6 space-y-3">
+        <div className="grid grid-cols-2 gap-3">
+          {/* Check-in mobile */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className={cn(selectClass(!!checkIn), "w-full text-left text-xs")}>
+                <CalendarDays className="w-3.5 h-3.5 inline mr-1.5 text-primary" />
+                {formatDate(checkIn, "Check-in")}
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                selected={checkIn}
+                onSelect={(d) => {
+                  setCheckIn(d);
+                  if (d && checkOut && d >= checkOut) setCheckOut(undefined);
+                }}
+                disabled={(d) => d < today}
+                initialFocus
+                className="p-3 pointer-events-auto"
+              />
+            </PopoverContent>
+          </Popover>
+
+          {/* Check-out mobile */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className={cn(selectClass(!!checkOut), "w-full text-left text-xs")}>
+                <CalendarDays className="w-3.5 h-3.5 inline mr-1.5 text-primary" />
+                {formatDate(checkOut, "Check-out")}
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="end">
+              <Calendar
+                mode="single"
+                selected={checkOut}
+                onSelect={setCheckOut}
+                disabled={(d) => d < (checkIn ? new Date(checkIn.getTime() + 86400000) : today)}
+                initialFocus
+                className="p-3 pointer-events-auto"
+              />
+            </PopoverContent>
+          </Popover>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
+          <select
+            value={selectedGuests}
+            onChange={(e) => setSelectedGuests(Number(e.target.value))}
+            className={selectClass(selectedGuests > 0) + " w-full text-xs"}
+          >
+            <option value="0">👥 Huéspedes</option>
+            {guestOptions.filter(o => o.value > 0).map((o) => (
+              <option key={o.value} value={o.value}>{o.label}</option>
+            ))}
+          </select>
+
+          <select
+            value={selectedZone}
+            onChange={(e) => setSelectedZone(e.target.value)}
+            className={selectClass(!!selectedZone) + " w-full text-xs"}
+          >
+            <option value="">🏘 Zona</option>
+            {zones.map((z) => (
+              <option key={z} value={z}>{z}</option>
+            ))}
+          </select>
+        </div>
+
+        <button
+          onClick={onSearch}
+          className="btn-primary rounded-lg w-full min-h-[44px] flex items-center justify-center gap-2"
+        >
+          <Search className="w-4 h-4" aria-hidden="true" />
+          Buscar
+        </button>
+      </div>
+
+      {hasFilters && (
+        <div className="text-center mb-6">
+          <button
+            onClick={clearAll}
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors min-h-[44px]"
+          >
+            <X className="w-3.5 h-3.5" aria-hidden="true" />
+            Limpiar filtros
+          </button>
+        </div>
+      )}
     </>
   );
 };
