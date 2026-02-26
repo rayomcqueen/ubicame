@@ -18,6 +18,14 @@ const amenityIcons: Record<string, React.ReactNode> = {
   "Cama King": <Bed className="w-3.5 h-3.5" aria-hidden="true" />,
 };
 
+// Property IDs that show the "booked this week" indicator
+const POPULAR_PROPERTY_IDS = [1, 2];
+
+const POPULAR_MESSAGES: Record<number, string> = {
+  1: "Reservada 3 veces esta semana",
+  2: "Reservada 4 veces esta semana",
+};
+
 interface PropertyCardProps {
   property: Property;
   index: number;
@@ -188,6 +196,11 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           <h3 className="font-serif line-clamp-2 mb-1" style={{ fontSize: 20, fontWeight: 600, color: "#2D2D2D" }}>
             {property.name}
           </h3>
+          {POPULAR_PROPERTY_IDS.includes(property.id) && (
+            <p style={{ fontSize: 12, color: "#E85D04", fontWeight: 500 }} className="mb-1">
+              🔥 {POPULAR_MESSAGES[property.id]}
+            </p>
+          )}
 
           <div className="flex items-center mb-3" style={{ fontSize: 14, color: "#6B6B6B" }}>
             <MapPin className="w-4 h-4 mr-1 text-primary" aria-hidden="true" />
