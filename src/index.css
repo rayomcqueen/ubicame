@@ -244,6 +244,7 @@
 
 /* Typography mobile overrides */
 @media (max-width: 768px) {
+  h1.font-serif { font-size: 36px !important; }
   h2.font-serif { font-size: 26px !important; }
   h3.font-serif { font-size: 18px !important; }
 }
