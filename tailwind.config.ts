@@ -70,6 +70,8 @@ export default {
         },
         cream: "hsl(var(--cream))",
         "warm-brown": "hsl(var(--warm-brown))",
+        heading: "hsl(var(--heading))",
+        "footer-bg": "hsl(var(--footer-bg))",
       },
       fontFamily: {
         serif: ["Playfair Display", "serif"],

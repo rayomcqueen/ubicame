@@ -96,24 +96,24 @@ const ExitIntentPopup = () => {
       aria-label="Oferta especial de descuento"
     >
       <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 text-center animate-scale-in"
+        className="relative bg-card rounded-2xl shadow-2xl max-w-md w-full p-8 text-center animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={dismiss}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition-colors"
+          className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
           aria-label="Cerrar"
         >
           <X className="w-5 h-5" />
         </button>
 
         <p className="text-4xl mb-4">🎁</p>
-        <h3 className="font-serif text-2xl font-semibold text-[#2D2D2D] mb-2">
+        <h3 className="font-serif text-2xl font-semibold text-heading mb-2">
           ¡Espera! Tengo una oferta especial para ti
         </h3>
-        <p className="text-gray-500 mb-6 text-sm">
+        <p className="text-muted-foreground mb-6 text-sm">
           Reserva en las próximas 24 horas y recibe{" "}
-          <span className="font-bold text-[#2D2D2D]">15% de descuento</span> en tu primera noche
+          <span className="font-bold text-heading">15% de descuento</span> en tu primera noche
         </p>
 
         <a
@@ -135,7 +135,7 @@ const ExitIntentPopup = () => {
 
         <button
           onClick={dismiss}
-          className="text-xs text-gray-400 hover:text-gray-600 transition-colors underline"
+          className="text-xs text-muted-foreground hover:text-foreground transition-colors underline"
         >
           No gracias
         </button>
