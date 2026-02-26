@@ -84,6 +84,9 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           onTouchStart={onTouchStart}
           onTouchEnd={(e) => onTouchEnd(e)}
         >
+          {/* Skeleton shimmer */}
+          <div className="absolute inset-0 img-skeleton" />
+
           {images.map((img, i) => (
             <img
               key={i}

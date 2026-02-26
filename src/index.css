@@ -7,52 +7,34 @@
 @layer base {
   :root {
     /* Design System Colors */
-    --background: 30 33% 97%;        /* #FAF8F5 */
-    --foreground: 0 0% 18%;          /* #2D2D2D */
-
-    --card: 0 0% 100%;               /* #FFFFFF */
-    --card-foreground: 0 0% 18%;     /* #2D2D2D */
-
+    --background: 30 33% 97%;
+    --foreground: 0 0% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 18%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 18%;
-
-    /* Primary: Olive green */
-    --primary: 82 33% 36%;           /* #6B7B3F */
-    --primary-dark: 82 35% 26%;      /* #4A5A2B */
-    --primary-foreground: 0 0% 100%; /* #FFFFFF */
-
-    /* Secondary: Warm beige */
+    --primary: 82 33% 36%;
+    --primary-dark: 82 35% 26%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 35 30% 90%;
     --secondary-foreground: 0 0% 18%;
-
     --muted: 30 20% 92%;
-    --muted-foreground: 0 0% 42%;    /* #6B6B6B */
-
-    /* Accent: WhatsApp green for CTAs */
-    --accent: 142 70% 49%;           /* #25D366 */
-    --accent-hover: 164 75% 34%;     /* #128C7E */
+    --muted-foreground: 0 0% 42%;
+    --accent: 142 70% 49%;
+    --accent-hover: 164 75% 34%;
     --accent-foreground: 0 0% 100%;
-
-    /* Warning/Urgency */
-    --warning: 24 95% 46%;           /* #E85D04 */
+    --warning: 24 95% 46%;
     --warning-foreground: 0 0% 100%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 35 20% 85%;
     --input: 35 20% 85%;
     --ring: 82 33% 36%;
-
     --radius: 0.5rem;
-
-    /* Custom properties */
     --gold: 42 65% 55%;
     --olive-light: 82 20% 85%;
     --cream: 30 33% 97%;
     --warm-brown: 30 25% 30%;
-
-    /* Shadow system */
     --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.06);
     --shadow-md: 0 4px 20px -4px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 12px 40px -8px rgba(0, 0, 0, 0.15);
@@ -105,13 +87,11 @@
     line-height: 1.2;
   }
 
-  /* Type scale: 14, 16, 18, 24, 32, 48, 64 */
-  h1 { font-size: 3rem; }       /* 48px */
-  h2 { font-size: 2rem; }       /* 32px */
-  h3 { font-size: 1.5rem; }     /* 24px */
-  h4 { font-size: 1.125rem; }   /* 18px */
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.125rem; }
 
-  /* Focus ring for keyboard navigation */
   *:focus-visible {
     @apply outline-2 outline-offset-2 outline-primary;
   }
@@ -122,17 +102,20 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
   }
 
-  .card-hover {
-    @apply transition-all duration-500 ease-out;
-    box-shadow: var(--shadow-sm);
+  /* Button micro-interactions */
+  .btn-interactive {
+    @apply transition-all duration-200;
+    transform: scale(1);
   }
-  .card-hover:hover {
-    @apply -translate-y-1;
-    box-shadow: var(--shadow-lg);
+  .btn-interactive:hover {
+    transform: scale(1.02);
+  }
+  .btn-interactive:active {
+    transform: scale(0.98);
   }
 
   .btn-primary {
-    @apply bg-primary text-primary-foreground transition-all duration-300 font-sans font-bold tracking-wide;
+    @apply bg-primary text-primary-foreground font-sans font-bold tracking-wide btn-interactive;
     border-radius: 8px;
   }
   .btn-primary:hover {
@@ -140,7 +123,7 @@
   }
 
   .btn-whatsapp {
-    @apply bg-accent text-accent-foreground transition-all duration-300 font-sans font-bold tracking-wide;
+    @apply bg-accent text-accent-foreground font-sans font-bold tracking-wide btn-interactive;
     border-radius: 8px;
   }
   .btn-whatsapp:hover {
@@ -148,7 +131,7 @@
   }
 
   .btn-warning {
-    @apply text-white transition-all duration-300 font-sans font-bold tracking-wide;
+    @apply text-white font-sans font-bold tracking-wide btn-interactive;
     background-color: hsl(var(--warning));
     border-radius: 8px;
   }
@@ -157,16 +140,40 @@
   }
 
   .floating-btn {
-    @apply fixed z-50 rounded-full transition-all duration-300 hover:scale-110;
+    @apply fixed z-50 rounded-full btn-interactive;
     box-shadow: var(--shadow-lg);
   }
-
-  .section-fade {
-    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  .floating-btn:hover {
+    transform: scale(1.1);
   }
 
-  .section-fade.visible {
-    @apply opacity-100 translate-y-0;
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger-1 { transition-delay: 0.1s; }
+  .reveal-stagger-2 { transition-delay: 0.2s; }
+  .reveal-stagger-3 { transition-delay: 0.3s; }
+  .reveal-stagger-4 { transition-delay: 0.4s; }
+  .reveal-stagger-5 { transition-delay: 0.5s; }
+
+  /* CTA pulse */
+  .cta-pulse {
+    animation: ctaPulse 3s ease-in-out infinite;
+  }
+
+  /* Image skeleton shimmer */
+  .img-skeleton {
+    @apply bg-muted;
+    background: linear-gradient(90deg, hsl(var(--muted)) 0%, hsl(var(--muted) / 0.5) 50%, hsl(var(--muted)) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
   }
 }
 
@@ -174,11 +181,9 @@
   .animate-fade-up {
     animation: fadeUp 0.6s ease-out forwards;
   }
-
   .animate-fade-in {
     animation: fadeIn 0.5s ease-out forwards;
   }
-
   .animate-scale-in {
     animation: scaleIn 0.4s ease-out forwards;
   }
@@ -201,6 +206,16 @@
   .shadow-system-lg { box-shadow: var(--shadow-lg); }
 }
 
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 4px 30px hsl(142 70% 45% / 0.3); }
+  50% { box-shadow: 0 4px 40px hsl(142 70% 45% / 0.6); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 @keyframes slideUp {
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
@@ -211,14 +226,8 @@
 }
 
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
@@ -227,30 +236,26 @@
 }
 
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary) / 0.5);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.7);
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: hsl(var(--muted)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.5); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.7); }

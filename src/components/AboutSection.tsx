@@ -1,12 +1,30 @@
 import { Camera, CheckCircle } from "lucide-react";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { useScrollReveal, useCountUp } from "@/hooks/use-scroll-reveal";
 
 const WA_MESSAGE = "Hola Pablo! Vi tu perfil en ubicame.com.mx y me gustaría hablar sobre hospedaje en Guadalajara.";
 
+const CountStat = ({ target, suffix, label }: { target: number; suffix: string; label: string }) => {
+  const { ref, count } = useCountUp(target);
+  return (
+    <div>
+      <p className="font-serif text-3xl font-semibold text-primary">
+        <span ref={ref}>{count.toLocaleString()}</span>{suffix}
+      </p>
+      <p className="text-muted-foreground text-sm">{label}</p>
+    </div>
+  );
+};
+
 const AboutSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
     <section id="sobre-mi" className="py-20 px-6 bg-secondary/30">
-      <div className="max-w-5xl mx-auto">
+      <div
+        ref={ref}
+        className={`max-w-5xl mx-auto reveal ${isVisible ? "visible" : ""}`}
+      >
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           {/* Photo */}
           <div className="flex-shrink-0 flex flex-col items-center gap-3">
@@ -35,16 +53,10 @@ const AboutSection = () => {
               Soy Pablo, Superhost en Airbnb desde 2019. Administro 25+ propiedades en las mejores zonas de Guadalajara. Mi obsesión es que cada huésped tenga una experiencia perfecta — por eso prefiero el trato directo. Cuando reservas conmigo, no solo obtienes un mejor precio: obtienes un guía local que te ayuda con todo.
             </p>
 
-            {/* Stats */}
+            {/* Stats with count-up */}
             <div className="flex justify-center lg:justify-start gap-8 pt-2">
-              <div>
-                <p className="font-serif text-3xl font-semibold text-primary">25+</p>
-                <p className="text-muted-foreground text-sm">Propiedades</p>
-              </div>
-              <div>
-                <p className="font-serif text-3xl font-semibold text-primary">1500+</p>
-                <p className="text-muted-foreground text-sm">Huéspedes</p>
-              </div>
+              <CountStat target={25} suffix="+" label="Propiedades" />
+              <CountStat target={1500} suffix="+" label="Huéspedes" />
               <div>
                 <p className="font-serif text-3xl font-semibold text-primary">4.9★</p>
                 <p className="text-muted-foreground text-sm">Rating</p>
@@ -58,7 +70,7 @@ const AboutSection = () => {
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick("about")}
                 aria-label="Reservar por WhatsApp"
-                className="inline-flex items-center gap-2 btn-whatsapp font-semibold px-8 py-3.5 rounded-full shadow-md transition-transform hover:scale-105"
+                className="inline-flex items-center gap-2 btn-whatsapp font-semibold px-8 py-3.5 rounded-full shadow-md"
               >
                 💬 Habla conmigo directo
               </a>
