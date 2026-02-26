@@ -4,7 +4,6 @@ import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
 const NAV_LINKS = [
   { label: "Propiedades", href: "#propiedades" },
-  { label: "Sobre mí", href: "#sobre-mi" },
   { label: "Testimonios", href: "#testimonios" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -28,13 +27,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-in-out ${
         scrolled
-          ? "bg-white/90 backdrop-blur-[12px] shadow-md"
+          ? "shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
           : "bg-transparent"
       }`}
+      style={scrolled ? { background: "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" } : undefined}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 h-16">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 h-14 md:h-16">
         {/* Logo */}
         <a
           href="#"
@@ -45,10 +45,10 @@ const Navbar = () => {
           className="flex items-center gap-1.5 group"
         >
           <MapPin
-            className="w-6 h-6 text-primary transition-transform group-hover:scale-110"
+            className="w-5 h-5 text-primary transition-transform group-hover:scale-110"
             aria-hidden="true"
           />
-          <span className={`font-serif text-xl font-bold transition-colors duration-300 ${scrolled ? "text-foreground" : "text-white"}`}>
+          <span className={`font-serif text-lg font-bold transition-colors duration-300 ${scrolled ? "text-foreground" : "text-white"}`}>
             Ubicame
           </span>
         </a>
@@ -69,13 +69,14 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* WhatsApp CTA — visible always */}
+        {/* WhatsApp CTA — compact */}
         <a
           href={waUrl}
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => trackAndOpenWhatsApp(e, waUrl, "navbar")}
-          className="inline-flex items-center gap-1.5 btn-whatsapp px-4 py-2 text-sm rounded-md"
+          className="inline-flex items-center gap-1.5 btn-whatsapp px-5 py-2 text-sm rounded-md font-medium"
+          style={{ fontSize: "14px", padding: "8px 20px", boxShadow: "none" }}
           aria-label="Reservar por WhatsApp"
         >
           💬 WhatsApp
