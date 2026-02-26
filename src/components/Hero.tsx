@@ -109,7 +109,7 @@ const Hero = () => {
             style={{
               fontSize: 14,
               fontWeight: 400,
-              color: "#9B9B9B",
+              color: "#757575",
             }}
           >
             Respuesta personal en menos de 5 minutos
