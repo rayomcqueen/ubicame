@@ -3,57 +3,63 @@ import { useEffect, useRef, useState } from "react";
 
 const testimonials = [
   {
+    name: "Roberto M.",
+    initials: "RM",
+    country: "🇲🇽 México",
+    highlight: "Mucho mejor que Airbnb",
+    text: "Pablo nos respondió al instante, el depa estaba impecable y nos ahorró como $2,000 en nuestra estancia de 4 noches.",
+    rating: 5,
+    property: "Departamento de Lujo",
+    date: "Febrero 2026",
+  },
+  {
     name: "María García",
     initials: "MG",
     country: "🇪🇸 España",
-    text: "Increíble experiencia. La propiedad era exactamente como en las fotos y el anfitrión súper atento. Definitivamente volveré a reservar.",
+    highlight: "Nos sentimos como en casa",
+    text: "La propiedad era exactamente como en las fotos. Pablo nos mandó una guía de restaurantes increíble y hasta nos consiguió early check-in.",
     rating: 5,
-    property: "Villa Mediterránea",
+    property: "Vive la Americana",
+    date: "Enero 2026",
+  },
+  {
+    name: "Sarah & Tom L.",
+    initials: "SL",
+    country: "🇺🇸 USA",
+    highlight: "So easy to communicate",
+    text: "We were worried about the language barrier but Pablo speaks perfect English. He answered every question on WhatsApp instantly. Way better than dealing with Airbnb support.",
+    rating: 5,
+    property: "Torre Anuva",
     date: "Enero 2026",
   },
   {
     name: "Carlos Rodríguez",
     initials: "CR",
     country: "🇦🇷 Argentina",
-    text: "La mejor decisión fue reservar directo. Ahorramos dinero y recibimos tips increíbles sobre la zona. El departamento impecable.",
+    highlight: "Ya no uso Airbnb en GDL",
+    text: "Tercera vez que reservo con Pablo. Los precios son mucho mejores, la comunicación es directa, y siempre me consigue algo extra como late checkout.",
     rating: 5,
-    property: "Loft Industrial Condesa",
+    property: "Loft de Doble altura",
     date: "Diciembre 2025",
   },
   {
     name: "Ana Martínez",
     initials: "AM",
     country: "🇨🇴 Colombia",
-    text: "Atención de primera. Nos ayudó con todo lo que necesitamos y la casa superó nuestras expectativas. 100% recomendado.",
+    highlight: "Atención que no existe en plataformas",
+    text: "Llegamos a las 11pm y Pablo estaba ahí para recibirnos. En Airbnb nos hubieran dejado con un código y ya. La diferencia es enorme.",
     rating: 5,
-    property: "Casa Colonial Centro",
+    property: "Encantador con Jardín Privado",
     date: "Noviembre 2025",
-  },
-  {
-    name: "Roberto M.",
-    initials: "RM",
-    country: "🇲🇽 México",
-    text: "Mucho mejor que Airbnb. El trato directo hace toda la diferencia.",
-    rating: 5,
-    property: "Penthouse Skyline",
-    date: "Febrero 2026",
-  },
-  {
-    name: "Sarah L.",
-    initials: "SL",
-    country: "🇺🇸 USA",
-    text: "Las fotos no le hacen justicia. El lugar es aún mejor en persona.",
-    rating: 5,
-    property: "Suite Ejecutiva",
-    date: "Enero 2026",
   },
   {
     name: "Diego F.",
     initials: "DF",
-    country: "🇨🇴 Colombia",
-    text: "Tercera vez que me hospedo con Pablo. Ya es mi opción fija en Guadalajara.",
+    country: "🇲🇽 México",
+    highlight: "El ahorro es real",
+    text: "Comparé precios y me salió $1,800 más barato que en Airbnb por 5 noches. Mismo departamento, misma calidad, sin las comisiones absurdas.",
     rating: 5,
-    property: "Torre Anuva Premium",
+    property: "Departamento con Alberca",
     date: "Febrero 2026",
   },
 ];
@@ -114,10 +120,10 @@ const Testimonials = () => {
           <p style={{ fontSize: 16, color: "#6B6B6B" }}>⭐ 4.9 de 5 — basado en 10,000+ reseñas en Airbnb</p>
         </div>
 
-        {/* Desktop grid / Mobile carousel */}
+        {/* Horizontal carousel */}
         <div
           ref={scrollRef}
-          className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0"
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-6 px-6"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           onTouchStart={() => setIsPaused(true)}
@@ -126,23 +132,21 @@ const Testimonials = () => {
           {testimonials.map((t, index) => (
             <article
               key={index}
-              className="flex-shrink-0 w-[85vw] sm:w-[340px] md:w-auto bg-card rounded-2xl p-6 shadow-sm border border-border/50 relative snap-start"
+              className="flex-shrink-0 w-[82vw] sm:w-[340px] lg:w-[calc(33.333%-16px)] bg-card rounded-2xl p-6 shadow-sm border border-border/50 relative snap-start"
             >
               <Quote className="absolute top-5 right-5 w-7 h-7 text-primary/15" aria-hidden="true" />
 
               {/* Stars */}
-              <div className="flex gap-0.5 mb-4">
-                {[...Array(t.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[hsl(var(--gold))] text-[hsl(var(--gold))]" aria-hidden="true" />
-                ))}
+              <div className="flex gap-0.5 mb-3">
+                <span style={{ fontSize: 14, color: "#F59E0B", letterSpacing: 2 }}>★★★★★</span>
+                <span className="text-xs text-muted-foreground ml-1">5/5</span>
               </div>
 
-              <p className="mb-5 italic" style={{ fontSize: 14, color: "#6B6B6B", lineHeight: 1.6 }}>
-                "{t.text}"
+              <p className="mb-5" style={{ fontSize: 14, color: "#6B6B6B", lineHeight: 1.6 }}>
+                "<span className="font-bold" style={{ color: "#2D2D2D" }}>{t.highlight}</span> — {t.text}"
               </p>
 
               <div className="border-t border-border pt-4 flex items-center gap-3">
-                {/* Avatar */}
                 <div className="w-10 h-10 rounded-full bg-primary/10 text-primary font-semibold text-sm flex items-center justify-center flex-shrink-0">
                   {t.initials}
                 </div>
