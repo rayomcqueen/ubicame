@@ -26,6 +26,14 @@ const POPULAR_MESSAGES: Record<number, string> = {
   2: "Reservada 4 veces esta semana",
 };
 
+// Featured property ID
+const FEATURED_ID = 1;
+
+const FEATURED_TESTIMONIAL = {
+  quote: "\"El mejor departamento en el que me he hospedado en Guadalajara. Pablo es increíble anfitrión.\"",
+  author: "— María G., CDMX",
+};
+
 interface PropertyCardProps {
   property: Property;
   index: number;
@@ -36,7 +44,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const touchRef = useRef<{ startX: number; startY: number } | null>(null);
-
+  const isFeatured = property.id === FEATURED_ID;
   const images = property.images?.length ? property.images : [property.image];
 
   const nextImage = (e: React.MouseEvent) => {
@@ -82,7 +90,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
   return (
     <>
       <article
-        className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 ease-out opacity-0 animate-fade-up h-full flex flex-col"
+        className={`group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 ease-out opacity-0 animate-fade-up h-full flex flex-col ${isFeatured ? "md:col-span-2 ring-2 ring-amber-400/50" : ""}`}
         style={{ animationDelay: `${index * 0.1}s`, animationFillMode: "forwards" }}
       >
         {/* Image Carousel */}
@@ -176,11 +184,13 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           {/* Badge */}
           {property.badge && (
             <div className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold shadow-md z-10 ${
-              property.badge === "popular"
+              isFeatured
                 ? "bg-amber-500 text-white"
-                : "bg-red-500 text-white"
+                : property.badge === "popular"
+                  ? "bg-amber-500 text-white"
+                  : "bg-red-500 text-white"
             }`}>
-              {property.badge === "popular" ? "⭐ Más popular" : "🔥 Alta demanda"}
+              {isFeatured ? "⭐ Favorita de los huéspedes" : property.badge === "popular" ? "⭐ Más popular" : "🔥 Alta demanda"}
             </div>
           )}
 
@@ -258,19 +268,38 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
             )}
           </div>
 
-          {/* CTA — outline style for hierarchy */}
+          {/* Featured testimonial */}
+          {isFeatured && (
+            <div className="mb-4 p-3 rounded-lg bg-amber-50 border border-amber-200">
+              <p className="text-sm italic" style={{ color: "#6B6B6B", lineHeight: 1.5 }}>{FEATURED_TESTIMONIAL.quote}</p>
+              <p className="text-xs font-medium mt-1" style={{ color: "#92400E" }}>{FEATURED_TESTIMONIAL.author}</p>
+            </div>
+          )}
+
+          {/* CTA */}
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => trackAndOpenWhatsApp(e, whatsappUrl, "property_card", property.name, property.price.toString())}
             aria-label={`Reservar ${property.name} por WhatsApp`}
-            className="block w-full text-center py-3 px-4 rounded-md font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto"
-            style={{ border: "1.5px solid #25D366", color: "#25D366", background: "transparent" }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "#25D366"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#25D366"; }}
+            className={`block w-full text-center py-3 px-4 rounded-md font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto ${
+              isFeatured ? "text-white" : ""
+            }`}
+            style={isFeatured
+              ? { background: "#25D366", color: "#fff", border: "none" }
+              : { border: "1.5px solid #25D366", color: "#25D366", background: "transparent" }
+            }
+            onMouseEnter={(e) => {
+              if (!isFeatured) { e.currentTarget.style.background = "#25D366"; e.currentTarget.style.color = "#fff"; }
+              else { e.currentTarget.style.background = "#1da851"; }
+            }}
+            onMouseLeave={(e) => {
+              if (!isFeatured) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#25D366"; }
+              else { e.currentTarget.style.background = "#25D366"; }
+            }}
           >
-            💬 Consultar disponibilidad
+            {isFeatured ? "🏠 Reservar esta propiedad" : "💬 Consultar disponibilidad"}
           </a>
           <p className="text-center text-xs text-muted-foreground mt-1.5">
             Respuesta en menos de 5 minutos
