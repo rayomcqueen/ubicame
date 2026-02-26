@@ -5,15 +5,13 @@ import BenefitsSection from "@/components/BenefitsSection";
 import FilterBar from "@/components/FilterBar";
 import PropertyCard from "@/components/PropertyCard";
 import MapSection from "@/components/MapSection";
-// Removed: GuadalajaraSection, UrgencyBanner (eliminated per cleanup)
 import FloatingButtons from "@/components/FloatingButtons";
 import MobileStickyBar from "@/components/MobileStickyBar";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import OfflineBanner from "@/components/OfflineBanner";
 import { properties } from "@/data/properties";
 import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
-import { Home } from "lucide-react";
-
+import { Home, X } from "lucide-react";
 // Lazy-load below-the-fold sections
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const Testimonials = lazy(() => import("@/components/Testimonials"));
@@ -29,6 +27,9 @@ const Index = () => {
   const [selectedGuests, setSelectedGuests] = useState(0);
   const [selectedPriceRange, setSelectedPriceRange] = useState({ min: 0, max: Infinity });
   const [showAll, setShowAll] = useState(false);
+  const [showUrgencyBanner, setShowUrgencyBanner] = useState(() => {
+    return sessionStorage.getItem("urgency-banner-closed") !== "true";
+  });
 
   // Listen for zone filter from map section
   useEffect(() => {
@@ -89,6 +90,24 @@ const Index = () => {
         Saltar al contenido
       </a>
 
+      {/* Urgency Banner */}
+      {showUrgencyBanner && (
+        <div
+          className="fixed top-0 left-0 right-0 z-[110] flex items-center justify-center px-4"
+          style={{ height: 36, background: "#FFF7ED", fontSize: 13, color: "#C2410C" }}
+        >
+          <span className="font-medium text-center">🔥 Marzo y Abril son los meses más reservados — Asegura tu fecha</span>
+          <button
+            onClick={() => { setShowUrgencyBanner(false); sessionStorage.setItem("urgency-banner-closed", "true"); }}
+            className="absolute right-3 top-1/2 -translate-y-1/2 hover:opacity-70 transition-opacity"
+            aria-label="Cerrar banner"
+          >
+            <X className="w-4 h-4" style={{ color: "#C2410C" }} />
+          </button>
+        </div>
+      )}
+
+      <div style={{ paddingTop: showUrgencyBanner ? 36 : 0 }}>
       <Navbar />
 
       <header>
@@ -219,6 +238,7 @@ const Index = () => {
       <MobileStickyBar />
       <ExitIntentPopup />
       <OfflineBanner />
+      </div>
     </div>
   );
 };
