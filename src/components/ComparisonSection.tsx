@@ -86,7 +86,7 @@ const ComparisonSection = () => {
 
         {/* Summary */}
         <p className="text-center mt-8" style={{ fontSize: 20, fontWeight: 700, color: "#166534" }}>
-          Hasta 50% más barato que un hotel
+          Hasta 50% de diferencia en precio que un hotel
         </p>
 
         {/* CTA */}
