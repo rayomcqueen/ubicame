@@ -11,12 +11,12 @@ const NotFound = () => {
           <MapPin className="w-10 h-10 text-primary" aria-hidden="true" />
         </div>
 
-        <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
-          ¡Oops! Esta página se fue de vacaciones 🏖️
+        <h1 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+          Esta propiedad no existe... ¡pero tenemos 25+ que sí! 😅
         </h1>
 
         <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-          No encontramos lo que buscas, pero tenemos 25+ propiedades increíbles esperándote.
+          Busca tu hospedaje ideal en Guadalajara
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -36,7 +36,7 @@ const NotFound = () => {
             className="inline-flex items-center justify-center gap-2 btn-whatsapp px-8 py-3.5 rounded-full text-base"
           >
             <MessageCircle className="w-5 h-5" aria-hidden="true" />
-            Hablar con Pablo
+            Hablar por WhatsApp
           </a>
         </div>
 

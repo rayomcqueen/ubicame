@@ -126,7 +126,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           {/* Image error fallback */}
           <div className="img-fallback absolute inset-0 bg-muted items-center justify-center flex-col gap-2 hidden">
             <Home className="w-10 h-10 text-muted-foreground" aria-hidden="true" />
-            <span className="text-sm text-muted-foreground font-medium text-center px-4">{property.name}</span>
+            <span className="text-sm text-muted-foreground font-medium">Foto no disponible</span>
           </div>
 
           {/* Hover overlay */}
