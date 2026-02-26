@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye, Bath, ChevronLeft, ChevronRight, Star, X } from "lucide-react";
+import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye, Bath, ChevronLeft, ChevronRight, Star, X, Home } from "lucide-react";
 import type { Property } from "@/data/properties";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -99,8 +99,19 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
               }`}
               loading="lazy"
               onClick={() => openLightbox(i)}
+              onError={(e) => {
+                const target = e.currentTarget;
+                target.style.display = "none";
+                const fallback = target.nextElementSibling as HTMLElement | null;
+                if (fallback?.classList.contains("img-fallback")) fallback.style.display = "flex";
+              }}
             />
           ))}
+          {/* Image error fallback */}
+          <div className="img-fallback absolute inset-0 bg-muted items-center justify-center flex-col gap-2 hidden">
+            <Home className="w-10 h-10 text-muted-foreground" aria-hidden="true" />
+            <span className="text-sm text-muted-foreground font-medium text-center px-4">{property.name}</span>
+          </div>
 
           {/* Hover overlay */}
           <div
