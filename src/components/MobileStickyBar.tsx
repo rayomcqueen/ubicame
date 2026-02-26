@@ -20,12 +20,12 @@ const MobileStickyBar = () => {
 
   return (
     <div
-      className={`md:hidden fixed bottom-0 inset-x-0 z-50 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.1)] transition-transform duration-300 ease-out ${
+      className={`md:hidden fixed bottom-0 inset-x-0 z-50 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.1)] transition-transform duration-300 ease-out ${
         visible ? "translate-y-0" : "translate-y-full"
       }`}
       style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
     >
-      <div className="flex items-center gap-3 px-4 py-3">
+      <div className="flex items-center justify-between gap-3 px-4 py-3">
         <div className="shrink-0">
           <span className="text-xs text-muted-foreground leading-none">Desde</span>
           <p className="text-sm font-bold text-foreground leading-tight">$1,900/noche</p>
