@@ -1,6 +1,6 @@
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
-const WHATSAPP_URL = buildWhatsAppUrl("Hola! Vi la oferta especial en ubicame.com.mx. Me gustaría reservar con el descuento.");
+const WA_MESSAGE = "Hola! Vi la oferta especial en ubicame.com.mx. Me gustaría reservar con el descuento.";
 
 const UrgencyBanner = () => {
   return (
@@ -22,7 +22,7 @@ const UrgencyBanner = () => {
             Guadalajara es destino mundial 2026. Reserva con anticipación y asegura tu lugar.
           </p>
           <a
-            href={WHATSAPP_URL}
+            href={buildWhatsAppUrl(WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppClick("urgency_banner")}

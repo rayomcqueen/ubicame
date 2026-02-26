@@ -1,7 +1,7 @@
 import { Sparkles } from "lucide-react";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
-const WHATSAPP_URL = buildWhatsAppUrl("Hola Pablo! Estoy buscando hospedaje en Guadalajara. Vi tu página ubicame.com.mx y me gustaría cotizar.");
+const WA_MESSAGE = "Hola Pablo! Estoy buscando hospedaje en Guadalajara. Vi tu página ubicame.com.mx y me gustaría cotizar.";
 
 const CTASection = () => {
   return (
@@ -28,7 +28,7 @@ const CTASection = () => {
         </p>
 
         <a
-          href={WHATSAPP_URL}
+          href={buildWhatsAppUrl(WA_MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick("footer_cta")}

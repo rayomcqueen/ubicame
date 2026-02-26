@@ -1,7 +1,7 @@
 import property4 from "@/assets/property-4.jpg";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
-const WHATSAPP_URL = buildWhatsAppUrl("Hola Pablo! Estoy buscando hospedaje en Guadalajara. Vi tu página ubicame.com.mx y me gustaría cotizar.");
+const WA_MESSAGE = "Hola Pablo! Estoy buscando hospedaje en Guadalajara. Vi tu página ubicame.com.mx y me gustaría cotizar.";
 
 const trustBadges = [
   "✓ Superhost desde 2019",
@@ -52,7 +52,7 @@ const Hero = () => {
         {/* CTA WhatsApp — desktop */}
         <div className="hidden md:flex justify-center opacity-0 animate-fade-up stagger-3">
           <a
-            href={WHATSAPP_URL}
+            href={buildWhatsAppUrl(WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppClick("hero")}

@@ -1,7 +1,7 @@
 import { Camera, CheckCircle } from "lucide-react";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
-const WHATSAPP_URL = buildWhatsAppUrl("Hola Pablo! Vi tu perfil en ubicame.com.mx y me gustaría hablar sobre hospedaje en Guadalajara.");
+const WA_MESSAGE = "Hola Pablo! Vi tu perfil en ubicame.com.mx y me gustaría hablar sobre hospedaje en Guadalajara.";
 
 const AboutSection = () => {
   return (
@@ -53,7 +53,7 @@ const AboutSection = () => {
 
             <div className="pt-2">
               <a
-                href={WHATSAPP_URL}
+                href={buildWhatsAppUrl(WA_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick("about")}
