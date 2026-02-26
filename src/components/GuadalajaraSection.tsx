@@ -1,4 +1,4 @@
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import property1 from "@/assets/property-1.jpg";
 import property6 from "@/assets/property-6.jpg";
@@ -82,7 +82,7 @@ const GuadalajaraSection = () => {
             href={buildWhatsAppUrl(WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackWhatsAppClick("guadalajara_section")}
+            onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl(WA_MESSAGE), "guadalajara_section")}
             aria-label="Reservar por WhatsApp"
             className="inline-flex items-center gap-2 btn-whatsapp text-lg font-bold px-10 py-4 rounded-full shadow-md"
           >

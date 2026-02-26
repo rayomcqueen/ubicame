@@ -1,4 +1,4 @@
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
 const WA_MESSAGE = "Hola! Vi la oferta especial en ubicame.com.mx. Me gustaría reservar con el descuento.";
 
@@ -25,7 +25,7 @@ const UrgencyBanner = () => {
             href={buildWhatsAppUrl(WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackWhatsAppClick("urgency_banner")}
+            onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl(WA_MESSAGE), "urgency_banner")}
             aria-label="Reservar por WhatsApp"
             className="inline-flex items-center gap-2 btn-whatsapp font-semibold px-8 py-3.5 rounded-full shadow-md transition-transform hover:scale-105"
           >

@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { X } from "lucide-react";
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
 const STORAGE_KEY = "ubicame_exit_popup_dismissed";
 const WA_CLICKED_KEY = "ubicame_wa_clicked";
@@ -120,12 +120,12 @@ const ExitIntentPopup = () => {
           href={buildWhatsAppUrl(WA_MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => {
-            trackWhatsAppClick("popup");
+          onClick={(e) => {
             (window as any).dataLayer = (window as any).dataLayer || [];
             (window as any).dataLayer.push({ event: "popup_cta_click" });
             localStorage.setItem(WA_CLICKED_KEY, "1");
             dismiss();
+            trackAndOpenWhatsApp(e, buildWhatsAppUrl(WA_MESSAGE), "popup");
           }}
           aria-label="Reservar por WhatsApp con descuento"
           className="block w-full btn-whatsapp font-semibold py-4 rounded-full text-center shadow-md transition-transform hover:scale-105 mb-4"

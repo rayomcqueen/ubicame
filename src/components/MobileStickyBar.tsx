@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
 const WA_MESSAGE = "Hola! Busco hospedaje en Guadalajara";
 
@@ -34,7 +34,7 @@ const MobileStickyBar = () => {
           href={buildWhatsAppUrl(WA_MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackWhatsAppClick("mobile_sticky")}
+          onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl(WA_MESSAGE), "mobile_sticky")}
           aria-label="Reservar por WhatsApp"
           className="flex-1 flex items-center justify-center gap-2 btn-whatsapp font-bold py-3.5 rounded-full text-sm"
         >

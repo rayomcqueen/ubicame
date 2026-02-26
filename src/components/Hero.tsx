@@ -1,5 +1,5 @@
 import property3 from "@/assets/property-3.jpg";
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
 const WA_MESSAGE = "Hola! Me interesa hospedarme en Guadalajara. Vi tu página ubicame.com.mx";
 
@@ -61,7 +61,7 @@ const Hero = () => {
             href={buildWhatsAppUrl(WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackWhatsAppClick("hero")}
+            onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl(WA_MESSAGE), "hero")}
             aria-label="Reservar por WhatsApp"
             style={{
               display: 'inline-block',

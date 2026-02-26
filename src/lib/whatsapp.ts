@@ -55,7 +55,33 @@ export const trackWhatsAppClick = (
     property_price: propertyPrice,
     click_location: clickLocation,
   });
+
+  // Fire Google Ads conversion
+  if (typeof (window as any).gtag === "function") {
+    (window as any).gtag("event", "conversion", {
+      send_to: "AW-17977375274/GLDjCIr5xv8bEKr0o_xC",
+    });
+  }
+
   // Signal popup suppression
   document.dispatchEvent(new CustomEvent("ubicame:wa_click"));
   try { localStorage.setItem("ubicame_wa_clicked", "1"); } catch {}
+};
+
+/**
+ * Track conversion, then open WhatsApp in a new tab after a small delay
+ * so the gtag beacon has time to fire.
+ */
+export const trackAndOpenWhatsApp = (
+  e: React.MouseEvent | MouseEvent,
+  whatsappUrl: string,
+  clickLocation: string,
+  propertyName = "general",
+  propertyPrice = ""
+) => {
+  e.preventDefault();
+  trackWhatsAppClick(clickLocation, propertyName, propertyPrice);
+  setTimeout(() => {
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  }, 250);
 };
