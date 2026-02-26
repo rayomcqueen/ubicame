@@ -28,7 +28,7 @@ const MobileStickyBar = () => {
       <div className="flex items-center justify-between gap-3 px-4 py-3">
         <div className="shrink-0">
           <span className="text-xs text-muted-foreground leading-none">Desde</span>
-          <p className="text-sm font-bold text-foreground leading-tight">$1,900/noche</p>
+          <p className="text-sm font-bold text-foreground leading-tight">$1,500/noche</p>
         </div>
         <a
           href={buildWhatsAppUrl(WA_MESSAGE)}
