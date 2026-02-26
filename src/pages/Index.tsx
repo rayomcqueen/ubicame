@@ -1,25 +1,27 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import BenefitsSection from "@/components/BenefitsSection";
 import FilterBar from "@/components/FilterBar";
-import ComparisonSection from "@/components/ComparisonSection";
 import PropertyCard from "@/components/PropertyCard";
 import MapSection from "@/components/MapSection";
-import GuadalajaraSection from "@/components/GuadalajaraSection";
-import AboutSection from "@/components/AboutSection";
-import Testimonials from "@/components/Testimonials";
-import UrgencyBanner from "@/components/UrgencyBanner";
-import CTASection from "@/components/CTASection";
 import FloatingButtons from "@/components/FloatingButtons";
 import MobileStickyBar from "@/components/MobileStickyBar";
-import Footer from "@/components/Footer";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import OfflineBanner from "@/components/OfflineBanner";
-import FAQSection from "@/components/FAQSection";
 import { properties } from "@/data/properties";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 import { Home } from "lucide-react";
+
+// Lazy-load below-the-fold sections
+const GuadalajaraSection = lazy(() => import("@/components/GuadalajaraSection"));
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const Testimonials = lazy(() => import("@/components/Testimonials"));
+const UrgencyBanner = lazy(() => import("@/components/UrgencyBanner"));
+const ComparisonSection = lazy(() => import("@/components/ComparisonSection"));
+const CTASection = lazy(() => import("@/components/CTASection"));
+const FAQSection = lazy(() => import("@/components/FAQSection"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const INITIAL_COUNT = 6;
 
@@ -173,17 +175,21 @@ const Index = () => {
         </div>
       </section>
 
-      <GuadalajaraSection />
-      <MapSection />
-      <AboutSection />
-      <UrgencyBanner />
-      <Testimonials />
-      <ComparisonSection />
-      <CTASection />
-      <FAQSection />
+      <Suspense fallback={null}>
+        <GuadalajaraSection />
+        <MapSection />
+        <AboutSection />
+        <UrgencyBanner />
+        <Testimonials />
+        <ComparisonSection />
+        <CTASection />
+        <FAQSection />
+      </Suspense>
       </main>
 
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
       <FloatingButtons />
       <MobileStickyBar />
       <ExitIntentPopup />
