@@ -4,6 +4,7 @@ import { es } from "date-fns/locale";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import BenefitsSection from "@/components/BenefitsSection";
+const MedicalTourismSection = lazy(() => import("@/components/MedicalTourismSection"));
 import SocialProofSection from "@/components/SocialProofSection";
 import FilterBar from "@/components/FilterBar";
 import PropertyCard from "@/components/PropertyCard";
@@ -179,12 +180,17 @@ const Index = () => {
             </div>
           </section>
 
-          {/* 4. How it works */}
+          {/* 4. Medical Tourism */}
+          <Suspense fallback={null}>
+            <MedicalTourismSection />
+          </Suspense>
+
+          {/* 5. How it works */}
           <Suspense fallback={null}>
             <HowItWorksSection />
           </Suspense>
 
-          {/* 5. FAQ */}
+          {/* 6. FAQ */}
           <Suspense fallback={null}>
             <FAQSection />
           </Suspense>
