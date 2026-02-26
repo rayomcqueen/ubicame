@@ -10,6 +10,8 @@ const Hero = () => {
       <img
         src={property3}
         alt="Departamento de lujo con vista panorámica en Guadalajara"
+        width={1920}
+        height={1080}
         className="absolute inset-0 w-full h-full object-cover object-center"
         loading="eager"
         fetchPriority="high"
