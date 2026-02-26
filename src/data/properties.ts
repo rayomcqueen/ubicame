@@ -57,7 +57,7 @@ export const properties: Property[] = [
     airbnbPrice: 3125,
     rating: 4.9,
     image: property1Image,
-    images: [property1Image, property5Image, property11Image],
+    images: [property1Image, property5Image, property11Image, property25Image, property12Image],
     whatsappLink: "https://api.whatsapp.com/send/?phone=523333260013&text=Hola,%20me%20interesa%20Departamento%20de%20Lujo",
     amenities: ["Estacionamiento", "Cama King", "A/C"],
     badge: "popular"
