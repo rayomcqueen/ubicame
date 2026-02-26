@@ -55,4 +55,7 @@ export const trackWhatsAppClick = (
     property_price: propertyPrice,
     click_location: clickLocation,
   });
+  // Signal popup suppression
+  document.dispatchEvent(new CustomEvent("ubicame:wa_click"));
+  try { localStorage.setItem("ubicame_wa_clicked", "1"); } catch {}
 };
