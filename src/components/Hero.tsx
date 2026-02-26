@@ -16,9 +16,9 @@ const photos = [
 const Hero = () => {
   return (
     <section
-      className="bg-white pt-[100px] pb-12 md:pt-[140px] md:pb-20"
+      className="bg-white pt-[80px] pb-8 md:pt-[110px] md:pb-10"
     >
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12 md:gap-16">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8 md:gap-12">
         {/* Left column — text */}
         <div className="w-full md:w-[55%] text-center md:text-left flex flex-col items-center md:items-start">
           {/* Badge */}
@@ -31,7 +31,7 @@ const Hero = () => {
               background: "#F0F7E6",
               color: "#6B7B3F",
               border: "1px solid #D4E4BC",
-              marginBottom: 24,
+              marginBottom: 16,
               fontWeight: 500,
             }}
           >
@@ -50,7 +50,7 @@ const Hero = () => {
               fontWeight: 700,
               color: "#2D2D2D",
               letterSpacing: "-0.02em",
-              marginBottom: 12,
+              marginBottom: 8,
             }}
           >
             Hospédate en Guadalajara
@@ -64,7 +64,7 @@ const Hero = () => {
               fontWeight: 500,
               color: "#2D2D2D",
               lineHeight: 1.6,
-              marginBottom: 32,
+              marginBottom: 24,
             }}
           >
             Desde <span style={{ fontSize: 24, fontWeight: 700, color: "#6B7B3F" }}>$1,500/noche</span> · <span style={{ fontWeight: 600 }}>Hasta 50% de diferencia en precio que un hotel</span>
