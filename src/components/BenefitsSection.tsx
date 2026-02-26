@@ -5,8 +5,8 @@ const benefits = [
   {
     icon: Wallet,
     emoji: "💰",
-    title: "Hasta 50% más barato",
-    description: "Hasta 50% más barato que un hotel. Sin comisiones de plataforma.",
+    title: "Hasta 50% de diferencia",
+    description: "Hasta 50% de diferencia en precio que un hotel. Sin comisiones de plataforma.",
   },
   {
     icon: Smartphone,
