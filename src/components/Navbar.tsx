@@ -56,6 +56,13 @@ const Navbar = () => {
           </span>
         </a>
 
+        {/* Price indicator — desktop only, visible after scroll */}
+        {scrolled && (
+          <span className="hidden md:block" style={{ color: "#6B6B6B", fontSize: 14 }}>
+            Desde <strong className="text-foreground" style={{ fontWeight: 700 }}>$1,900</strong>/noche
+          </span>
+        )}
+
         {/* Desktop center links */}
         <div className="hidden md:flex items-center gap-6">
           {NAV_LINKS.map((link) => (
