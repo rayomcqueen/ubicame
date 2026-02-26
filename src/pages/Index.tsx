@@ -1,9 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import BenefitsSection from "@/components/BenefitsSection";
 import FilterBar from "@/components/FilterBar";
 import PropertyCard from "@/components/PropertyCard";
+import MapSection from "@/components/MapSection";
 import AboutSection from "@/components/AboutSection";
 import Testimonials from "@/components/Testimonials";
 import UrgencyBanner from "@/components/UrgencyBanner";
@@ -23,6 +24,17 @@ const Index = () => {
   const [selectedGuests, setSelectedGuests] = useState(0);
   const [selectedPriceRange, setSelectedPriceRange] = useState({ min: 0, max: Infinity });
   const [showAll, setShowAll] = useState(false);
+
+  // Listen for zone filter from map section
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const zone = (e as CustomEvent).detail;
+      setSelectedZone(zone);
+      setShowAll(false);
+    };
+    window.addEventListener("filter-zone", handler);
+    return () => window.removeEventListener("filter-zone", handler);
+  }, []);
 
   const filteredProperties = useMemo(() => {
     return properties.filter((property) => {
@@ -129,6 +141,7 @@ const Index = () => {
         </div>
       </section>
 
+      <MapSection />
       <AboutSection />
       <UrgencyBanner />
       <Testimonials />
