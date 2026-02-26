@@ -1,30 +1,25 @@
 import { useEffect, useRef, useState } from "react";
-import { Wallet, Smartphone, Home, Map } from "lucide-react";
 
 const benefits = [
   {
-    icon: Wallet,
     emoji: "💰",
-    title: "Hasta 50% de diferencia",
-    description: "Hasta 50% de diferencia en precio que un hotel. Sin comisiones de plataforma.",
+    title: "Ahorra 20% real",
+    description: "Airbnb cobra comisiones de servicio de hasta $525 por reserva. Conmigo, ese dinero se queda en tu bolsillo.",
   },
   {
-    icon: Smartphone,
-    emoji: "📱",
-    title: "Atención personal 24/7",
-    description: "Habla directamente conmigo por WhatsApp. Sin bots, sin esperas.",
+    emoji: "💬",
+    title: "Respuesta humana, no un bot",
+    description: "¿Cansado de esperar 24 horas por un mensaje automático? Yo respondo tu WhatsApp en menos de 5 minutos.",
   },
   {
-    icon: Home,
-    emoji: "🏠",
-    title: "Check-in flexible",
-    description: "Nos adaptamos a tu horario. Early check-in y late checkout cuando es posible.",
+    emoji: "🕐",
+    title: "Flexibilidad real",
+    description: "Check-in a las 11pm? Necesitas guardar maletas? Lo resolvemos directo sin depender de las políticas rígidas de la plataforma.",
   },
   {
-    icon: Map,
-    emoji: "🗺️",
-    title: "Tips locales exclusivos",
-    description: "Recibe mi guía personal de Guadalajara con restaurantes, bares y experiencias auténticas.",
+    emoji: "📍",
+    title: "Guía local incluida",
+    description: "Te mando mi guía personal de Guadalajara: los mejores tacos, bares, y experiencias que solo un local conoce.",
   },
 ];
 
