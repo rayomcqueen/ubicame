@@ -27,7 +27,7 @@ const filterZone = (zone: string) => {
 
 const Footer = () => {
   return (
-    <footer className="bg-[hsl(0,0%,18%)] text-white/90 pt-16 pb-8 px-6">
+    <footer className="bg-footer-bg text-white/90 pt-16 pb-8 px-6">
       <div className="max-w-7xl mx-auto">
         {/* 4-column grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
