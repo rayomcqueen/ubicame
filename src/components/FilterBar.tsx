@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { MapPin, Users, DollarSign, SlidersHorizontal, X } from "lucide-react";
+import { MapPin, Users, DollarSign } from "lucide-react";
 import { zones, priceRanges, guestOptions } from "@/data/properties";
 
 interface FilterBarProps {
@@ -19,113 +18,122 @@ const FilterBar = ({
   selectedPriceRange,
   setSelectedPriceRange,
 }: FilterBarProps) => {
-  const [open, setOpen] = useState(false);
-
-  const hasFilters = selectedZone || selectedGuests > 0 || selectedPriceRange.min > 0 || selectedPriceRange.max < Infinity;
-
-  const filterContent = (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div className="space-y-2">
-        <label className="flex items-center text-sm font-medium text-foreground">
-          <MapPin className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
-          Zona
-        </label>
-        <select
-          value={selectedZone}
-          onChange={(e) => setSelectedZone(e.target.value)}
-          className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground text-base focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 cursor-pointer min-h-[44px]"
-        >
-          <option value="">Todas las zonas</option>
-          {zones.map((zone) => (
-            <option key={zone} value={zone}>{zone}</option>
-          ))}
-        </select>
-      </div>
-
-      <div className="space-y-2">
-        <label className="flex items-center text-sm font-medium text-foreground">
-          <Users className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
-          Huéspedes
-        </label>
-        <select
-          value={selectedGuests}
-          onChange={(e) => setSelectedGuests(Number(e.target.value))}
-          className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground text-base focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 cursor-pointer min-h-[44px]"
-        >
-          {guestOptions.map((option) => (
-            <option key={option.value} value={option.value}>{option.label}</option>
-          ))}
-        </select>
-      </div>
-
-      <div className="space-y-2">
-        <label className="flex items-center text-sm font-medium text-foreground">
-          <DollarSign className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
-          Precio por noche
-        </label>
-        <select
-          value={JSON.stringify(selectedPriceRange)}
-          onChange={(e) => setSelectedPriceRange(JSON.parse(e.target.value))}
-          className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground text-base focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 cursor-pointer min-h-[44px]"
-        >
-          {priceRanges.map((range) => (
-            <option key={range.label} value={JSON.stringify({ min: range.min, max: range.max })}>{range.label}</option>
-          ))}
-        </select>
-      </div>
-    </div>
-  );
-
   return (
     <>
-      {/* Desktop: inline filters */}
+      {/* Desktop: inline grid */}
       <div className="hidden md:block bg-card rounded-xl shadow-soft p-6 mb-10">
-        {filterContent}
-      </div>
-
-      {/* Mobile: button + bottom sheet */}
-      <div className="md:hidden mb-6">
-        <button
-          onClick={() => setOpen(true)}
-          className="w-full flex items-center justify-center gap-2 bg-card rounded-xl shadow-soft px-4 py-3.5 text-foreground font-medium min-h-[48px]"
-        >
-          <SlidersHorizontal className="w-5 h-5 text-primary" aria-hidden="true" />
-          Filtrar propiedades
-          {hasFilters && (
-            <span className="bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">!</span>
-          )}
-        </button>
-      </div>
-
-      {/* Bottom sheet overlay */}
-      {open && (
-        <div className="fixed inset-0 z-[90] md:hidden" onClick={() => setOpen(false)}>
-          <div className="absolute inset-0 bg-black/50" />
-          <div
-            className="absolute bottom-0 inset-x-0 bg-card rounded-t-2xl p-6 animate-slide-up"
-            style={{ paddingBottom: "env(safe-area-inset-bottom, 16px)" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-5">
-              <h3 className="font-semibold text-foreground text-lg">Filtros</h3>
-              <button
-                onClick={() => setOpen(false)}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-muted min-w-[44px] min-h-[44px]"
-                aria-label="Cerrar filtros"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            {filterContent}
-            <button
-              onClick={() => setOpen(false)}
-              className="w-full mt-5 bg-primary text-primary-foreground font-semibold py-3.5 rounded-xl min-h-[48px]"
+        <div className="grid grid-cols-3 gap-4">
+          <div className="space-y-2">
+            <label className="flex items-center text-sm font-medium text-foreground">
+              <MapPin className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
+              Zona
+            </label>
+            <select
+              value={selectedZone}
+              onChange={(e) => setSelectedZone(e.target.value)}
+              className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground text-base focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 cursor-pointer min-h-[44px]"
             >
-              Aplicar filtros
-            </button>
+              <option value="">Todas las zonas</option>
+              {zones.map((zone) => (
+                <option key={zone} value={zone}>{zone}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="flex items-center text-sm font-medium text-foreground">
+              <Users className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
+              Huéspedes
+            </label>
+            <select
+              value={selectedGuests}
+              onChange={(e) => setSelectedGuests(Number(e.target.value))}
+              className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground text-base focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 cursor-pointer min-h-[44px]"
+            >
+              {guestOptions.map((option) => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="flex items-center text-sm font-medium text-foreground">
+              <DollarSign className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
+              Precio por noche
+            </label>
+            <select
+              value={JSON.stringify(selectedPriceRange)}
+              onChange={(e) => setSelectedPriceRange(JSON.parse(e.target.value))}
+              className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground text-base focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 cursor-pointer min-h-[44px]"
+            >
+              {priceRanges.map((range) => (
+                <option key={range.label} value={JSON.stringify({ min: range.min, max: range.max })}>{range.label}</option>
+              ))}
+            </select>
           </div>
         </div>
-      )}
+      </div>
+
+      {/* Mobile: horizontal scrollable row */}
+      <div className="md:hidden mb-6 -mx-6 px-6">
+        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide" style={{ WebkitOverflowScrolling: "touch" }}>
+          <div className="shrink-0">
+            <select
+              value={selectedZone}
+              onChange={(e) => setSelectedZone(e.target.value)}
+              className="appearance-none bg-card border border-border rounded-full px-4 py-2.5 text-sm text-foreground min-h-[44px] min-w-[44px] pr-8 cursor-pointer"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "right 10px center",
+              }}
+            >
+              <option value="">🏘 Zona</option>
+              {zones.map((zone) => (
+                <option key={zone} value={zone}>{zone}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="shrink-0">
+            <select
+              value={selectedGuests}
+              onChange={(e) => setSelectedGuests(Number(e.target.value))}
+              className="appearance-none bg-card border border-border rounded-full px-4 py-2.5 text-sm text-foreground min-h-[44px] min-w-[44px] pr-8 cursor-pointer"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "right 10px center",
+              }}
+            >
+              {guestOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.value === 0 ? "👥 Huéspedes" : option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="shrink-0">
+            <select
+              value={JSON.stringify(selectedPriceRange)}
+              onChange={(e) => setSelectedPriceRange(JSON.parse(e.target.value))}
+              className="appearance-none bg-card border border-border rounded-full px-4 py-2.5 text-sm text-foreground min-h-[44px] min-w-[44px] pr-8 cursor-pointer"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "right 10px center",
+              }}
+            >
+              {priceRanges.map((range) => (
+                <option key={range.label} value={JSON.stringify({ min: range.min, max: range.max })}>
+                  {range.min === 0 && range.max === Infinity ? "💰 Precio" : range.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

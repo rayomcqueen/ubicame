@@ -16,8 +16,7 @@ const photos = [
 const Hero = () => {
   return (
     <section
-      className="bg-white"
-      style={{ paddingTop: 140, paddingBottom: 80 }}
+      className="bg-white pt-[100px] pb-12 md:pt-[140px] md:pb-20"
     >
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12 md:gap-16">
         {/* Left column — text */}
@@ -142,13 +141,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Mobile responsive */}
-      {/* Mobile H1 override */}
-      <style>{`
-        @media (max-width: 768px) {
-          h1.font-serif { font-size: 36px !important; }
-        }
-      `}</style>
+      {/* Mobile font overrides handled globally in index.css */}
     </section>
   );
 };

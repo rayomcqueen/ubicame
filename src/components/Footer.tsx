@@ -29,7 +29,7 @@ const filterZone = (zone: string) => {
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: "#1A1A1A" }} className="text-white/90 pt-14 pb-6 px-6">
+    <footer style={{ backgroundColor: "#1A1A1A" }} className="text-white/90 pt-14 pb-20 md:pb-6 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           {/* Col 1: Brand */}
@@ -74,7 +74,7 @@ const Footer = () => {
                 <li key={z.zone}>
                   <button
                     onClick={() => filterZone(z.zone)}
-                    className="text-left text-sm text-white/60 hover:text-white transition-colors"
+                    className="text-left text-sm text-white/60 hover:text-white transition-colors min-h-[44px] flex items-center"
                   >
                     {z.label}
                   </button>
@@ -94,7 +94,7 @@ const Footer = () => {
                   <a
                     href={link.href}
                     onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                    className="text-sm text-white/60 hover:text-white transition-colors"
+                    className="text-sm text-white/60 hover:text-white transition-colors min-h-[44px] flex items-center"
                   >
                     {link.label}
                   </a>
@@ -115,7 +115,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl(WA_MESSAGE), "footer")}
-                  className="flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors min-h-[44px]"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   +52 33 3326 0013
@@ -124,7 +124,7 @@ const Footer = () => {
               <li>
                 <a
                   href="mailto:hola@ubicame.com.mx"
-                  className="flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors min-h-[44px]"
                 >
                   <Mail className="w-4 h-4" aria-hidden="true" />
                   hola@ubicame.com.mx
@@ -133,7 +133,7 @@ const Footer = () => {
               <li>
                 <a
                   href="tel:+523333260013"
-                  className="flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors min-h-[44px]"
                 >
                   <Phone className="w-4 h-4" aria-hidden="true" />
                   33 3326 0013
