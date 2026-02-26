@@ -14,7 +14,7 @@ const CTASection = () => {
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full mb-6 backdrop-blur-sm">
-          <Sparkles className="w-5 h-5" />
+          <Sparkles className="w-5 h-5" aria-hidden="true" />
           <span className="font-medium">Oferta especial</span>
         </div>
 
@@ -32,6 +32,7 @@ const CTASection = () => {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick("footer_cta")}
+          aria-label="Reservar por WhatsApp"
           className="inline-block px-10 py-4 bg-white text-primary rounded-full font-semibold text-lg shadow-elegant hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
         >
           Reservar ahora por WhatsApp

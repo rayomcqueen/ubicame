@@ -49,6 +49,9 @@ const ExitIntentPopup = () => {
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 animate-fade-in"
       onClick={() => setShow(false)}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Oferta especial de descuento"
     >
       <div
         className="relative bg-card rounded-2xl shadow-2xl max-w-md w-full p-8 text-center animate-scale-in"
@@ -75,6 +78,7 @@ const ExitIntentPopup = () => {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick("popup")}
+          aria-label="Reservar por WhatsApp con descuento"
           className="block w-full btn-whatsapp font-semibold py-4 rounded-full text-center shadow-md transition-transform hover:scale-105 mb-4"
         >
           💬 Obtener mi descuento por WhatsApp
