@@ -60,14 +60,14 @@ const Hero = () => {
           <p
             className="opacity-0 animate-fade-up stagger-2"
             style={{
-              fontSize: 16,
-              fontWeight: 400,
-              color: "#6B6B6B",
+              fontSize: 18,
+              fontWeight: 500,
+              color: "#2D2D2D",
               lineHeight: 1.6,
               marginBottom: 32,
             }}
           >
-            Desde $1,900 por noche · Ahorra 20% vs Airbnb
+            Desde <span style={{ fontSize: 24, fontWeight: 700, color: "#6B7B3F" }}>$1,500/noche</span> · <span style={{ fontWeight: 600 }}>Ahorra hasta 20% vs Airbnb</span>
           </p>
 
           {/* CTA */}
