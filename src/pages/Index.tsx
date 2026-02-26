@@ -10,7 +10,7 @@ import MobileStickyBar from "@/components/MobileStickyBar";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import OfflineBanner from "@/components/OfflineBanner";
 import { properties } from "@/data/properties";
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 import { Home } from "lucide-react";
 
 // Lazy-load below-the-fold sections
@@ -142,7 +142,7 @@ const Index = () => {
                   href={buildWhatsAppUrl("Hola! No encuentro una propiedad con los filtros que busco. ¿Me ayudas?")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackWhatsAppClick("empty_filters")}
+                  onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl("Hola! No encuentro una propiedad con los filtros que busco. ¿Me ayudas?"), "empty_filters")}
                   aria-label="Pedir ayuda por WhatsApp"
                   className="inline-flex items-center justify-center gap-2 btn-whatsapp px-6 py-2.5 rounded-lg text-sm"
                 >

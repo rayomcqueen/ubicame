@@ -1,6 +1,6 @@
 import { CheckCircle } from "lucide-react";
 import perfilImg from "@/assets/perfil.jpg";
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 import { useScrollReveal, useCountUp } from "@/hooks/use-scroll-reveal";
 
 const WA_MESSAGE = "Hola Pablo! Tengo preguntas sobre tus propiedades en Guadalajara";
@@ -70,7 +70,7 @@ const AboutSection = () => {
                 href={buildWhatsAppUrl(WA_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackWhatsAppClick("about")}
+                onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl(WA_MESSAGE), "about")}
                 aria-label="Reservar por WhatsApp"
                 className="inline-flex items-center justify-center gap-2 btn-whatsapp font-semibold px-8 py-3.5 rounded-full shadow-md w-full sm:w-auto"
               >

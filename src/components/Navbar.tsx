@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { MapPin } from "lucide-react";
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
 const NAV_LINKS = [
   { label: "Propiedades", href: "#propiedades" },
@@ -74,7 +74,7 @@ const Navbar = () => {
           href={waUrl}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackWhatsAppClick("navbar")}
+          onClick={(e) => trackAndOpenWhatsApp(e, waUrl, "navbar")}
           className="inline-flex items-center gap-1.5 btn-whatsapp px-4 py-2 text-sm rounded-md"
           aria-label="Reservar por WhatsApp"
         >

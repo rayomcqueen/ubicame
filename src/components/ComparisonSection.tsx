@@ -1,4 +1,4 @@
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const WA_MESSAGE = "Hola! Quiero reservar directo y ahorrar. Vi la comparativa en ubicame.com.mx";
@@ -118,7 +118,7 @@ const ComparisonSection = () => {
             href={buildWhatsAppUrl(WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackWhatsAppClick("comparison")}
+            onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl(WA_MESSAGE), "comparison")}
             aria-label="Reservar por WhatsApp"
             className="inline-flex items-center gap-2 btn-whatsapp text-lg font-bold px-10 py-4 rounded-full shadow-md"
           >

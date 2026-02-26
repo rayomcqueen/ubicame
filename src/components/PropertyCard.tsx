@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye, Bath, ChevronLeft, ChevronRight, Star, X, Home } from "lucide-react";
 import type { Property } from "@/data/properties";
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const amenityIcons: Record<string, React.ReactNode> = {
@@ -250,7 +250,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackWhatsAppClick("property_card", property.name, property.price.toString())}
+            onClick={(e) => trackAndOpenWhatsApp(e, whatsappUrl, "property_card", property.name, property.price.toString())}
             aria-label={`Reservar ${property.name} por WhatsApp`}
             className="block w-full text-center py-3 px-4 btn-whatsapp rounded-md font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto"
           >

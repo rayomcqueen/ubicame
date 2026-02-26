@@ -1,5 +1,5 @@
 import { MapPin, Phone, MessageCircle, Instagram, Mail, Star, Award } from "lucide-react";
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
 const WA_MESSAGE = "Hola! Tengo una pregunta sobre las propiedades en ubicame.com.mx";
 
@@ -102,7 +102,7 @@ const Footer = () => {
                   href={buildWhatsAppUrl(WA_MESSAGE)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackWhatsAppClick("footer")}
+                  onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl(WA_MESSAGE), "footer")}
                   className="flex items-center gap-2.5 text-white/60 hover:text-accent transition-colors text-sm group"
                   aria-label="Contactar por WhatsApp"
                 >

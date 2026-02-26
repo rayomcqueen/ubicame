@@ -1,5 +1,5 @@
 import { MapPin, Home, MessageCircle } from "lucide-react";
-import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
 const WA_MESSAGE = "Hola Pablo! Llegué a una página que no existe en ubicame.com.mx. ¿Me ayudas a encontrar hospedaje?";
 
@@ -31,7 +31,7 @@ const NotFound = () => {
             href={buildWhatsAppUrl(WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackWhatsAppClick("404")}
+            onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl(WA_MESSAGE), "404")}
             aria-label="Hablar con Pablo por WhatsApp"
             className="inline-flex items-center justify-center gap-2 btn-whatsapp px-8 py-3.5 rounded-full text-base"
           >
