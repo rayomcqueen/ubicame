@@ -16,15 +16,21 @@ const INFO_LINKS = [
   { label: "Sobre mí", href: "#sobre-mi" },
 ];
 
-const scrollTo = (href: string) => {
+const scrollToWithOffset = (href: string) => {
   const el = document.querySelector(href);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
+  if (el) {
+    const y = el.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
 };
 
 const filterZone = (zone: string) => {
   window.dispatchEvent(new CustomEvent("filter-zone", { detail: zone }));
   const el = document.getElementById("propiedades");
-  if (el) el.scrollIntoView({ behavior: "smooth" });
+  if (el) {
+    const y = el.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
 };
 
 const Footer = () => {
@@ -93,7 +99,7 @@ const Footer = () => {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+                    onClick={(e) => { e.preventDefault(); scrollToWithOffset(link.href); }}
                     className="text-sm text-white/60 hover:text-white transition-colors min-h-[44px] flex items-center"
                   >
                     {link.label}

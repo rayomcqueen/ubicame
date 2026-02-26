@@ -41,6 +41,20 @@ const Index = () => {
     return () => window.removeEventListener("filter-zone", handler);
   }, []);
 
+  // Auto-scroll to hash on load
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }, 500);
+    }
+  }, []);
+
   const filteredProperties = useMemo(() => {
     const filtered = properties.filter((property) => {
       const matchesZone = !selectedZone || property.location === selectedZone;
