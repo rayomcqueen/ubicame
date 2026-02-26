@@ -196,9 +196,9 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
 
           {/* Pricing */}
           <div className="flex items-baseline gap-2 mb-3">
-            <span className="text-muted-foreground line-through text-sm">${airbnbPrice.toLocaleString()}</span>
-            <span className="text-lg font-bold text-accent">${property.price.toLocaleString()}<span className="text-sm font-normal text-muted-foreground">/noche</span></span>
-            <span className="text-xs bg-accent/15 text-accent-hover px-2 py-0.5 rounded-full font-medium">
+            <span className="line-through" style={{ fontSize: "14px", color: "#B0B0B0" }}>${airbnbPrice.toLocaleString()}</span>
+            <span className="font-bold text-accent" style={{ fontSize: "22px" }}>${property.price.toLocaleString()}<span className="font-normal text-muted-foreground" style={{ fontSize: "14px" }}>/noche</span></span>
+            <span className="px-2 py-0.5 rounded-full font-medium" style={{ fontSize: "12px", background: "#E6F9ED", color: "#166534", border: "1px solid #BBF0CF" }}>
               Ahorras ${savings.toLocaleString()}
             </span>
           </div>
@@ -229,7 +229,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           <div className="flex-grow">
             {property.amenities && property.amenities.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mb-4 pb-4 border-b border-border">
-                {property.amenities.slice(0, 5).map((amenity) => (
+                {property.amenities.slice(0, 3).map((amenity) => (
                   <span
                     key={amenity}
                     className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full"
@@ -238,21 +238,24 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
                     {amenity}
                   </span>
                 ))}
-                {property.amenities.length > 5 && (
-                  <span className="text-xs text-muted-foreground px-2 py-0.5">+{property.amenities.length - 5} más</span>
+                {property.amenities.length > 3 && (
+                  <span className="text-xs text-muted-foreground px-2 py-0.5">+{property.amenities.length - 3} más</span>
                 )}
               </div>
             )}
           </div>
 
-          {/* CTA */}
+          {/* CTA — outline style for hierarchy */}
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => trackAndOpenWhatsApp(e, whatsappUrl, "property_card", property.name, property.price.toString())}
             aria-label={`Reservar ${property.name} por WhatsApp`}
-            className="block w-full text-center py-3 px-4 btn-whatsapp rounded-md font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto"
+            className="block w-full text-center py-3 px-4 rounded-md font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto"
+            style={{ border: "1.5px solid #25D366", color: "#25D366", background: "transparent" }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "#25D366"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#25D366"; }}
           >
             💬 Consultar disponibilidad
           </a>

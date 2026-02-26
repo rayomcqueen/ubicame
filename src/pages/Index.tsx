@@ -159,9 +159,12 @@ const Index = () => {
                   (window as any).dataLayer = (window as any).dataLayer || [];
                   (window as any).dataLayer.push({ event: "view_all_properties" });
                 }}
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground rounded-full font-medium text-base transition-all duration-300 hover:shadow-lg hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-medium text-base transition-all duration-300 hover:shadow-lg hover:scale-105"
+                style={{ border: "1.5px solid #25D366", color: "#25D366", background: "transparent" }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "#25D366"; e.currentTarget.style.color = "#fff"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#25D366"; }}
               >
-                Ver las {filteredProperties.length} propiedades →
+                Ver las {filteredProperties.length}+ propiedades →
               </button>
             </div>
           )}
