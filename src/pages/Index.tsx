@@ -6,6 +6,7 @@ import FilterBar from "@/components/FilterBar";
 import ComparisonSection from "@/components/ComparisonSection";
 import PropertyCard from "@/components/PropertyCard";
 import MapSection from "@/components/MapSection";
+import GuadalajaraSection from "@/components/GuadalajaraSection";
 import AboutSection from "@/components/AboutSection";
 import Testimonials from "@/components/Testimonials";
 import UrgencyBanner from "@/components/UrgencyBanner";
@@ -143,6 +144,7 @@ const Index = () => {
       </section>
 
       <ComparisonSection />
+      <GuadalajaraSection />
       <MapSection />
       <AboutSection />
       <UrgencyBanner />
