@@ -41,33 +41,34 @@
   }
 
   .dark {
-    --background: 30 15% 12%;
-    --foreground: 40 20% 90%;
-    --card: 30 15% 15%;
-    --card-foreground: 40 20% 90%;
-    --popover: 30 15% 15%;
-    --popover-foreground: 40 20% 90%;
-    --primary: 82 33% 45%;
-    --primary-dark: 82 35% 35%;
-    --primary-foreground: 30 15% 10%;
-    --secondary: 30 15% 20%;
-    --secondary-foreground: 40 20% 90%;
-    --muted: 30 15% 20%;
-    --muted-foreground: 40 15% 60%;
+    --background: 0 0% 10%;           /* #1A1A1A */
+    --foreground: 0 0% 96%;           /* #F5F5F5 */
+    --card: 0 0% 18%;                 /* #2D2D2D */
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 18%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 82 33% 46%;            /* olive +10% luminosity */
+    --primary-dark: 82 35% 36%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 22%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 63%;     /* #A0A0A0 */
     --accent: 142 70% 49%;
     --accent-hover: 164 75% 34%;
     --accent-foreground: 0 0% 100%;
     --warning: 24 95% 46%;
     --warning-foreground: 0 0% 100%;
-    --border: 30 15% 25%;
-    --input: 30 15% 25%;
-    --ring: 82 33% 45%;
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 82 33% 46%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 
   html {
@@ -80,6 +81,7 @@
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {

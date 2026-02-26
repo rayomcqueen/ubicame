@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { MapPin, Menu, X, Phone, MessageCircle } from "lucide-react";
+import { MapPin, Menu, Phone, MessageCircle, Sun, Moon } from "lucide-react";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { useDarkMode } from "@/hooks/use-dark-mode";
 
 const NAV_LINKS = [
   { label: "Propiedades", href: "#propiedades" },
@@ -12,6 +13,7 @@ const NAV_LINKS = [
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const { isDark, toggle: toggleDark } = useDarkMode();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -82,6 +84,21 @@ const Navbar = () => {
           <MessageCircle className="w-4 h-4" aria-hidden="true" />
           WhatsApp
         </a>
+
+        {/* Dark mode toggle */}
+        <button
+          onClick={toggleDark}
+          className={`p-2 rounded-md transition-colors ${
+            scrolled ? "text-foreground hover:bg-muted" : "text-white hover:bg-white/10"
+          }`}
+          aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+        >
+          {isDark ? (
+            <Sun className="w-5 h-5" aria-hidden="true" />
+          ) : (
+            <Moon className="w-5 h-5" aria-hidden="true" />
+          )}
+        </button>
 
         {/* Mobile hamburger */}
         <Sheet>
