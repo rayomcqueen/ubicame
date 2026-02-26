@@ -131,10 +131,11 @@ const Hero = () => {
               <img
                 src={photo.src}
                 alt={photo.alt}
-                width={400}
-                height={400}
+                width={300}
+                height={300}
                 className="w-full h-full object-cover"
-                loading={i < 2 ? "eager" : "lazy"}
+                loading="eager"
+                fetchPriority="high"
               />
             </div>
           ))}

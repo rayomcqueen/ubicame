@@ -92,8 +92,8 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
               key={i}
               src={img}
               alt={`${property.name} en ${property.location}, Guadalajara — ${property.bedrooms} habitaciones para ${property.guests} huéspedes, foto ${i + 1}`}
-              width={600}
-              height={400}
+              width={400}
+              height={267}
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
                 i === currentImage ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
