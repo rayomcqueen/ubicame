@@ -1,45 +1,85 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { X } from "lucide-react";
-
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
-const STORAGE_KEY = "ubicame_exit_popup_shown";
+const STORAGE_KEY = "ubicame_exit_popup_dismissed";
+const WA_CLICKED_KEY = "ubicame_wa_clicked";
+const COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 hours
+const MIN_TIME_ON_PAGE = 20_000; // 20s minimum before any trigger
+const MOBILE_DELAY = 45_000; // 45s for mobile
 const WA_MESSAGE = "Hola! Vi la oferta de 15% de descuento en ubicame.com.mx. Me interesa reservar.";
+
+function wasDismissedRecently(): boolean {
+  const ts = localStorage.getItem(STORAGE_KEY);
+  if (!ts) return false;
+  return Date.now() - Number(ts) < COOLDOWN_MS;
+}
+
+function hasClickedWhatsApp(): boolean {
+  return localStorage.getItem(WA_CLICKED_KEY) === "1";
+}
 
 const ExitIntentPopup = () => {
   const [show, setShow] = useState(false);
+  const pageLoadTime = useRef(Date.now());
+  const triggered = useRef(false);
 
   const trigger = useCallback(() => {
-    if (sessionStorage.getItem(STORAGE_KEY)) return;
-    sessionStorage.setItem(STORAGE_KEY, "1");
+    if (triggered.current) return;
+    if (Date.now() - pageLoadTime.current < MIN_TIME_ON_PAGE) return;
+    if (wasDismissedRecently() || hasClickedWhatsApp()) return;
+    triggered.current = true;
     setShow(true);
   }, []);
 
+  const dismiss = useCallback(() => {
+    setShow(false);
+    localStorage.setItem(STORAGE_KEY, String(Date.now()));
+  }, []);
+
   useEffect(() => {
-    if (sessionStorage.getItem(STORAGE_KEY)) return;
+    if (wasDismissedRecently() || hasClickedWhatsApp()) return;
 
-    // Desktop: exit intent
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) trigger();
+    const isMobile = window.matchMedia("(pointer: coarse)").matches;
+
+    // Listen globally for WA clicks to suppress popup
+    const onWaClick = () => {
+      localStorage.setItem(WA_CLICKED_KEY, "1");
+      setShow(false);
     };
-    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("ubicame:wa_click", onWaClick);
 
-    // Mobile: 30s timer
-    const timer = setTimeout(trigger, 30000);
+    let cleanup: (() => void)[] = [];
 
-    // Mobile: scroll-up intent
-    let lastY = window.scrollY;
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      if (currentY < lastY - 100 && currentY > 300) trigger();
-      lastY = currentY;
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    if (!isMobile) {
+      // DESKTOP: exit-intent only (mouse leaves top of viewport)
+      const handleMouseLeave = (e: MouseEvent) => {
+        if (e.clientY <= 0) trigger();
+      };
+      document.addEventListener("mouseleave", handleMouseLeave);
+      cleanup.push(() => document.removeEventListener("mouseleave", handleMouseLeave));
+    } else {
+      // MOBILE: 45s on page + scroll-up intent
+      let ready = false;
+      const timer = setTimeout(() => { ready = true; }, MOBILE_DELAY);
+
+      let lastY = window.scrollY;
+      const handleScroll = () => {
+        if (!ready) { lastY = window.scrollY; return; }
+        const currentY = window.scrollY;
+        if (currentY < lastY - 120 && currentY > 300) trigger();
+        lastY = currentY;
+      };
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      cleanup.push(() => {
+        clearTimeout(timer);
+        window.removeEventListener("scroll", handleScroll);
+      });
+    }
 
     return () => {
-      document.removeEventListener("mouseleave", handleMouseLeave);
-      clearTimeout(timer);
-      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("ubicame:wa_click", onWaClick);
+      cleanup.forEach((fn) => fn());
     };
   }, [trigger]);
 
@@ -48,36 +88,41 @@ const ExitIntentPopup = () => {
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 animate-fade-in"
-      onClick={() => setShow(false)}
+      onClick={dismiss}
       role="dialog"
       aria-modal="true"
       aria-label="Oferta especial de descuento"
     >
       <div
-        className="relative bg-card rounded-2xl shadow-2xl max-w-md w-full p-8 text-center animate-scale-in"
+        className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 text-center animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          onClick={() => setShow(false)}
-          className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+          onClick={dismiss}
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition-colors"
           aria-label="Cerrar"
         >
           <X className="w-5 h-5" />
         </button>
 
         <p className="text-4xl mb-4">🎁</p>
-        <h3 className="font-serif text-2xl font-semibold text-foreground mb-2">
+        <h3 className="font-serif text-2xl font-semibold text-[#2D2D2D] mb-2">
           ¡Espera! Tengo una oferta especial para ti
         </h3>
-        <p className="text-muted-foreground mb-6 text-sm">
-          Reserva en las próximas 24 horas y recibe <span className="font-bold text-foreground">15% de descuento</span> en tu primera noche
+        <p className="text-gray-500 mb-6 text-sm">
+          Reserva en las próximas 24 horas y recibe{" "}
+          <span className="font-bold text-[#2D2D2D]">15% de descuento</span> en tu primera noche
         </p>
 
         <a
           href={buildWhatsAppUrl(WA_MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackWhatsAppClick("popup")}
+          onClick={() => {
+            trackWhatsAppClick("popup");
+            localStorage.setItem(WA_CLICKED_KEY, "1");
+            dismiss();
+          }}
           aria-label="Reservar por WhatsApp con descuento"
           className="block w-full btn-whatsapp font-semibold py-4 rounded-full text-center shadow-md transition-transform hover:scale-105 mb-4"
         >
@@ -85,10 +130,10 @@ const ExitIntentPopup = () => {
         </a>
 
         <button
-          onClick={() => setShow(false)}
-          className="text-xs text-muted-foreground hover:text-foreground transition-colors underline"
+          onClick={dismiss}
+          className="text-xs text-gray-400 hover:text-gray-600 transition-colors underline"
         >
-          No gracias, prefiero pagar más en Airbnb
+          No gracias
         </button>
       </div>
     </div>
