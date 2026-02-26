@@ -25,7 +25,7 @@ const CTASection = () => {
         </h2>
 
         <p className="text-base md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Reserva directo y ahorra 10% vs Airbnb. Atención personalizada garantizada.
+          Reserva directo y ahorra 20% vs Airbnb. Atención personalizada garantizada.
         </p>
 
         <a

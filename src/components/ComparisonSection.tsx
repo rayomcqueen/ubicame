@@ -4,8 +4,8 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 const WA_MESSAGE = "Hola! Quiero reservar directo y ahorrar. Vi la comparativa en ubicame.com.mx";
 
 const rows = [
-  { aspect: "Precio por noche", airbnb: "$2,333", ubicame: "$2,100", ubicameNote: "Ahorra 10%" },
-  { aspect: "Comisión de servicio", airbnb: "$350+", ubicame: "$0", ubicameNote: "Sin comisiones" },
+  { aspect: "Precio por noche", airbnb: "$2,625", ubicame: "$2,100", ubicameNote: "Ahorra 20%" },
+  { aspect: "Comisión de servicio", airbnb: "$525+", ubicame: "$0", ubicameNote: "Sin comisiones" },
   { aspect: "Atención", airbnb: "Bot + email", ubicame: "WhatsApp directo 24/7", ubicameNote: "" },
   { aspect: "Tiempo de respuesta", airbnb: "2-24 horas", ubicame: "<5 minutos", ubicameNote: "" },
   { aspect: "Check-in flexible", airbnb: "Limitado", ubicame: "Sí, cuando es posible", ubicameNote: "" },

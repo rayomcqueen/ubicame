@@ -5,7 +5,7 @@ const benefits = [
   {
     icon: Wallet,
     emoji: "💰",
-    title: "Ahorra 10-15%",
+    title: "Ahorra hasta 20%",
     description: "Sin comisiones de plataforma. El precio que ves es el precio real.",
   },
   {
