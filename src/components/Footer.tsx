@@ -1,7 +1,7 @@
 import { MapPin, MessageCircle, Instagram, Mail, Phone } from "lucide-react";
 import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
-const WA_MESSAGE = "Hola! Tengo una pregunta sobre las propiedades en ubicame.com.mx";
+const WA_MESSAGE = "Hola! Tengo una pregunta sobre las propiedades [desde footer]";
 
 const ZONES = [
   { label: "Andares", zone: "Andares" },
