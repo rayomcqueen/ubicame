@@ -45,7 +45,7 @@ const Index = () => {
     const filtered = properties.filter((property) => {
       const matchesZone = !selectedZone || property.location === selectedZone;
       const matchesGuests = selectedGuests === 0 || 
-        (selectedGuests === 7 ? property.guests >= 7 : property.guests <= selectedGuests && property.guests >= selectedGuests - 1);
+        (selectedGuests === 7 ? property.guests >= 7 : property.guests >= selectedGuests - 1 && property.guests <= selectedGuests);
       const matchesPrice = property.price >= selectedPriceRange.min && property.price <= selectedPriceRange.max;
       
       return matchesZone && matchesGuests && matchesPrice;
@@ -121,10 +121,10 @@ const Index = () => {
                 <Home className="w-8 h-8 text-muted-foreground" aria-hidden="true" />
               </div>
               <p className="text-foreground text-lg font-medium mb-2">
-                No hay propiedades con estos filtros
+                No encontramos propiedades con esos filtros
               </p>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                Prueba ajustando tus criterios o contáctame y te ayudo a encontrar tu lugar ideal.
+                Contáctanos por WhatsApp y te ayudamos a encontrar la perfecta.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <button

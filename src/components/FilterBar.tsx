@@ -1,4 +1,4 @@
-import { MapPin, Users, DollarSign } from "lucide-react";
+import { MapPin, Users, DollarSign, X } from "lucide-react";
 import { zones, priceRanges, guestOptions } from "@/data/properties";
 
 interface FilterBarProps {
@@ -18,6 +18,16 @@ const FilterBar = ({
   selectedPriceRange,
   setSelectedPriceRange,
 }: FilterBarProps) => {
+  const hasFilters = selectedZone || selectedGuests > 0 || selectedPriceRange.min > 0 || selectedPriceRange.max < Infinity;
+
+  const clearAll = () => {
+    setSelectedZone("");
+    setSelectedGuests(0);
+    setSelectedPriceRange({ min: 0, max: Infinity });
+  };
+
+  const chevronSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`;
+
   return (
     <>
       {/* Desktop: inline grid */}
@@ -72,6 +82,18 @@ const FilterBar = ({
             </select>
           </div>
         </div>
+
+        {hasFilters && (
+          <div className="mt-4 text-center">
+            <button
+              onClick={clearAll}
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors min-h-[44px]"
+            >
+              <X className="w-3.5 h-3.5" aria-hidden="true" />
+              Limpiar filtros
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Mobile: horizontal scrollable row */}
@@ -81,12 +103,10 @@ const FilterBar = ({
             <select
               value={selectedZone}
               onChange={(e) => setSelectedZone(e.target.value)}
-              className="appearance-none bg-card border border-border rounded-full px-4 py-2.5 text-sm text-foreground min-h-[44px] min-w-[44px] pr-8 cursor-pointer"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "right 10px center",
-              }}
+              className={`appearance-none border rounded-full px-4 py-2.5 text-sm min-h-[44px] min-w-[44px] pr-8 cursor-pointer ${
+                selectedZone ? "bg-primary/10 border-primary text-foreground font-medium" : "bg-card border-border text-foreground"
+              }`}
+              style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}
             >
               <option value="">🏘 Zona</option>
               {zones.map((zone) => (
@@ -99,12 +119,10 @@ const FilterBar = ({
             <select
               value={selectedGuests}
               onChange={(e) => setSelectedGuests(Number(e.target.value))}
-              className="appearance-none bg-card border border-border rounded-full px-4 py-2.5 text-sm text-foreground min-h-[44px] min-w-[44px] pr-8 cursor-pointer"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "right 10px center",
-              }}
+              className={`appearance-none border rounded-full px-4 py-2.5 text-sm min-h-[44px] min-w-[44px] pr-8 cursor-pointer ${
+                selectedGuests > 0 ? "bg-primary/10 border-primary text-foreground font-medium" : "bg-card border-border text-foreground"
+              }`}
+              style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}
             >
               {guestOptions.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -118,12 +136,10 @@ const FilterBar = ({
             <select
               value={JSON.stringify(selectedPriceRange)}
               onChange={(e) => setSelectedPriceRange(JSON.parse(e.target.value))}
-              className="appearance-none bg-card border border-border rounded-full px-4 py-2.5 text-sm text-foreground min-h-[44px] min-w-[44px] pr-8 cursor-pointer"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "right 10px center",
-              }}
+              className={`appearance-none border rounded-full px-4 py-2.5 text-sm min-h-[44px] min-w-[44px] pr-8 cursor-pointer ${
+                selectedPriceRange.min > 0 || selectedPriceRange.max < Infinity ? "bg-primary/10 border-primary text-foreground font-medium" : "bg-card border-border text-foreground"
+              }`}
+              style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}
             >
               {priceRanges.map((range) => (
                 <option key={range.label} value={JSON.stringify({ min: range.min, max: range.max })}>
@@ -132,6 +148,18 @@ const FilterBar = ({
               ))}
             </select>
           </div>
+
+          {hasFilters && (
+            <div className="shrink-0">
+              <button
+                onClick={clearAll}
+                className="flex items-center gap-1.5 bg-muted border border-border rounded-full px-4 py-2.5 text-sm text-muted-foreground min-h-[44px] whitespace-nowrap"
+              >
+                <X className="w-3.5 h-3.5" aria-hidden="true" />
+                Limpiar
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
