@@ -119,7 +119,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
             onClick={() => openLightbox(currentImage)}
           >
             <div className="p-4 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
-              <p className="text-white font-serif text-lg font-semibold line-clamp-1">{property.name}</p>
+              <p className="text-white font-serif text-lg font-semibold line-clamp-2">{property.name}</p>
               <p className="text-white/90 text-sm">${property.price.toLocaleString()}/noche</p>
             </div>
           </div>
@@ -185,7 +185,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
 
         {/* Content */}
         <div className="p-5 flex flex-col flex-grow">
-          <h3 className="font-serif text-xl font-semibold text-foreground mb-1 line-clamp-1">
+          <h3 className="font-serif text-xl font-semibold text-foreground mb-1 line-clamp-2">
             {property.name}
           </h3>
 
