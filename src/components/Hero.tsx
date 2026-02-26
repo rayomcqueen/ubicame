@@ -1,7 +1,7 @@
 import property3 from "@/assets/property-3.jpg";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
-const WA_MESSAGE = "Hola Pablo! Estoy buscando hospedaje en Guadalajara. Vi tu página ubicame.com.mx y me gustaría cotizar.";
+const WA_MESSAGE = "Hola! Me interesa hospedarme en Guadalajara. Vi tu página ubicame.com.mx";
 
 const Hero = () => {
   return (

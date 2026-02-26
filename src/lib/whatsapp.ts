@@ -1,4 +1,4 @@
-const WA_PHONE = "523333260013";
+const WA_PHONE = "5213333260013";
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid"] as const;
 
 export function captureUtmParams() {
@@ -40,7 +40,7 @@ function getUtmRef(): string {
 
 export const buildWhatsAppUrl = (message: string) => {
   const ref = getUtmRef();
-  return `https://api.whatsapp.com/send/?phone=${WA_PHONE}&text=${encodeURIComponent(message + ref)}&type=phone_number&app_absent=0`;
+  return `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(message + ref)}`;
 };
 
 export const trackWhatsAppClick = (

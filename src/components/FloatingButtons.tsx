@@ -1,6 +1,6 @@
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
-const WA_MESSAGE = "Hola! Tengo una pregunta sobre las propiedades en ubicame.com.mx";
+const WA_MESSAGE = "Hola! Busco hospedaje en Guadalajara";
 
 const FloatingButtons = () => {
   return (

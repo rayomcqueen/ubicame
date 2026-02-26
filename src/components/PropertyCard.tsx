@@ -65,7 +65,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
     setLightboxOpen(true);
   };
 
-  const whatsappMessage = `Hola! Me interesa la propiedad '${property.name}' en ${property.location} ($${property.price.toLocaleString()}/noche). ¿Tiene disponibilidad para ?`;
+  const whatsappMessage = `Hola! Me interesa ${property.name} en ${property.location} ($${property.price.toLocaleString()}/noche). ¿Hay disponibilidad?`;
   const whatsappUrl = buildWhatsAppUrl(whatsappMessage);
 
   const airbnbPrice = property.airbnbPrice ?? Math.round(property.price * 1.1);
