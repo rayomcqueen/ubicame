@@ -24,7 +24,7 @@ const Navbar = () => {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  const waUrl = buildWhatsAppUrl("Hola! Me interesa rentar una propiedad en Guadalajara");
+  const waUrl = buildWhatsAppUrl("Hola! Busco hospedaje en Guadalajara");
 
   return (
     <nav

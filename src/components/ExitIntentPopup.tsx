@@ -7,7 +7,7 @@ const WA_CLICKED_KEY = "ubicame_wa_clicked";
 const COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 hours
 const MIN_TIME_ON_PAGE = 20_000; // 20s minimum before any trigger
 const MOBILE_DELAY = 45_000; // 45s for mobile
-const WA_MESSAGE = "Hola! Vi la oferta de 15% de descuento en ubicame.com.mx. Me interesa reservar.";
+const WA_MESSAGE = "Hola! Vi la oferta de 15% en ubicame.com.mx";
 
 function wasDismissedRecently(): boolean {
   const ts = localStorage.getItem(STORAGE_KEY);

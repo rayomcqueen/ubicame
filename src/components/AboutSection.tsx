@@ -2,7 +2,7 @@ import { Camera, CheckCircle } from "lucide-react";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 import { useScrollReveal, useCountUp } from "@/hooks/use-scroll-reveal";
 
-const WA_MESSAGE = "Hola Pablo! Vi tu perfil en ubicame.com.mx y me gustaría hablar sobre hospedaje en Guadalajara.";
+const WA_MESSAGE = "Hola Pablo! Tengo preguntas sobre tus propiedades en Guadalajara";
 
 const CountStat = ({ target, suffix, label }: { target: number; suffix: string; label: string }) => {
   const { ref, count } = useCountUp(target);

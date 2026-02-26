@@ -45,7 +45,7 @@ class ErrorBoundary extends Component<Props, State> {
               💬 Contactar por WhatsApp
             </a>
             <p className="mt-4 text-sm text-[#6B6359]">
-              Tel: <a href="tel:+523333260013" className="underline">+52 33 3326 0013</a>
+              Tel: <a href="tel:+5213333260013" className="underline">+52 1 33 3326 0013</a>
             </p>
           </div>
         </div>
