@@ -21,6 +21,7 @@ export default {
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
+          dark: "hsl(var(--primary-dark))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -37,7 +38,12 @@ export default {
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
+          hover: "hsl(var(--accent-hover))",
           foreground: "hsl(var(--accent-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -67,12 +73,31 @@ export default {
       },
       fontFamily: {
         serif: ["Playfair Display", "serif"],
-        sans: ["system-ui", "-apple-system", "sans-serif"],
+        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+      },
+      fontSize: {
+        "xs": ["0.875rem", { lineHeight: "1.4" }],   /* 14px */
+        "sm": ["1rem", { lineHeight: "1.6" }],        /* 16px */
+        "base": ["1.125rem", { lineHeight: "1.6" }],  /* 18px */
+        "lg": ["1.5rem", { lineHeight: "1.3" }],      /* 24px */
+        "xl": ["2rem", { lineHeight: "1.2" }],        /* 32px */
+        "2xl": ["3rem", { lineHeight: "1.1" }],       /* 48px */
+        "3xl": ["4rem", { lineHeight: "1.05" }],      /* 64px */
+      },
+      spacing: {
+        "1": "8px",
+        "2": "16px",
+        "3": "24px",
+        "4": "32px",
+        "6": "48px",
+        "8": "64px",
+        "12": "96px",
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "12px",   /* Cards */
+        md: "8px",    /* Buttons */
+        sm: "4px",
+        full: "9999px", /* Avatars */
       },
       keyframes: {
         "accordion-down": {
@@ -99,6 +124,9 @@ export default {
         pulse: "pulse 2s ease-in-out infinite",
       },
       boxShadow: {
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
         soft: "0 4px 20px -2px rgba(0, 0, 0, 0.08)",
         elegant: "0 10px 40px -10px rgba(0, 0, 0, 0.12)",
       },
