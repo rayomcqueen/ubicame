@@ -19,7 +19,7 @@ import OfflineBanner from "@/components/OfflineBanner";
 import FAQSection from "@/components/FAQSection";
 import { properties } from "@/data/properties";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
-import { ChevronDown, Home } from "lucide-react";
+import { Home } from "lucide-react";
 
 const INITIAL_COUNT = 6;
 
@@ -41,13 +41,20 @@ const Index = () => {
   }, []);
 
   const filteredProperties = useMemo(() => {
-    return properties.filter((property) => {
+    const filtered = properties.filter((property) => {
       const matchesZone = !selectedZone || property.location === selectedZone;
       const matchesGuests = selectedGuests === 0 || 
         (selectedGuests === 7 ? property.guests >= 7 : property.guests <= selectedGuests && property.guests >= selectedGuests - 1);
       const matchesPrice = property.price >= selectedPriceRange.min && property.price <= selectedPriceRange.max;
       
       return matchesZone && matchesGuests && matchesPrice;
+    });
+
+    // Sort: badged properties first, then by rating descending
+    return filtered.sort((a, b) => {
+      const badgeWeight = (p: typeof a) => (p.badge === "popular" ? 2 : p.badge === "demand" ? 1 : 0);
+      const diff = badgeWeight(b) - badgeWeight(a);
+      return diff !== 0 ? diff : b.rating - a.rating;
     });
   }, [selectedZone, selectedGuests, selectedPriceRange]);
 
@@ -149,8 +156,7 @@ const Index = () => {
                 onClick={() => setShowAll(true)}
                 className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground rounded-full font-medium text-base transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
-                Ver las {filteredProperties.length} propiedades
-                <ChevronDown className="w-5 h-5" />
+                Ver las {filteredProperties.length} propiedades →
               </button>
             </div>
           )}
