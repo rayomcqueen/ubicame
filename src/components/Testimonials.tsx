@@ -111,7 +111,7 @@ const Testimonials = () => {
               ))}
             </div>
           </div>
-          <p style={{ fontSize: 14, color: "#6B6B6B" }}>Basado en +500 reseñas en Airbnb</p>
+          <p style={{ fontSize: 16, color: "#6B6B6B" }}>⭐ 4.9 de 5 — basado en 10,000+ reseñas en Airbnb</p>
         </div>
 
         {/* Desktop grid / Mobile carousel */}

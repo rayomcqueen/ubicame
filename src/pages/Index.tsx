@@ -123,6 +123,17 @@ const Index = () => {
             setSelectedPriceRange={setSelectedPriceRange}
           />
 
+          {/* Live indicator */}
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: "#E85D04" }}></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5" style={{ background: "#E85D04" }}></span>
+            </span>
+            <span style={{ fontSize: 14, color: "#E85D04", fontWeight: 500 }}>
+              🔥 12 personas están viendo propiedades ahora mismo
+            </span>
+          </div>
+
           {displayedProperties.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {displayedProperties.map((property, index) => (
