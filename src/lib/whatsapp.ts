@@ -83,5 +83,5 @@ export const trackAndOpenWhatsApp = (
   trackWhatsAppClick(clickLocation, propertyName, propertyPrice);
   setTimeout(() => {
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-  }, 250);
+  }, 300);
 };
