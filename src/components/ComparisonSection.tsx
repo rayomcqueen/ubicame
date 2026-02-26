@@ -1,7 +1,7 @@
 import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
-const WA_MESSAGE = "Hola! Quiero reservar directo y ahorrar. Vi la comparativa en ubicame.com.mx";
+const WA_MESSAGE = "Hola! Quiero reservar directo y ahorrar [desde comparativa]";
 
 const airbnbItems = [
   "❌ $2,625/noche",

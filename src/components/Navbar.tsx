@@ -26,7 +26,7 @@ const Navbar = () => {
     }
   };
 
-  const waUrl = buildWhatsAppUrl("Hola! Busco hospedaje en Guadalajara");
+  const waUrl = buildWhatsAppUrl("Hola! Busco hospedaje en Guadalajara [desde nav]");
 
   return (
     <nav

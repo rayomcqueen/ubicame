@@ -152,10 +152,10 @@ const Index = () => {
                   Limpiar filtros
                 </button>
                 <a
-                  href={buildWhatsAppUrl("Hola! No encuentro una propiedad con los filtros que busco. ¿Me ayudas?")}
+                  href={buildWhatsAppUrl("Hola! No encuentro una propiedad con los filtros que busco [desde filtros]")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl("Hola! No encuentro una propiedad con los filtros que busco. ¿Me ayudas?"), "empty_filters")}
+                  onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl("Hola! No encuentro una propiedad con los filtros que busco [desde filtros]"), "empty_filters")}
                   aria-label="Pedir ayuda por WhatsApp"
                   className="inline-flex items-center justify-center gap-2 btn-whatsapp px-6 py-2.5 rounded-lg text-sm"
                 >

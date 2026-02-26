@@ -1,6 +1,6 @@
 import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
-const WA_MESSAGE = "Hola! Busco hospedaje en Guadalajara";
+const WA_MESSAGE = "Hola! Busco hospedaje en Guadalajara [desde flotante]";
 
 const FloatingButtons = () => {
   return (

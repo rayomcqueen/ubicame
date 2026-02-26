@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 
-const WA_MESSAGE = "Hola! Busco hospedaje en Guadalajara";
+const WA_MESSAGE = "Hola! Busco hospedaje en Guadalajara [desde mobile]";
 
 const MobileStickyBar = () => {
   const [visible, setVisible] = useState(false);
