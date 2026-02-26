@@ -16,10 +16,6 @@ const ZONES: ZoneData[] = [
   { name: "Puerta de Hierro", label: "Puerta de Hierro", description: "Exclusiva y moderna", x: 22, y: 20 },
   { name: "La Americana", label: "La Americana", description: "Zona céntrica con personalidad", x: 52, y: 55 },
   { name: "Chapultepec", label: "Chapultepec", description: "Bares, cafés y vida nocturna", x: 48, y: 48 },
-  { name: "Guadalupe", label: "Guadalupe", description: "Cerca del Estadio Akron", x: 30, y: 60 },
-  { name: "Zona Real", label: "Zona Real", description: "Residencial y tranquila", x: 18, y: 38 },
-  { name: "Chapalita", label: "Chapalita", description: "Tradicional y familiar", x: 38, y: 45 },
-  { name: "Ladrón de Guevara", label: "Ladrón de Guevara", description: "Céntrica y accesible", x: 55, y: 42 },
 ];
 
 const MapSection = () => {
