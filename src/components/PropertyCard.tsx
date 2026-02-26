@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye, Bath, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useState, useRef, useCallback } from "react";
+import { Users, Bed, DoorOpen, MapPin, Car, Wifi, Waves, Utensils, Dumbbell, Tv, Shield, Building, Eye, Bath, ChevronLeft, ChevronRight, Star, X } from "lucide-react";
 import type { Property } from "@/data/properties";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const amenityIcons: Record<string, React.ReactNode> = {
   "Estacionamiento": <Car className="w-3.5 h-3.5" aria-hidden="true" />,
@@ -24,6 +25,10 @@ interface PropertyCardProps {
 
 const PropertyCard = ({ property, index }: PropertyCardProps) => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const touchRef = useRef<{ startX: number; startY: number } | null>(null);
+
   const images = property.images?.length ? property.images : [property.image];
 
   const nextImage = (e: React.MouseEvent) => {
@@ -38,6 +43,28 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  // Touch handlers for swipe
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchRef.current = { startX: e.touches[0].clientX, startY: e.touches[0].clientY };
+  }, []);
+
+  const onTouchEnd = useCallback((e: React.TouchEvent, isLightbox = false) => {
+    if (!touchRef.current) return;
+    const dx = e.changedTouches[0].clientX - touchRef.current.startX;
+    const dy = e.changedTouches[0].clientY - touchRef.current.startY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      const setter = isLightbox ? setLightboxIndex : setCurrentImage;
+      if (dx < 0) setter((prev) => (prev + 1) % images.length);
+      else setter((prev) => (prev - 1 + images.length) % images.length);
+    }
+    touchRef.current = null;
+  }, [images.length]);
+
+  const openLightbox = (imgIndex: number) => {
+    setLightboxIndex(imgIndex);
+    setLightboxOpen(true);
+  };
+
   const whatsappMessage = `Hola! Me interesa la propiedad '${property.name}' en ${property.location} ($${property.price.toLocaleString()}/noche). ¿Tiene disponibilidad para ?`;
   const whatsappUrl = buildWhatsAppUrl(whatsappMessage);
 
@@ -45,158 +72,224 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
   const savings = airbnbPrice - property.price;
 
   return (
-    <article
-      className="group bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-out opacity-0 animate-fade-up h-full flex flex-col"
-      style={{ animationDelay: `${index * 0.1}s`, animationFillMode: "forwards" }}
-    >
-      {/* Image Carousel */}
-      <div className="relative overflow-hidden flex-shrink-0" style={{ aspectRatio: "16/9" }}>
-        {images.map((img, i) => (
-          <img
-            key={i}
-            src={img}
-            alt={`${property.name} en ${property.location}, Guadalajara — ${property.bedrooms} habitaciones para ${property.guests} huéspedes, foto ${i + 1}`}
-            width={400}
-            height={225}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-              i === currentImage ? "opacity-100" : "opacity-0"
-            }`}
-            loading="lazy"
-          />
-        ))}
-
-        {/* Carousel Controls */}
-        {images.length > 1 && (
-          <>
-            <button
-              onClick={prevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-card/80 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-card"
-              aria-label="Foto anterior"
-            >
-              <ChevronLeft className="w-4 h-4 text-foreground" />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-card/80 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-card"
-              aria-label="Siguiente foto"
-            >
-              <ChevronRight className="w-4 h-4 text-foreground" />
-            </button>
-
-            {/* Dots */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-              {images.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCurrentImage(i); }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    i === currentImage ? "bg-white w-4" : "bg-white/60"
-                  }`}
-                  aria-label={`Ver foto ${i + 1}`}
-                />
-              ))}
-            </div>
-          </>
-        )}
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
-
-        {/* Badge */}
-        {property.badge && (
-          <div className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold shadow-md ${
-            property.badge === "popular"
-              ? "bg-amber-500 text-white"
-              : "bg-red-500 text-white"
-          }`}>
-            {property.badge === "popular" ? "⭐ Más popular" : "🔥 Alta demanda"}
-          </div>
-        )}
-
-        {/* Rating */}
-        <div className="absolute top-3 right-3 bg-card/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md flex items-center gap-1">
-          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" aria-hidden="true" />
-          <span className="text-sm font-semibold text-foreground">{property.rating}</span>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-5 flex flex-col flex-grow">
-        <h3 className="font-serif text-xl font-semibold text-foreground mb-1 line-clamp-1">
-          {property.name}
-        </h3>
-
-        <div className="flex items-center text-muted-foreground text-sm mb-3">
-          <MapPin className="w-4 h-4 mr-1 text-primary" aria-hidden="true" />
-          <span>{property.location}, {property.city}</span>
-        </div>
-
-        {/* Pricing with strikethrough */}
-        <div className="flex items-baseline gap-2 mb-3">
-          <span className="text-muted-foreground line-through text-sm">${airbnbPrice.toLocaleString()}</span>
-          <span className="text-lg font-bold text-[hsl(142,70%,40%)]">${property.price.toLocaleString()}<span className="text-sm font-normal text-muted-foreground">/noche</span></span>
-          <span className="text-xs bg-[hsl(142,70%,45%)]/15 text-[hsl(142,70%,35%)] px-2 py-0.5 rounded-full font-medium">
-            Ahorras ${savings.toLocaleString()}
-          </span>
-        </div>
-
-        {/* Stats */}
-        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3 flex-wrap">
-          <div className="flex items-center gap-1.5">
-            <Users className="w-4 h-4" aria-hidden="true" />
-            <span>{property.guests} huéspedes</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <DoorOpen className="w-4 h-4" aria-hidden="true" />
-            <span>{property.bedrooms} hab</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Bed className="w-4 h-4" aria-hidden="true" />
-            <span>{property.beds} camas</span>
-          </div>
-          {property.bathrooms && (
-            <div className="flex items-center gap-1.5">
-              <Bath className="w-4 h-4" aria-hidden="true" />
-              <span>{property.bathrooms} baños</span>
-            </div>
-          )}
-        </div>
-
-        {/* Amenities */}
-        <div className="flex-grow">
-          {property.amenities && property.amenities.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mb-4 pb-4 border-b border-border">
-              {property.amenities.slice(0, 5).map((amenity) => (
-                <span
-                  key={amenity}
-                  className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full"
-                >
-                  {amenityIcons[amenity] || null}
-                  {amenity}
-                </span>
-              ))}
-              {property.amenities.length > 5 && (
-                <span className="text-xs text-muted-foreground px-2 py-0.5">+{property.amenities.length - 5} más</span>
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* CTA */}
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackWhatsAppClick("property_card", property.name, property.price.toString())}
-          aria-label={`Reservar ${property.name} por WhatsApp`}
-          className="block w-full text-center py-3 px-4 btn-whatsapp rounded-lg font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto"
+    <>
+      <article
+        className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-500 ease-out opacity-0 animate-fade-up h-full flex flex-col"
+        style={{ animationDelay: `${index * 0.1}s`, animationFillMode: "forwards" }}
+      >
+        {/* Image Carousel */}
+        <div
+          className="relative overflow-hidden flex-shrink-0 cursor-pointer"
+          style={{ aspectRatio: "3/2" }}
+          onTouchStart={onTouchStart}
+          onTouchEnd={(e) => onTouchEnd(e)}
         >
-          💬 Consultar disponibilidad
-        </a>
-        <p className="text-center text-xs text-muted-foreground mt-1.5">
-          Respuesta en menos de 5 minutos
-        </p>
-      </div>
-    </article>
+          {images.map((img, i) => (
+            <img
+              key={i}
+              src={img}
+              alt={`${property.name} en ${property.location}, Guadalajara — ${property.bedrooms} habitaciones para ${property.guests} huéspedes, foto ${i + 1}`}
+              width={600}
+              height={400}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                i === currentImage ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+              loading="lazy"
+              onClick={() => openLightbox(i)}
+            />
+          ))}
+
+          {/* Hover overlay */}
+          <div
+            className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-end pointer-events-none"
+            onClick={() => openLightbox(currentImage)}
+          >
+            <div className="p-4 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
+              <p className="text-white font-serif text-lg font-semibold line-clamp-1">{property.name}</p>
+              <p className="text-white/90 text-sm">${property.price.toLocaleString()}/noche</p>
+            </div>
+          </div>
+
+          {/* Carousel Controls */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/60 z-10"
+                aria-label="Foto anterior"
+              >
+                <ChevronLeft className="w-4 h-4 text-white" aria-hidden="true" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/60 z-10"
+                aria-label="Siguiente foto"
+              >
+                <ChevronRight className="w-4 h-4 text-white" aria-hidden="true" />
+              </button>
+
+              {/* Dots */}
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                {images.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCurrentImage(i); }}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      i === currentImage ? "bg-white w-4" : "bg-white/60"
+                    }`}
+                    aria-label={`Ver foto ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Photo counter badge */}
+          <div className="absolute bottom-3 right-3 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-0.5 rounded-full z-10">
+            {currentImage + 1}/{images.length}
+          </div>
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
+
+          {/* Badge */}
+          {property.badge && (
+            <div className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold shadow-md z-10 ${
+              property.badge === "popular"
+                ? "bg-amber-500 text-white"
+                : "bg-red-500 text-white"
+            }`}>
+              {property.badge === "popular" ? "⭐ Más popular" : "🔥 Alta demanda"}
+            </div>
+          )}
+
+          {/* Rating */}
+          <div className="absolute top-3 right-3 bg-card/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 z-10">
+            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" aria-hidden="true" />
+            <span className="text-sm font-semibold text-foreground">{property.rating}</span>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-5 flex flex-col flex-grow">
+          <h3 className="font-serif text-xl font-semibold text-foreground mb-1 line-clamp-1">
+            {property.name}
+          </h3>
+
+          <div className="flex items-center text-muted-foreground text-sm mb-3">
+            <MapPin className="w-4 h-4 mr-1 text-primary" aria-hidden="true" />
+            <span>{property.location}, {property.city}</span>
+          </div>
+
+          {/* Pricing */}
+          <div className="flex items-baseline gap-2 mb-3">
+            <span className="text-muted-foreground line-through text-sm">${airbnbPrice.toLocaleString()}</span>
+            <span className="text-lg font-bold text-accent">${property.price.toLocaleString()}<span className="text-sm font-normal text-muted-foreground">/noche</span></span>
+            <span className="text-xs bg-accent/15 text-accent-hover px-2 py-0.5 rounded-full font-medium">
+              Ahorras ${savings.toLocaleString()}
+            </span>
+          </div>
+
+          {/* Stats */}
+          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3 flex-wrap">
+            <div className="flex items-center gap-1.5">
+              <Users className="w-4 h-4" aria-hidden="true" />
+              <span>{property.guests} huéspedes</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <DoorOpen className="w-4 h-4" aria-hidden="true" />
+              <span>{property.bedrooms} hab</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Bed className="w-4 h-4" aria-hidden="true" />
+              <span>{property.beds} camas</span>
+            </div>
+            {property.bathrooms && (
+              <div className="flex items-center gap-1.5">
+                <Bath className="w-4 h-4" aria-hidden="true" />
+                <span>{property.bathrooms} baños</span>
+              </div>
+            )}
+          </div>
+
+          {/* Amenities */}
+          <div className="flex-grow">
+            {property.amenities && property.amenities.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mb-4 pb-4 border-b border-border">
+                {property.amenities.slice(0, 5).map((amenity) => (
+                  <span
+                    key={amenity}
+                    className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full"
+                  >
+                    {amenityIcons[amenity] || null}
+                    {amenity}
+                  </span>
+                ))}
+                {property.amenities.length > 5 && (
+                  <span className="text-xs text-muted-foreground px-2 py-0.5">+{property.amenities.length - 5} más</span>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* CTA */}
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick("property_card", property.name, property.price.toString())}
+            aria-label={`Reservar ${property.name} por WhatsApp`}
+            className="block w-full text-center py-3 px-4 btn-whatsapp rounded-md font-medium text-sm transition-all duration-300 hover:shadow-md mt-auto"
+          >
+            💬 Consultar disponibilidad
+          </a>
+          <p className="text-center text-xs text-muted-foreground mt-1.5">
+            Respuesta en menos de 5 minutos
+          </p>
+        </div>
+      </article>
+
+      {/* Lightbox */}
+      <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+        <DialogContent
+          className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95 border-none overflow-hidden flex items-center justify-center"
+          onTouchStart={onTouchStart}
+          onTouchEnd={(e) => onTouchEnd(e, true)}
+        >
+          <div className="relative w-full h-full flex items-center justify-center">
+            <img
+              src={images[lightboxIndex]}
+              alt={`${property.name} — foto ${lightboxIndex + 1} de ${images.length}`}
+              className="max-w-full max-h-[85vh] object-contain"
+            />
+
+            {/* Nav arrows */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={() => setLightboxIndex((prev) => (prev - 1 + images.length) % images.length)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-2 transition-colors"
+                  aria-label="Foto anterior"
+                >
+                  <ChevronLeft className="w-6 h-6 text-white" aria-hidden="true" />
+                </button>
+                <button
+                  onClick={() => setLightboxIndex((prev) => (prev + 1) % images.length)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-2 transition-colors"
+                  aria-label="Siguiente foto"
+                >
+                  <ChevronRight className="w-6 h-6 text-white" aria-hidden="true" />
+                </button>
+              </>
+            )}
+
+            {/* Counter */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 text-white text-sm px-3 py-1 rounded-full">
+              {lightboxIndex + 1} / {images.length}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
