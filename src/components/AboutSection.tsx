@@ -9,10 +9,10 @@ const CountStat = ({ target, suffix, label }: { target: number; suffix: string; 
   const { ref, count } = useCountUp(target);
   return (
     <div>
-      <p className="font-serif text-3xl font-semibold text-primary">
+      <p className="font-serif font-semibold text-primary" style={{ fontSize: 28 }}>
         <span ref={ref}>{count.toLocaleString()}</span>{suffix}
       </p>
-      <p className="text-muted-foreground text-sm">{label}</p>
+      <p style={{ fontSize: 14, color: "#6B6B6B" }}>{label}</p>
     </div>
   );
 };
@@ -43,15 +43,15 @@ const AboutSection = () => {
           {/* Content */}
           <div className="space-y-4 text-center lg:text-left">
             <div>
-              <span className="text-primary font-medium tracking-widest text-sm uppercase">
+              <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#6B7B3F", textTransform: "uppercase" as const }}>
                 Sobre mí
               </span>
-              <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mt-1">
+              <h2 className="font-serif mt-2" style={{ fontSize: 32, fontWeight: 600, color: "#2D2D2D" }}>
                 Tu anfitrión: Pablo
               </h2>
             </div>
 
-            <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+            <p style={{ fontSize: 16, color: "#4A4A4A", lineHeight: 1.6 }}>
               Soy Pablo, Superhost en Airbnb desde 2019. Administro 25+ propiedades en las mejores zonas de Guadalajara. Mi obsesión es que cada huésped tenga una experiencia perfecta — por eso prefiero el trato directo. Cuando reservas conmigo, no solo obtienes un mejor precio: obtienes un guía local que te ayuda con todo.
             </p>
 
@@ -60,8 +60,8 @@ const AboutSection = () => {
               <CountStat target={25} suffix="+" label="Propiedades" />
               <CountStat target={1500} suffix="+" label="Huéspedes" />
               <div>
-                <p className="font-serif text-3xl font-semibold text-primary">4.9★</p>
-                <p className="text-muted-foreground text-sm">Rating</p>
+                <p className="font-serif font-semibold text-primary" style={{ fontSize: 28 }}>4.9★</p>
+                <p style={{ fontSize: 14, color: "#6B6B6B" }}>Rating</p>
               </div>
             </div>
 

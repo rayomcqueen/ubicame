@@ -46,13 +46,13 @@ const MapSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="text-primary font-medium tracking-widest text-sm uppercase">
-            Ubicaciones
+          <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#6B7B3F", textTransform: "uppercase" as const }}>
+            Destino
           </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-semibold text-foreground mt-3 mb-4">
+          <h2 className="font-serif mt-2 mb-4" style={{ fontSize: 32, fontWeight: 600, color: "#2D2D2D" }}>
             📍 Las mejores zonas de Guadalajara
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto" style={{ fontSize: 16, color: "#6B6B6B", lineHeight: 1.6 }}>
             Todas nuestras propiedades están en zonas seguras, bien conectadas y cerca de lo que importa.
           </p>
         </div>

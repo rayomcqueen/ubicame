@@ -49,10 +49,13 @@ const BenefitsSection = () => {
   return (
     <section ref={sectionRef} className="py-16 px-6 bg-muted/30">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-center font-serif text-2xl md:text-3xl font-semibold text-foreground mb-3">
+        <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#6B7B3F", textTransform: "uppercase" as const }}>
+          Beneficios
+        </span>
+        <h2 className="font-serif mt-2" style={{ fontSize: 32, fontWeight: 600, color: "#2D2D2D" }}>
           ¿Por qué reservar directo?
         </h2>
-        <p className="text-center text-muted-foreground mb-10 max-w-xl mx-auto">
+        <p className="text-center mt-2 mb-10 max-w-xl mx-auto" style={{ fontSize: 16, color: "#6B6B6B", lineHeight: 1.6 }}>
           Más barato, más flexible, más personal.
         </p>
 
@@ -68,8 +71,8 @@ const BenefitsSection = () => {
               style={{ transitionDelay: isVisible ? `${i * 120}ms` : "0ms" }}
             >
               <span className="text-4xl block mb-3">{b.emoji}</span>
-              <h3 className="font-semibold text-foreground text-lg mb-2">{b.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{b.description}</p>
+              <h3 className="font-semibold mb-2" style={{ fontSize: 20, fontWeight: 600, color: "#2D2D2D" }}>{b.title}</h3>
+              <p style={{ fontSize: 14, color: "#6B6B6B", lineHeight: 1.6 }}>{b.description}</p>
             </div>
           ))}
         </div>

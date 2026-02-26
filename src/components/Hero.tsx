@@ -58,9 +58,10 @@ const Hero = () => {
           <p
             className="opacity-0 animate-fade-up stagger-2"
             style={{
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: 400,
               color: "#6B6B6B",
+              lineHeight: 1.6,
               marginBottom: 32,
             }}
           >
@@ -142,11 +143,10 @@ const Hero = () => {
       </div>
 
       {/* Mobile responsive */}
+      {/* Mobile H1 override */}
       <style>{`
         @media (max-width: 768px) {
-          section .font-serif {
-            font-size: 36px !important;
-          }
+          h1.font-serif { font-size: 36px !important; }
         }
       `}</style>
     </section>

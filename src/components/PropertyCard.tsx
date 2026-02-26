@@ -185,11 +185,11 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
 
         {/* Content */}
         <div className="p-5 flex flex-col flex-grow">
-          <h3 className="font-serif text-xl font-semibold text-foreground mb-1 line-clamp-2">
+          <h3 className="font-serif line-clamp-2 mb-1" style={{ fontSize: 20, fontWeight: 600, color: "#2D2D2D" }}>
             {property.name}
           </h3>
 
-          <div className="flex items-center text-muted-foreground text-sm mb-3">
+          <div className="flex items-center mb-3" style={{ fontSize: 14, color: "#6B6B6B" }}>
             <MapPin className="w-4 h-4 mr-1 text-primary" aria-hidden="true" />
             <span>{property.location}, {property.city}</span>
           </div>
@@ -204,7 +204,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           </div>
 
           {/* Stats */}
-          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3 flex-wrap">
+          <div className="flex items-center gap-4 mb-3 flex-wrap" style={{ fontSize: 14, color: "#6B6B6B" }}>
             <div className="flex items-center gap-1.5">
               <Users className="w-4 h-4" aria-hidden="true" />
               <span>{property.guests} huéspedes</span>

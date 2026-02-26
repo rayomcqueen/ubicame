@@ -88,13 +88,13 @@ const Index = () => {
       <section id="propiedades" className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10">
-            <span className="text-primary font-medium tracking-widest text-sm uppercase">
+            <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#6B7B3F", textTransform: "uppercase" as const }}>
               Explora
             </span>
-            <h2 className="font-serif text-4xl md:text-5xl font-semibold text-foreground mt-3 mb-4">
+            <h2 className="font-serif mt-2 mb-4" style={{ fontSize: 32, fontWeight: 600, color: "#2D2D2D" }}>
               Propiedades destacadas
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto" style={{ fontSize: 16, color: "#6B6B6B", lineHeight: 1.6 }}>
               Descubre espacios únicos en las mejores ubicaciones. Cada propiedad ha sido 
               seleccionada para ofrecerte una experiencia excepcional.
             </p>
