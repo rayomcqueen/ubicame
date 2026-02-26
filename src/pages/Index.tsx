@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import BenefitsSection from "@/components/BenefitsSection";
 import FilterBar from "@/components/FilterBar";
+import ComparisonSection from "@/components/ComparisonSection";
 import PropertyCard from "@/components/PropertyCard";
 import MapSection from "@/components/MapSection";
 import AboutSection from "@/components/AboutSection";
@@ -141,6 +142,7 @@ const Index = () => {
         </div>
       </section>
 
+      <ComparisonSection />
       <MapSection />
       <AboutSection />
       <UrgencyBanner />
