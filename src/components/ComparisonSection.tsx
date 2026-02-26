@@ -3,23 +3,29 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const WA_MESSAGE = "Hola! Quiero reservar directo y ahorrar. Vi la comparativa en ubicame.com.mx";
 
-const rows = [
-  { aspect: "Precio por noche", airbnb: "$2,625", ubicame: "$2,100", ubicameNote: "Ahorra 20%" },
-  { aspect: "Comisión de servicio", airbnb: "$525+", ubicame: "$0", ubicameNote: "Sin comisiones" },
-  { aspect: "Atención", airbnb: "Bot + email", ubicame: "WhatsApp directo 24/7", ubicameNote: "" },
-  { aspect: "Tiempo de respuesta", airbnb: "2-24 horas", ubicame: "<5 minutos", ubicameNote: "" },
-  { aspect: "Check-in flexible", airbnb: "Limitado", ubicame: "Sí, cuando es posible", ubicameNote: "" },
-  { aspect: "Tips locales", airbnb: "No incluido", ubicame: "Guía personalizada", ubicameNote: "" },
-  { aspect: "Cancelación", airbnb: "Política fija", ubicame: "Flexible, caso por caso", ubicameNote: "" },
+const airbnbItems = [
+  "❌ $2,625/noche",
+  "❌ Comisión $525+",
+  "❌ Bot + email",
+  "❌ 2-24 hrs respuesta",
+  "❌ Cancelación rígida",
+];
+
+const ubicameItems = [
+  "✅ $2,100/noche",
+  "✅ Sin comisión",
+  "✅ WhatsApp directo",
+  "✅ <5 min respuesta",
+  "✅ Cancelación flexible",
 ];
 
 const ComparisonSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section className="py-20 px-6 bg-muted/30">
+    <section className="py-12 px-6 bg-muted/30">
       <div ref={ref} className={`max-w-4xl mx-auto reveal ${isVisible ? "visible" : ""}`}>
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#6B7B3F", textTransform: "uppercase" as const }}>
             Compara y decide
           </span>
@@ -31,89 +37,60 @@ const ComparisonSection = () => {
           </p>
         </div>
 
-        {/* Desktop table */}
-        <div className="hidden md:block rounded-xl shadow-md overflow-hidden border border-border">
-          <table className="w-full">
-            <thead>
-              <tr>
-                <th className="text-left py-4 px-6 text-sm font-semibold text-muted-foreground bg-muted/50 w-1/3">
-                  Aspecto
-                </th>
-                <th className="text-center py-4 px-6 text-sm font-semibold w-1/3" style={{ backgroundColor: "#FFF5F5", color: "#DC2626" }}>
-                  Airbnb
-                </th>
-                <th className="text-center py-4 px-6 text-sm font-semibold w-1/3" style={{ backgroundColor: "#F0FFF4", color: "#16A34A" }}>
-                  Reserva Directa ✨
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row, i) => (
-                <tr key={row.aspect}>
-                  <td className={`py-4 px-6 text-sm font-medium text-foreground ${i % 2 === 0 ? "bg-white" : "bg-muted/20"}`}>
-                    {row.aspect}
-                  </td>
-                  <td
-                    className="py-4 px-6 text-center"
-                    style={{ backgroundColor: i % 2 === 0 ? "#FFF5F5" : "#FEF0F0" }}
-                  >
-                    <div className="inline-flex items-center gap-1.5 text-sm" style={{ color: "#6B7280" }}>
-                      <span className="text-base" aria-hidden="true">❌</span>
-                      {row.airbnb}
-                    </div>
-                  </td>
-                  <td
-                    className="py-4 px-6 text-center"
-                    style={{ backgroundColor: i % 2 === 0 ? "#F0FFF4" : "#E8FAED" }}
-                  >
-                    <div className="inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: "#111827" }}>
-                      <span className="text-base" aria-hidden="true">✅</span>
-                      {row.ubicame}
-                    </div>
-                    {row.ubicameNote && (
-                      <span className="block text-xs mt-0.5 font-medium" style={{ color: "#16A34A" }}>{row.ubicameNote}</span>
-                    )}
-                  </td>
-                </tr>
+        {/* Two columns — mobile: stacked (Ubicame first), desktop: side by side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Ubicame column — first on mobile */}
+          <div
+            className="rounded-xl overflow-hidden shadow-sm order-1 md:order-2"
+            style={{ backgroundColor: "#F0FDF4", borderTop: "3px solid #22C55E" }}
+          >
+            <div className="px-6 pt-5 pb-4 text-center">
+              <span
+                className="inline-block mb-2 rounded-full px-3 py-0.5"
+                style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.05em", backgroundColor: "#22C55E", color: "#fff", textTransform: "uppercase" as const }}
+              >
+                Recomendado
+              </span>
+              <h3 className="font-serif" style={{ fontSize: 20, fontWeight: 600, color: "#166534" }}>
+                Ubicame
+              </h3>
+            </div>
+            <ul className="px-6 pb-6 space-y-3">
+              {ubicameItems.map((item) => (
+                <li key={item} className="flex items-center gap-2" style={{ fontSize: 15, color: "#2D2D2D" }}>
+                  {item}
+                </li>
               ))}
-            </tbody>
-          </table>
+            </ul>
+          </div>
+
+          {/* Airbnb column — second on mobile */}
+          <div
+            className="rounded-xl overflow-hidden shadow-sm order-2 md:order-1"
+            style={{ backgroundColor: "#FEF2F2", borderTop: "3px solid #EF4444" }}
+          >
+            <div className="px-6 pt-5 pb-4 text-center">
+              <h3 className="font-serif" style={{ fontSize: 20, fontWeight: 600, color: "#991B1B" }}>
+                Airbnb
+              </h3>
+            </div>
+            <ul className="px-6 pb-6 space-y-3">
+              {airbnbItems.map((item) => (
+                <li key={item} className="flex items-center gap-2" style={{ fontSize: 15, color: "#6B7280" }}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* Mobile cards */}
-        <div className="md:hidden space-y-3">
-          {rows.map((row, i) => (
-            <div
-              key={row.aspect}
-              className={`rounded-xl border border-border overflow-hidden reveal ${isVisible ? "visible" : ""}`}
-              style={{ transitionDelay: `${i * 80}ms` }}
-            >
-              <div className="bg-muted/50 px-4 py-2.5">
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                  {row.aspect}
-                </p>
-              </div>
-              <div className="px-4 py-3 flex items-center gap-2" style={{ backgroundColor: "#FFF5F5" }}>
-                <span className="text-sm">❌</span>
-                <span className="text-xs font-medium" style={{ color: "#6B7280" }}>Airbnb:</span>
-                <span className="text-sm" style={{ color: "#6B7280" }}>{row.airbnb}</span>
-              </div>
-              <div className="px-4 py-3 flex items-center gap-2" style={{ backgroundColor: "#F0FFF4" }}>
-                <span className="text-sm">✅</span>
-                <span className="text-xs font-medium" style={{ color: "#16A34A" }}>Ubicame:</span>
-                <span className="text-sm font-medium" style={{ color: "#111827" }}>
-                  {row.ubicame}
-                  {row.ubicameNote && (
-                    <span className="ml-1 text-xs" style={{ color: "#16A34A" }}>({row.ubicameNote})</span>
-                  )}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Summary */}
+        <p className="text-center mt-8" style={{ fontSize: 20, fontWeight: 700, color: "#166534" }}>
+          Ahorro promedio: $525 por noche (20%)
+        </p>
 
         {/* CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-6">
           <a
             href={buildWhatsAppUrl(WA_MESSAGE)}
             target="_blank"
@@ -122,7 +99,7 @@ const ComparisonSection = () => {
             aria-label="Reservar por WhatsApp"
             className="inline-flex items-center gap-2 btn-whatsapp text-lg font-bold px-10 py-4 rounded-full shadow-md"
           >
-            💬 Reservar directo y ahorrar
+            💬 Reservar directo y ahorrar →
           </a>
         </div>
       </div>
