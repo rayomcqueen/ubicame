@@ -74,7 +74,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
   return (
     <>
       <article
-        className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-500 ease-out opacity-0 animate-fade-up h-full flex flex-col"
+        className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 ease-out opacity-0 animate-fade-up h-full flex flex-col"
         style={{ animationDelay: `${index * 0.1}s`, animationFillMode: "forwards" }}
       >
         {/* Image Carousel */}
