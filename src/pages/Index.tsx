@@ -14,6 +14,7 @@ import OfflineBanner from "@/components/OfflineBanner";
 import { properties } from "@/data/properties";
 import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 import { Home, X } from "lucide-react";
+import { SearchProvider } from "@/lib/search-context";
 
 const HowItWorksSection = lazy(() => import("@/components/HowItWorksSection"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
@@ -142,6 +143,7 @@ const Index = () => {
                 onSearch={handleSearch}
               />
 
+              <SearchProvider value={{ checkIn, checkOut, guests: selectedGuests }}>
               {displayedProperties.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {displayedProperties.map((property, index) => (
@@ -165,6 +167,7 @@ const Index = () => {
                   </div>
                 </div>
               )}
+              </SearchProvider>
 
               {hasMore && (
                 <div className="text-center mt-12">
