@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { Users, Bed, ChevronLeft, ChevronRight, Home } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
@@ -147,16 +148,13 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           </div>
 
           {/* Single CTA */}
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => trackAndOpenWhatsApp(e, whatsappUrl, "property_card", property.name, property.price.toString())}
+          <Link
+            to={`/propiedad/${property.id}`}
             aria-label={`Ver detalles de ${property.name}`}
-            className="btn-outline w-full !h-10 rounded-md text-center"
+            className="btn-outline w-full !h-10 rounded-md text-center inline-flex items-center justify-center"
           >
             Ver detalles
-          </a>
+          </Link>
         </div>
       </article>
 
