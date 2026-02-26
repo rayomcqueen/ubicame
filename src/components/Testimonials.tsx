@@ -97,7 +97,7 @@ const Testimonials = () => {
             Testimonios
           </span>
           <h2 className="font-serif mt-2" style={{ fontSize: 32, fontWeight: 600, color: "#2D2D2D" }}>
-            Lo que dicen +1,500 huéspedes satisfechos
+            Lo que dicen +10,000 huéspedes satisfechos
           </h2>
         </div>
 

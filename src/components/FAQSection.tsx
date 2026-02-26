@@ -8,7 +8,7 @@ import {
 const faqs = [
   {
     q: "¿Es seguro reservar directo y no por Airbnb?",
-    a: "Absolutamente. Soy Superhost verificado desde 2019 con más de 1,500 huéspedes satisfechos y 4.9 de calificación. Al reservar directo, obtienes el mismo nivel de servicio (o mejor) a un precio menor. Si prefieres, podemos hacer la reserva por Airbnb también.",
+    a: "Absolutamente. Soy Superhost verificado desde 2019 con más de 10,000 huéspedes satisfechos y 4.9 de calificación. Al reservar directo, obtienes el mismo nivel de servicio (o mejor) a un precio menor. Si prefieres, podemos hacer la reserva por Airbnb también.",
   },
   {
     q: "¿Cómo funciona el pago?",

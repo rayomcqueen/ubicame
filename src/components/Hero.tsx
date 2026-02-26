@@ -35,7 +35,7 @@ const Hero = () => {
               fontWeight: 500,
             }}
           >
-            Superhost ★ 4.9 · +1,500 huéspedes
+            Superhost ★ 4.9 · +10,000 huéspedes
           </span>
 
           {/* H1 */}

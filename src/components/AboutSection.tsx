@@ -8,7 +8,7 @@ const WA_MESSAGE = "Hola Pablo! Tengo preguntas sobre tus propiedades [desde abo
 const AboutSection = () => {
   const waUrl = buildWhatsAppUrl(WA_MESSAGE);
   const { ref: propRef, count: propCount } = useCountUp(25, 1500);
-  const { ref: guestRef, count: guestCount } = useCountUp(1500, 1500);
+  const { ref: guestRef, count: guestCount } = useCountUp(10000, 1500);
   const { ref: ratingRef, count: ratingCount } = useCountUp(49, 1500);
 
   return (
