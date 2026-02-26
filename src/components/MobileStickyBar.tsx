@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
-const WHATSAPP_URL = buildWhatsAppUrl("Hola! Estoy buscando hospedaje en Guadalajara. ¿Qué opciones tienes disponibles?");
+const WA_MESSAGE = "Hola! Estoy buscando hospedaje en Guadalajara. ¿Qué opciones tienes disponibles?";
 
 const MobileStickyBar = () => {
   const [visible, setVisible] = useState(false);
@@ -31,7 +31,7 @@ const MobileStickyBar = () => {
           <p className="text-sm font-bold text-foreground leading-tight">$1,900/noche</p>
         </div>
         <a
-          href={WHATSAPP_URL}
+          href={buildWhatsAppUrl(WA_MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick("mobile_sticky")}

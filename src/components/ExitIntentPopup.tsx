@@ -4,7 +4,7 @@ import { X } from "lucide-react";
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
 const STORAGE_KEY = "ubicame_exit_popup_shown";
-const WHATSAPP_URL = buildWhatsAppUrl("Hola! Vi la oferta de 15% de descuento en ubicame.com.mx. Me interesa reservar.");
+const WA_MESSAGE = "Hola! Vi la oferta de 15% de descuento en ubicame.com.mx. Me interesa reservar.";
 
 const ExitIntentPopup = () => {
   const [show, setShow] = useState(false);
@@ -71,7 +71,7 @@ const ExitIntentPopup = () => {
         </p>
 
         <a
-          href={WHATSAPP_URL}
+          href={buildWhatsAppUrl(WA_MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick("popup")}

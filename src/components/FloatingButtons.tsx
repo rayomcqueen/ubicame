@@ -1,13 +1,13 @@
 import { buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/whatsapp";
 
-const WHATSAPP_URL = buildWhatsAppUrl("Hola! Tengo una pregunta sobre las propiedades en ubicame.com.mx");
+const WA_MESSAGE = "Hola! Tengo una pregunta sobre las propiedades en ubicame.com.mx";
 
 const FloatingButtons = () => {
   return (
     <>
       {/* WhatsApp Button */}
       <a
-        href={WHATSAPP_URL}
+        href={buildWhatsAppUrl(WA_MESSAGE)}
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackWhatsAppClick("floating")}
