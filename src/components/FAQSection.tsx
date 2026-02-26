@@ -34,15 +34,11 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section id="faq" className="py-20 px-6 bg-muted/40">
+    <section id="faq" className="section-padding bg-muted/40">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#6B7B3F", textTransform: "uppercase" as const }}>
-            FAQ
-          </span>
-          <h2 className="font-serif mt-2" style={{ fontSize: 32, fontWeight: 600, color: "#2D2D2D" }}>
-            Preguntas frecuentes
-          </h2>
+          <span className="section-label">FAQ</span>
+          <h2 className="section-title">Preguntas frecuentes</h2>
         </div>
 
         <Accordion type="single" collapsible className="space-y-3">
@@ -50,9 +46,9 @@ const FAQSection = () => {
             <AccordionItem
               key={i}
               value={`faq-${i}`}
-              className="bg-card rounded-xl border border-border/50 px-6 shadow-sm"
+              className="bg-card rounded-lg border border-border/50 px-6 shadow-system-sm"
             >
-              <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline py-5 text-base">
+              <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline py-5">
                 {faq.q}
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
