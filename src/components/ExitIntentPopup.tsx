@@ -5,7 +5,7 @@ import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 const SESSION_KEY = "ubicame_exit_popup_dismissed";
 const WA_CLICKED_KEY = "ubicame_wa_clicked";
 const MOBILE_DELAY = 60_000; // 60s for mobile
-const WA_MESSAGE = "Hola! Vi la oferta de 15% en ubicame.com.mx [desde popup]";
+const WA_MESSAGE = "Hola! 🎁 Vi la oferta del 15% de descuento en ubicame.com.mx. ¿Cómo la puedo aprovechar? [desde popup]";
 
 function wasDismissed(): boolean {
   return sessionStorage.getItem(SESSION_KEY) === "1";

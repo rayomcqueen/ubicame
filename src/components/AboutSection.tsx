@@ -3,7 +3,7 @@ import perfilImg from "@/assets/perfil.jpg";
 import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 import { useCountUp } from "@/hooks/use-scroll-reveal";
 
-const WA_MESSAGE = "Hola Pablo! Tengo preguntas sobre tus propiedades [desde about]";
+const WA_MESSAGE = "Hola Pablo! 👋 Tengo algunas preguntas sobre hospedaje en Guadalajara. ¿Tienes un momento? [desde about]";
 
 const AboutSection = () => {
   const waUrl = buildWhatsAppUrl(WA_MESSAGE);
