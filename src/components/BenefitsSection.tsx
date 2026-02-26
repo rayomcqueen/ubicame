@@ -14,6 +14,11 @@ const benefits = [
     title: "Atención humana en <5 min",
     description: "Nada de bots. Pablo te responde por WhatsApp al instante.",
   },
+  {
+    emoji: "🧾",
+    title: "Facturación disponible",
+    description: "Emitimos factura fiscal. Ideal para viajes corporativos y gastos médicos.",
+  },
 ];
 
 const BenefitsSection = () => {
@@ -25,7 +30,7 @@ const BenefitsSection = () => {
           <h2 className="section-title">Mejor precio, mejor servicio</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {benefits.map((b) => (
             <div key={b.title} className="text-center">
               <span className="text-4xl block mb-3">{b.emoji}</span>
