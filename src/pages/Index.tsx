@@ -5,6 +5,7 @@ import BenefitsSection from "@/components/BenefitsSection";
 import FilterBar from "@/components/FilterBar";
 import PropertyCard from "@/components/PropertyCard";
 import MapSection from "@/components/MapSection";
+// Removed: GuadalajaraSection, UrgencyBanner (eliminated per cleanup)
 import FloatingButtons from "@/components/FloatingButtons";
 import MobileStickyBar from "@/components/MobileStickyBar";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
@@ -14,10 +15,8 @@ import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
 import { Home } from "lucide-react";
 
 // Lazy-load below-the-fold sections
-const GuadalajaraSection = lazy(() => import("@/components/GuadalajaraSection"));
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const Testimonials = lazy(() => import("@/components/Testimonials"));
-const UrgencyBanner = lazy(() => import("@/components/UrgencyBanner"));
 const ComparisonSection = lazy(() => import("@/components/ComparisonSection"));
 const CTASection = lazy(() => import("@/components/CTASection"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
@@ -176,14 +175,12 @@ const Index = () => {
       </section>
 
       <Suspense fallback={null}>
-        <GuadalajaraSection />
-        <MapSection />
         <AboutSection />
-        <UrgencyBanner />
+        <MapSection />
         <Testimonials />
         <ComparisonSection />
-        <CTASection />
         <FAQSection />
+        <CTASection />
       </Suspense>
       </main>
 
