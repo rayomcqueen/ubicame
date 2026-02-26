@@ -20,11 +20,11 @@ const CTASection = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/40" />
 
       <div className="max-w-3xl mx-auto text-center relative z-10">
-        <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl font-semibold text-white mb-4">
+        <h2 className="font-serif text-white mb-4" style={{ fontSize: 32, fontWeight: 600 }}>
           ¿Listo para tu viaje a Guadalajara?
         </h2>
 
-        <p className="text-base md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-white/90 max-w-2xl mx-auto mb-10" style={{ fontSize: 16, lineHeight: 1.6 }}>
           Reserva directo y ahorra 20% vs Airbnb. Atención personalizada garantizada.
         </p>
 

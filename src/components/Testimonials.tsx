@@ -93,10 +93,10 @@ const Testimonials = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6">
-          <span className="text-primary font-medium tracking-widest text-sm uppercase">
+          <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#6B7B3F", textTransform: "uppercase" as const }}>
             Testimonios
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mt-3">
+          <h2 className="font-serif mt-2" style={{ fontSize: 32, fontWeight: 600, color: "#2D2D2D" }}>
             Lo que dicen +1,500 huéspedes satisfechos
           </h2>
         </div>
@@ -104,14 +104,14 @@ const Testimonials = () => {
         {/* Average rating */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 mb-1">
-            <span className="text-4xl md:text-5xl font-bold text-foreground">4.9</span>
+            <span className="font-bold text-foreground" style={{ fontSize: 32 }}>4.9</span>
             <div className="flex gap-0.5">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-6 h-6 fill-[hsl(var(--gold))] text-[hsl(var(--gold))]" aria-hidden="true" />
               ))}
             </div>
           </div>
-          <p className="text-muted-foreground text-sm">Basado en +500 reseñas en Airbnb</p>
+          <p style={{ fontSize: 14, color: "#6B6B6B" }}>Basado en +500 reseñas en Airbnb</p>
         </div>
 
         {/* Desktop grid / Mobile carousel */}
@@ -137,7 +137,7 @@ const Testimonials = () => {
                 ))}
               </div>
 
-              <p className="text-muted-foreground mb-5 leading-relaxed italic text-sm">
+              <p className="mb-5 italic" style={{ fontSize: 14, color: "#6B6B6B", lineHeight: 1.6 }}>
                 "{t.text}"
               </p>
 
