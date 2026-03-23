@@ -46,7 +46,7 @@ const Index = () => {
   useEffect(() => { captureUtmParams(); }, []);
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
+    <div className="min-h-screen w-full overflow-x-hidden bg-background">
       {/* ═══ 1. HERO ═══ */}
       <section className="relative min-h-screen flex flex-col">
         <img
@@ -56,41 +56,41 @@ const Index = () => {
           loading="eager"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-black/40" />
 
         <div className="relative z-10 flex flex-col flex-1 px-5 pt-6 pb-10">
           {/* Logo */}
           <div className="mb-auto">
-            <span className="text-white font-bold text-lg tracking-tight">Ubicame</span>
+            <span className="font-serif text-foreground text-lg tracking-tight">Ubicame</span>
           </div>
 
           {/* Content */}
           <div className="flex flex-col items-center text-center gap-5 mt-auto">
             {/* Badge */}
-            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-white bg-black/40 backdrop-blur-sm">
+            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-sans font-medium text-foreground bg-black/50 backdrop-blur-sm">
               4.9★ · +10,000 huéspedes · Superhost
             </span>
 
             {/* Headline */}
             <h1
-              className="font-serif font-bold text-white"
+              className="font-serif font-bold text-foreground"
               style={{ fontSize: "clamp(28px, 7vw, 44px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}
             >
               Hospédate en Guadalajara — Reserva directo y ahorra
             </h1>
 
             {/* Subtitle */}
-            <p className="text-white/85 text-base max-w-md">
+            <p className="font-sans text-foreground/85" style={{ fontSize: 16 }}>
               30+ departamentos en Chapultepec, Americana, Providencia y Andares
             </p>
 
-            {/* CTA */}
+            {/* CTA — WhatsApp green */}
             <a
               href={waHero}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => trackAndOpenWhatsApp(e, waHero, "hero")}
-              className="btn-whatsapp w-full max-w-sm text-base"
+              className="btn-whatsapp w-full max-w-sm font-sans"
               style={{ height: 56, borderRadius: 14, fontSize: 17 }}
             >
               <WhatsAppIcon /> Ver disponibilidad →
@@ -100,11 +100,11 @@ const Index = () => {
       </section>
 
       {/* ═══ 2. PROMO BANNER ═══ */}
-      <section className="px-5 py-12 text-center" style={{ background: "linear-gradient(135deg, #FF6B4A 0%, #FF4B2B 100%)" }}>
-        <p className="text-white text-2xl font-bold mb-3 leading-tight">
+      <section className="px-5 py-12 text-center bg-primary">
+        <p className="text-primary-foreground font-serif font-bold mb-3 leading-tight" style={{ fontSize: 24 }}>
           🔥 RESERVA 3 NOCHES Y PAGA SOLO 2
         </p>
-        <p className="text-white/90 text-sm mb-6 max-w-sm mx-auto leading-relaxed">
+        <p className="text-primary-foreground/90 font-sans mb-6 max-w-sm mx-auto leading-relaxed" style={{ fontSize: 14 }}>
           Reservando directo te ahorras la comisión de Airbnb. Mismo depa, mejor precio.
         </p>
         <a
@@ -112,19 +112,19 @@ const Index = () => {
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => trackAndOpenWhatsApp(e, waPromo, "promo_banner")}
-          className="btn-whatsapp mx-auto text-base"
-          style={{ height: 52, borderRadius: 12 }}
+          className="btn-whatsapp mx-auto font-sans"
+          style={{ height: 52, borderRadius: 12, fontSize: 16 }}
         >
           <WhatsAppIcon /> Aprovecha la promo →
         </a>
-        <p className="text-white/90 text-sm font-bold mt-5">
+        <p className="text-primary-foreground/90 font-sans font-bold mt-5" style={{ fontSize: 14 }}>
           ⏰ Promo válida hasta el 7 de abril 2026
         </p>
       </section>
 
       {/* ═══ 3. GALERÍA ═══ */}
       <section className="px-4 py-12 bg-background">
-        <h2 className="section-title text-center mb-8" style={{ fontSize: 24 }}>
+        <h2 className="font-serif font-bold text-foreground text-center mb-8" style={{ fontSize: 24 }}>
           Nuestros espacios
         </h2>
         <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto">
@@ -137,7 +137,7 @@ const Index = () => {
                 loading="lazy"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 pt-8">
-                <p className="text-white text-xs font-semibold leading-tight">
+                <p className="text-foreground font-sans font-semibold leading-tight" style={{ fontSize: 12 }}>
                   {item.zone} · Hasta {item.guests} huéspedes
                 </p>
               </div>
@@ -147,24 +147,24 @@ const Index = () => {
       </section>
 
       {/* ═══ 4. SOCIAL PROOF + CTA FINAL ═══ */}
-      <section className="px-5 py-14" style={{ background: "hsl(var(--footer-bg))" }}>
-        <h2 className="text-white font-serif font-bold text-center text-2xl mb-8">
+      <section className="px-5 py-14 bg-background">
+        <h2 className="font-serif font-bold text-foreground text-center mb-8" style={{ fontSize: 24 }}>
           Lo que dicen nuestros huéspedes
         </h2>
 
         <div className="flex flex-col gap-4 max-w-lg mx-auto mb-12">
           {TESTIMONIALS.map((t, i) => (
-            <div key={i} className="bg-white/10 backdrop-blur-sm rounded-2xl p-5">
+            <div key={i} className="bg-card border border-border rounded-2xl p-5">
               <StarRow />
-              <p className="text-white/90 text-sm mt-3 leading-relaxed">"{t.quote}"</p>
-              <p className="text-white/60 text-xs mt-3 font-medium">{t.name} · {t.city}</p>
+              <p className="text-foreground/90 font-sans mt-3 leading-relaxed" style={{ fontSize: 14 }}>"{t.quote}"</p>
+              <p className="text-muted-foreground font-sans mt-3 font-medium" style={{ fontSize: 12 }}>{t.name} · {t.city}</p>
             </div>
           ))}
         </div>
 
-        {/* CTA Final */}
+        {/* CTA Final — coral */}
         <div className="text-center">
-          <p className="text-white font-serif font-bold text-xl mb-5">
+          <p className="font-serif font-bold text-foreground mb-5" style={{ fontSize: 20 }}>
             ¿Listo para tu próxima estancia?
           </p>
           <a
@@ -172,24 +172,24 @@ const Index = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => trackAndOpenWhatsApp(e, waFinal, "cta_final")}
-            className="btn-whatsapp mx-auto text-base"
+            className="btn-whatsapp mx-auto font-sans"
             style={{ height: 56, borderRadius: 14, fontSize: 17 }}
           >
             <WhatsAppIcon /> Reservar ahora →
           </a>
-          <p className="text-white/50 text-xs mt-4">Respuesta en menos de 5 minutos</p>
+          <p className="text-muted-foreground font-sans mt-4" style={{ fontSize: 12 }}>Respuesta en menos de 5 minutos</p>
         </div>
       </section>
 
       {/* ═══ FOOTER MÍNIMO ═══ */}
-      <footer className="px-5 py-8 text-center" style={{ background: "hsl(0 0% 7%)" }}>
-        <p className="text-white font-bold text-lg mb-3">Ubicame</p>
+      <footer className="px-5 py-8 text-center bg-background border-t border-border">
+        <p className="font-serif font-bold text-foreground text-lg mb-3">Ubicame</p>
         <div className="flex items-center justify-center gap-5 mb-4">
           <a
             href={waHero}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white/70 hover:text-white text-sm transition-colors"
+            className="text-muted-foreground hover:text-foreground font-sans text-sm transition-colors"
           >
             WhatsApp
           </a>
@@ -197,15 +197,14 @@ const Index = () => {
             href="https://instagram.com/ubicame.gdl"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white/70 hover:text-white text-sm transition-colors"
+            className="text-muted-foreground hover:text-foreground font-sans text-sm transition-colors"
           >
             Instagram
           </a>
         </div>
-        <p className="text-white/40 text-xs">© 2026 Ubicame</p>
+        <p className="text-muted-foreground font-sans" style={{ fontSize: 12 }}>© 2026 Ubicame</p>
       </footer>
 
-      {/* Floating WhatsApp button */}
       <FloatingButtons />
     </div>
   );

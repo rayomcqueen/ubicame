@@ -68,8 +68,8 @@ export default {
         "footer-bg": "hsl(var(--footer-bg))",
       },
       fontFamily: {
-        serif: ["Playfair Display", "serif"],
-        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        serif: ["DM Serif Display", "Playfair Display", "serif"],
+        sans: ["DM Sans", "Outfit", "system-ui", "-apple-system", "sans-serif"],
       },
       fontSize: {
         "xs": ["0.875rem", { lineHeight: "1.4" }],   /* 14px */
