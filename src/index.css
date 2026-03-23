@@ -2,52 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap&font-display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap&font-display=swap');
 
 @layer base {
   :root {
-    /* ── Palette: 3 colors + neutrals ── */
-    --background: 30 33% 97%;       /* #FAF8F5 warm white */
-    --foreground: 0 0% 29%;         /* #4A4A4A body */
-    --heading: 0 0% 18%;            /* #2D2D2D headings */
+    /* ── Dark palette ── */
+    --background: 0 0% 6%;           /* #0F0F0F */
+    --foreground: 0 0% 100%;         /* #FFFFFF */
+    --heading: 0 0% 100%;            /* #FFFFFF */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 29%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 29%;
+    --card: 0 0% 10%;                /* #1A1A1A */
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
 
-    /* Primary: olive green */
-    --primary: 82 33% 36%;
-    --primary-dark: 82 35% 26%;
+    /* Primary: coral red — promo/CTA */
+    --primary: 13 78% 57%;           /* #E85D3A */
+    --primary-dark: 13 78% 47%;
     --primary-foreground: 0 0% 100%;
 
-    /* Accent: WhatsApp green — CTAs only */
-    --accent: 142 70% 49%;
+    /* Accent: WhatsApp green — WA buttons only */
+    --accent: 142 70% 49%;           /* #25D366 */
     --accent-hover: 142 70% 42%;
     --accent-foreground: 0 0% 100%;
 
     /* Secondary / muted */
-    --secondary: 35 30% 90%;
-    --secondary-foreground: 0 0% 18%;
-    --muted: 30 20% 92%;
-    --muted-foreground: 0 0% 46%;   /* #757575 */
+    --secondary: 0 0% 13%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 82 33% 36%;
+    --border: 0 0% 20%;              /* #333 */
+    --input: 0 0% 20%;
+    --ring: 13 78% 57%;
     --radius: 0.5rem;
 
     /* Extras */
     --gold: 42 65% 55%;
-    --footer-bg: 0 0% 10%;
+    --footer-bg: 0 0% 6%;
 
     /* Shadows */
-    --shadow-sm: 0 1px 4px -1px rgba(0,0,0,0.06);
-    --shadow-md: 0 4px 16px -4px rgba(0,0,0,0.08);
-    --shadow-lg: 0 12px 40px -8px rgba(0,0,0,0.12);
+    --shadow-sm: 0 1px 4px -1px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 16px -4px rgba(0,0,0,0.4);
+    --shadow-lg: 0 12px 40px -8px rgba(0,0,0,0.5);
   }
 }
 
@@ -61,7 +61,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'DM Sans', 'Outfit', system-ui, -apple-system, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
@@ -69,7 +69,7 @@
 
   /* ── Type scale ── */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'DM Serif Display', 'Playfair Display', serif;
     line-height: 1.2;
     color: hsl(var(--heading));
   }
@@ -88,7 +88,7 @@
   /* ── Section header pattern ── */
   .section-label {
     display: block;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', 'Outfit', sans-serif;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -98,9 +98,9 @@
   }
 
   .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'DM Serif Display', 'Playfair Display', serif;
     font-size: 32px;
-    font-weight: 600;
+    font-weight: 700;
     color: hsl(var(--heading));
     line-height: 1.2;
     margin-bottom: 12px;
