@@ -122,6 +122,26 @@ const Index = () => {
         </p>
       </section>
 
+      {/* ═══ WHY BOOK DIRECT ═══ */}
+      <section className="px-5 py-14 bg-background">
+        <h2 className="font-serif font-bold text-foreground text-center mb-8" style={{ fontSize: 24 }}>
+          ¿Por qué reservar directo?
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          {[
+            { emoji: "💰", title: "Hasta 15% menos que en Airbnb", desc: "Sin comisión de plataforma. Mismo depa, mejor precio." },
+            { emoji: "📱", title: "Atención directa por WhatsApp", desc: "Respuesta en minutos. Sin chatbots. Soporte real." },
+            { emoji: "⭐", title: "Superhost con 4.9★", desc: "+10,000 huéspedes satisfechos. Calidad garantizada." },
+          ].map((card, i) => (
+            <div key={i} className="bg-card border border-border rounded-xl p-6 text-center">
+              <span className="text-3xl mb-3 block">{card.emoji}</span>
+              <p className="text-foreground font-sans font-bold mb-2" style={{ fontSize: 16 }}>{card.title}</p>
+              <p className="text-muted-foreground font-sans" style={{ fontSize: 14 }}>{card.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ═══ 3. GALERÍA ═══ */}
       <section className="px-4 sm:px-6 py-12 bg-background">
         <h2 className="font-serif font-bold text-foreground text-center mb-8" style={{ fontSize: 24 }}>
