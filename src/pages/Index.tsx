@@ -1,19 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import property1 from "@/assets/property-1.jpg";
-import { buildWhatsAppUrl, trackAndOpenWhatsApp, captureUtmParams } from "@/lib/whatsapp";
+import { trackAndOpenWhatsApp, captureUtmParams } from "@/lib/whatsapp";
 import FloatingButtons from "@/components/FloatingButtons";
 
-const WA_MSG_HERO = "Hola! 👋 Vi tu página y me interesa hospedarme en Guadalajara. ¿Qué tienen disponible? [desde hero]";
-const WA_MSG_PROMO = "Hola! 🔥 Me interesa la promo 3x2 en Guadalajara. ¿Me cuentas más? [desde promo]";
-const WA_MSG_FINAL = "Hola! Quiero reservar mi próxima estancia en Guadalajara. ¿Pueden ayudarme? [desde CTA final]";
+const WA_URL = "https://wa.me/523333260013?text=Hola%20Ubicame%2C%20vi%20la%20promo%203x2%20y%20quiero%20ver%20disponibilidad";
 
 const GALLERY_ITEMS = [
-  { img: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop", zone: "Chapultepec", guests: 4, price: "$1,500" },
-  { img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop", zone: "Americana", guests: 6, price: "$1,800" },
-  { img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop", zone: "Providencia", guests: 8, price: "$2,200" },
-  { img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop", zone: "Andares", guests: 4, price: "$2,500" },
-  { img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop", zone: "Chapultepec", guests: 20, price: "$5,500" },
-  { img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&h=400&fit=crop", zone: "Americana", guests: 2, price: "$1,200" },
+  { img: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&q=80", zone: "Chapultepec", guests: 4, price: "$1,500" },
+  { img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&q=80", zone: "Americana", guests: 6, price: "$1,800" },
+  { img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&q=80", zone: "Providencia", guests: 8, price: "$2,200" },
+  { img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&q=80", zone: "Andares", guests: 4, price: "$2,500" },
+  { img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop&q=80", zone: "Chapultepec", guests: 20, price: "$5,500" },
+  { img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&h=600&fit=crop&q=80", zone: "Americana", guests: 2, price: "$1,200" },
 ];
 
 const TESTIMONIALS = [
@@ -40,15 +38,44 @@ const StarRow = () => (
   </div>
 );
 
+/** Fade-in sections on scroll via IntersectionObserver */
+function useFadeInSections(containerRef: React.RefObject<HTMLDivElement | null>) {
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const sections = container.querySelectorAll<HTMLElement>("[data-fade]");
+    if (!sections.length) return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      sections.forEach((s) => { s.style.opacity = "1"; s.style.transform = "none"; });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).classList.add("fade-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [containerRef]);
+}
+
 const Index = () => {
-  const waHero = buildWhatsAppUrl(WA_MSG_HERO);
-  const waPromo = buildWhatsAppUrl(WA_MSG_PROMO);
-  const waFinal = buildWhatsAppUrl(WA_MSG_FINAL);
+  const containerRef = useRef<HTMLDivElement>(null);
+  useFadeInSections(containerRef);
 
   useEffect(() => { captureUtmParams(); }, []);
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-background">
+    <div ref={containerRef} className="min-h-screen w-full overflow-x-hidden bg-background">
       {/* ═══ 1. HERO ═══ */}
       <section className="relative min-h-screen flex flex-col">
         <img
@@ -61,19 +88,23 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/40" />
 
         <div className="relative z-10 flex flex-col flex-1 px-5 pt-6 pb-10">
-          {/* Logo */}
+          {/* Logo — clickable */}
           <div className="mb-auto">
-            <span className="font-serif text-foreground text-lg tracking-tight">Ubicame</span>
+            <a
+              href="/"
+              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+              className="font-serif text-foreground text-lg tracking-tight hover:opacity-80 transition-opacity"
+            >
+              Ubicame
+            </a>
           </div>
 
           {/* Content */}
           <div className="flex flex-col items-center text-center gap-5 mt-auto">
-            {/* Badge */}
             <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-sans font-medium text-foreground bg-black/50 backdrop-blur-sm">
               4.9★ · +10,000 huéspedes · Superhost
             </span>
 
-            {/* Headline */}
             <h1
               className="font-serif font-bold text-foreground"
               style={{ fontSize: "clamp(28px, 7vw, 44px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}
@@ -81,17 +112,15 @@ const Index = () => {
               Hospédate en Guadalajara — Reserva directo y ahorra
             </h1>
 
-            {/* Subtitle */}
             <p className="font-sans text-foreground/85" style={{ fontSize: 16 }}>
               30+ departamentos en Chapultepec, Americana, Providencia y Andares
             </p>
 
-            {/* CTA — WhatsApp green */}
             <a
-              href={waHero}
+              href={WA_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => trackAndOpenWhatsApp(e, waHero, "hero")}
+              onClick={(e) => trackAndOpenWhatsApp(e, WA_URL, "hero")}
               className="btn-whatsapp w-full max-w-sm font-sans"
               style={{ height: 56, borderRadius: 14, fontSize: 17 }}
             >
@@ -102,7 +131,7 @@ const Index = () => {
       </section>
 
       {/* ═══ 2. PROMO BANNER ═══ */}
-      <section className="px-5 py-12 text-center bg-primary">
+      <section data-fade className="fade-section px-5 py-12 md:py-16 text-center bg-primary">
         <p className="text-primary-foreground font-serif font-bold mb-3 leading-tight" style={{ fontSize: 24 }}>
           🔥 RESERVA 3 NOCHES Y PAGA SOLO 2
         </p>
@@ -110,10 +139,10 @@ const Index = () => {
           Reservando directo te ahorras la comisión de Airbnb. Mismo depa, mejor precio.
         </p>
         <a
-          href={waPromo}
+          href={WA_URL}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={(e) => trackAndOpenWhatsApp(e, waPromo, "promo_banner")}
+          onClick={(e) => trackAndOpenWhatsApp(e, WA_URL, "promo_banner")}
           className="btn-whatsapp mx-auto font-sans"
           style={{ height: 52, borderRadius: 12, fontSize: 16 }}
         >
@@ -125,7 +154,7 @@ const Index = () => {
       </section>
 
       {/* ═══ WHY BOOK DIRECT ═══ */}
-      <section className="px-5 py-14 bg-background">
+      <section data-fade className="fade-section px-5 py-12 md:py-16 bg-background">
         <h2 className="font-serif font-bold text-foreground text-center mb-8" style={{ fontSize: 24 }}>
           ¿Por qué reservar directo?
         </h2>
@@ -145,7 +174,7 @@ const Index = () => {
       </section>
 
       {/* ═══ 3. GALERÍA ═══ */}
-      <section className="px-4 sm:px-6 py-12 bg-background">
+      <section data-fade className="fade-section px-4 sm:px-6 py-12 md:py-16 bg-background">
         <h2 className="font-serif font-bold text-foreground text-center mb-8" style={{ fontSize: 24 }}>
           Nuestros espacios
         </h2>
@@ -157,6 +186,8 @@ const Index = () => {
                 alt={`Departamento en ${item.zone}`}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
+                width={800}
+                height={600}
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 pt-10">
                 <p className="text-foreground font-sans font-bold leading-tight" style={{ fontSize: 15 }}>
@@ -173,16 +204,15 @@ const Index = () => {
           ))}
         </div>
 
-        {/* More options CTA */}
         <div className="text-center mt-10">
           <p className="text-muted-foreground font-sans mb-4" style={{ fontSize: 16 }}>
             Y muchas más opciones...
           </p>
           <a
-            href={buildWhatsAppUrl("Hola! Quiero ver más opciones de hospedaje en Guadalajara [desde galería]")}
+            href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl("Hola! Quiero ver más opciones de hospedaje en Guadalajara [desde galería]"), "gallery_more")}
+            onClick={(e) => trackAndOpenWhatsApp(e, WA_URL, "gallery_more")}
             className="btn-whatsapp mx-auto font-sans"
             style={{ height: 52, borderRadius: 12, fontSize: 16 }}
           >
@@ -192,7 +222,7 @@ const Index = () => {
       </section>
 
       {/* ═══ 4. SOCIAL PROOF + CTA FINAL ═══ */}
-      <section className="px-5 py-14 bg-background">
+      <section data-fade className="fade-section px-5 py-12 md:py-16 bg-background">
         <h2 className="font-serif font-bold text-foreground text-center mb-8" style={{ fontSize: 24 }}>
           Lo que dicen nuestros huéspedes
         </h2>
@@ -207,7 +237,6 @@ const Index = () => {
           ))}
         </div>
 
-        {/* Trust badges */}
         <div className="flex flex-wrap justify-center gap-2 max-w-lg mx-auto mb-12">
           {TRUST_BADGES.map((badge, i) => (
             <span key={i} className="bg-card border border-border rounded-full px-4 py-2 text-foreground font-sans font-medium" style={{ fontSize: 13 }}>
@@ -216,16 +245,15 @@ const Index = () => {
           ))}
         </div>
 
-        {/* CTA Final — coral */}
         <div className="text-center">
           <p className="font-serif font-bold text-foreground mb-5" style={{ fontSize: 20 }}>
             ¿Listo para tu próxima estancia?
           </p>
           <a
-            href={waFinal}
+            href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => trackAndOpenWhatsApp(e, waFinal, "cta_final")}
+            onClick={(e) => trackAndOpenWhatsApp(e, WA_URL, "cta_final")}
             className="btn-whatsapp mx-auto font-sans"
             style={{ height: 56, borderRadius: 14, fontSize: 17 }}
           >
@@ -240,7 +268,7 @@ const Index = () => {
         <p className="font-serif font-bold text-foreground text-lg mb-3">Ubicame</p>
         <div className="flex items-center justify-center gap-5 mb-4">
           <a
-            href={waHero}
+            href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground font-sans text-sm transition-colors"
@@ -256,7 +284,7 @@ const Index = () => {
             Instagram
           </a>
         </div>
-        <p className="text-muted-foreground font-sans" style={{ fontSize: 12 }}>© 2026 Ubicame</p>
+        <p className="text-muted-foreground font-sans" style={{ fontSize: 12 }}>© 2026 Ubicame · Guadalajara, Jalisco</p>
       </footer>
 
       <FloatingButtons />
