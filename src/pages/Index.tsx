@@ -2,13 +2,14 @@ import { useEffect, useRef } from "react";
 import property1 from "@/assets/property-1.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
+import gallery1 from "@/assets/gallery-1.jpg";
 import { trackAndOpenWhatsApp, captureUtmParams } from "@/lib/whatsapp";
 import FloatingButtons from "@/components/FloatingButtons";
 
 const WA_URL = "https://wa.me/523333260013?text=Hola%20Ubicame%2C%20vi%20la%20promo%203x2%20y%20quiero%20ver%20disponibilidad";
 
 const GALLERY_ITEMS = [
-  { img: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&q=80", zone: "Chapultepec", guests: 4, price: "$1,500" },
+  { img: gallery1, zone: "Chapultepec", guests: 4, price: "$1,500" },
   { img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&q=80", zone: "Americana", guests: 6, price: "$1,800" },
   { img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&q=80", zone: "Providencia", guests: 8, price: "$2,200" },
   { img: gallery4, zone: "Andares", guests: 4, price: "$2,500" },
