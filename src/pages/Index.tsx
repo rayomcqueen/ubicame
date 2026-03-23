@@ -17,10 +17,12 @@ const GALLERY_ITEMS = [
 ];
 
 const TESTIMONIALS = [
-  { quote: "Increíble departamento, super limpio y la atención fue 10/10. Ahorramos un montón vs Airbnb.", name: "María G.", city: "CDMX" },
-  { quote: "Reservé para un viaje médico y me consiguieron un depa cerca del hospital. Todo perfecto.", name: "Carlos R.", city: "Monterrey" },
-  { quote: "Ya es mi tercera vez con Ubicame. Siempre responden rápido y los depas están increíbles.", name: "Ana L.", city: "León" },
+  { quote: "Increíble departamento, súper limpio y la ubicación perfecta en Chapultepec. Definitivamente regresaré.", name: "María G." },
+  { quote: "Mucho mejor que un hotel y a mejor precio. La atención por WhatsApp fue inmediata. 100% recomendado.", name: "Carlos R." },
+  { quote: "Ya es la tercera vez que reservo con Ubicame. Siempre igual de buenos. El depa de Americana es mi favorito.", name: "Ana L." },
 ];
+
+const TRUST_BADGES = ["🏆 Superhost Airbnb", "4.9★ Rating promedio", "+10,000 huéspedes", "30+ propiedades"];
 
 const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
