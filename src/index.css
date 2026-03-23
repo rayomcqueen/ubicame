@@ -163,7 +163,18 @@
   }
   .floating-btn:hover { transform: scale(1.1); }
 
-  /* ── Scroll reveal ── */
+  /* ── Fade-in on scroll ── */
+  .fade-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .fade-section.fade-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Legacy scroll reveal ── */
   .reveal {
     opacity: 0;
     transform: translateY(20px);
