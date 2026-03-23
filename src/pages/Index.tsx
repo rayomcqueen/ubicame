@@ -6,6 +6,7 @@ import gallery1 from "@/assets/gallery-1.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import galleryChap20 from "@/assets/gallery-chap20.jpg";
+import gallery6 from "@/assets/gallery-6.jpg";
 import { trackAndOpenWhatsApp, captureUtmParams } from "@/lib/whatsapp";
 import FloatingButtons from "@/components/FloatingButtons";
 
@@ -17,7 +18,7 @@ const GALLERY_ITEMS = [
   { img: gallery3, zone: "Providencia", guests: 8, price: "$2,200" },
   { img: gallery4, zone: "Andares", guests: 4, price: "$2,500" },
   { img: galleryChap20, zone: "Chapultepec", guests: 20, price: "$5,500" },
-  { img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&h=600&fit=crop&q=80", zone: "Americana", guests: 2, price: "$1,200" },
+  { img: gallery6, zone: "Americana", guests: 2, price: "$1,200" },
 ];
 
 const TESTIMONIALS = [
