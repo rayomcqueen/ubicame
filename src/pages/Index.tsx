@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import property1 from "@/assets/property-1.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
 import { trackAndOpenWhatsApp, captureUtmParams } from "@/lib/whatsapp";
 import FloatingButtons from "@/components/FloatingButtons";
 
@@ -11,7 +12,7 @@ const GALLERY_ITEMS = [
   { img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&q=80", zone: "Americana", guests: 6, price: "$1,800" },
   { img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&q=80", zone: "Providencia", guests: 8, price: "$2,200" },
   { img: gallery4, zone: "Andares", guests: 4, price: "$2,500" },
-  { img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop&q=80", zone: "Chapultepec", guests: 20, price: "$5,500" },
+  { img: gallery5, zone: "Chapultepec", guests: 20, price: "$5,500" },
   { img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&h=600&fit=crop&q=80", zone: "Americana", guests: 2, price: "$1,200" },
 ];
 
