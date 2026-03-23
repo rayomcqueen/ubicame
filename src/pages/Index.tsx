@@ -14,7 +14,7 @@ const WA_URL = "https://wa.me/523333260013?text=Hola%20Ubicame%2C%20vi%20la%20pr
 
 const GALLERY_ITEMS = [
   { img: gallery1, zone: "Chapultepec", guests: 4, price: "$1,500" },
-  { img: gallery5, zone: "Americana", guests: 6, price: "$1,800" },
+  { img: gallery5, zone: "Midtown", guests: 6, price: "$1,800" },
   { img: gallery3, zone: "Providencia", guests: 8, price: "$2,200" },
   { img: gallery4, zone: "Andares", guests: 4, price: "$2,500" },
   { img: galleryChap20, zone: "Chapultepec", guests: 20, price: "$5,500" },
