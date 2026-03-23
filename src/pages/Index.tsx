@@ -18,7 +18,7 @@ const GALLERY_ITEMS = [
   { img: gallery3, zone: "Puerta de Hierro", guests: 5, price: "$2,200" },
   { img: gallery4, zone: "Providencia", guests: 8, price: "$2,500" },
   { img: galleryChap20, zone: "Chapultepec", guests: 20, price: "$5,500" },
-  { img: gallery6, zone: "Midtown", guests: 6, price: "$1,800" },
+  { img: gallery6, zone: "Americana", guests: 6, price: "$1,800" },
 ];
 
 const TESTIMONIALS = [
