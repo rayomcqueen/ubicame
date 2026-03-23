@@ -197,13 +197,22 @@ const Index = () => {
           Lo que dicen nuestros huéspedes
         </h2>
 
-        <div className="flex flex-col gap-4 max-w-lg mx-auto mb-12">
+        <div className="flex flex-col gap-4 max-w-lg mx-auto mb-10">
           {TESTIMONIALS.map((t, i) => (
             <div key={i} className="bg-card border border-border rounded-2xl p-5">
               <StarRow />
               <p className="text-foreground/90 font-sans mt-3 leading-relaxed" style={{ fontSize: 14 }}>"{t.quote}"</p>
-              <p className="text-muted-foreground font-sans mt-3 font-medium" style={{ fontSize: 12 }}>{t.name} · {t.city}</p>
+              <p className="text-muted-foreground font-sans mt-3 font-medium" style={{ fontSize: 12 }}>— {t.name}</p>
             </div>
+          ))}
+        </div>
+
+        {/* Trust badges */}
+        <div className="flex flex-wrap justify-center gap-2 max-w-lg mx-auto mb-12">
+          {TRUST_BADGES.map((badge, i) => (
+            <span key={i} className="bg-card border border-border rounded-full px-4 py-2 text-foreground font-sans font-medium" style={{ fontSize: 13 }}>
+              {badge}
+            </span>
           ))}
         </div>
 
