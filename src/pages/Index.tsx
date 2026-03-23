@@ -283,7 +283,7 @@ const Index = () => {
             WhatsApp
           </a>
           <a
-            href="https://instagram.com/ubicame.gdl"
+            href="https://www.instagram.com/ubicamegdl/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground font-sans text-sm transition-colors"
