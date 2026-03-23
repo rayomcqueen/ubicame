@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import property1 from "@/assets/property-1.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
 import { trackAndOpenWhatsApp, captureUtmParams } from "@/lib/whatsapp";
 import FloatingButtons from "@/components/FloatingButtons";
 
