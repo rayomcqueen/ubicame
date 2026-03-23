@@ -123,26 +123,49 @@ const Index = () => {
       </section>
 
       {/* ═══ 3. GALERÍA ═══ */}
-      <section className="px-4 py-12 bg-background">
+      <section className="px-4 sm:px-6 py-12 bg-background">
         <h2 className="font-serif font-bold text-foreground text-center mb-8" style={{ fontSize: 24 }}>
           Nuestros espacios
         </h2>
-        <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
           {GALLERY_ITEMS.map((item, i) => (
-            <div key={i} className="relative rounded-xl overflow-hidden aspect-[4/3]">
+            <div key={i} className="relative rounded-xl overflow-hidden aspect-[4/3] group cursor-pointer">
               <img
                 src={item.img}
                 alt={`Departamento en ${item.zone}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 pt-8">
-                <p className="text-foreground font-sans font-semibold leading-tight" style={{ fontSize: 12 }}>
-                  {item.zone} · Hasta {item.guests} huéspedes
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 pt-10">
+                <p className="text-foreground font-sans font-bold leading-tight" style={{ fontSize: 15 }}>
+                  {item.zone}
+                </p>
+                <p className="text-foreground/80 font-sans mt-1" style={{ fontSize: 13 }}>
+                  Hasta {item.guests} huéspedes
+                </p>
+                <p className="text-foreground font-sans font-semibold mt-1" style={{ fontSize: 14 }}>
+                  Desde {item.price}/noche
                 </p>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* More options CTA */}
+        <div className="text-center mt-10">
+          <p className="text-muted-foreground font-sans mb-4" style={{ fontSize: 16 }}>
+            Y muchas más opciones...
+          </p>
+          <a
+            href={buildWhatsAppUrl("Hola! Quiero ver más opciones de hospedaje en Guadalajara [desde galería]")}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => trackAndOpenWhatsApp(e, buildWhatsAppUrl("Hola! Quiero ver más opciones de hospedaje en Guadalajara [desde galería]"), "gallery_more")}
+            className="btn-whatsapp mx-auto font-sans"
+            style={{ height: 52, borderRadius: 12, fontSize: 16 }}
+          >
+            <WhatsAppIcon /> Ver más propiedades →
+          </a>
         </div>
       </section>
 
