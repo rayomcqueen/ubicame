@@ -1,211 +1,209 @@
-import { useState, useMemo, useEffect, lazy, Suspense } from "react";
-import { format } from "date-fns";
-import { es } from "date-fns/locale";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import BenefitsSection from "@/components/BenefitsSection";
-const MedicalTourismSection = lazy(() => import("@/components/MedicalTourismSection"));
-import SocialProofSection from "@/components/SocialProofSection";
-import FilterBar from "@/components/FilterBar";
-import PropertyCard from "@/components/PropertyCard";
+import { useEffect } from "react";
+import property1 from "@/assets/property-1.jpg";
+import { buildWhatsAppUrl, trackAndOpenWhatsApp, captureUtmParams } from "@/lib/whatsapp";
 import FloatingButtons from "@/components/FloatingButtons";
-import MobileStickyBar from "@/components/MobileStickyBar";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
-import OfflineBanner from "@/components/OfflineBanner";
-import { properties } from "@/data/properties";
-import { buildWhatsAppUrl, trackAndOpenWhatsApp } from "@/lib/whatsapp";
-import { Home, X } from "lucide-react";
-import { SearchProvider } from "@/lib/search-context";
 
-const HowItWorksSection = lazy(() => import("@/components/HowItWorksSection"));
-const FAQSection = lazy(() => import("@/components/FAQSection"));
-const Footer = lazy(() => import("@/components/Footer"));
+const WA_MSG_HERO = "Hola! 👋 Vi tu página y me interesa hospedarme en Guadalajara. ¿Qué tienen disponible? [desde hero]";
+const WA_MSG_PROMO = "Hola! 🔥 Me interesa la promo 3x2 en Guadalajara. ¿Me cuentas más? [desde promo]";
+const WA_MSG_FINAL = "Hola! Quiero reservar mi próxima estancia en Guadalajara. ¿Pueden ayudarme? [desde CTA final]";
 
-const INITIAL_COUNT = 6;
+const GALLERY_ITEMS = [
+  { img: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop", zone: "Chapultepec", guests: 4 },
+  { img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop", zone: "Americana", guests: 2 },
+  { img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop", zone: "Providencia", guests: 6 },
+  { img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop", zone: "Andares", guests: 4 },
+  { img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop", zone: "Chapultepec", guests: 3 },
+  { img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&h=400&fit=crop", zone: "Americana", guests: 5 },
+];
+
+const TESTIMONIALS = [
+  { quote: "Increíble departamento, super limpio y la atención fue 10/10. Ahorramos un montón vs Airbnb.", name: "María G.", city: "CDMX" },
+  { quote: "Reservé para un viaje médico y me consiguieron un depa cerca del hospital. Todo perfecto.", name: "Carlos R.", city: "Monterrey" },
+  { quote: "Ya es mi tercera vez con Ubicame. Siempre responden rápido y los depas están increíbles.", name: "Ana L.", city: "León" },
+];
+
+const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+  </svg>
+);
+
+const StarRow = () => (
+  <div className="flex gap-0.5" aria-label="5 estrellas">
+    {[...Array(5)].map((_, i) => (
+      <svg key={i} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+      </svg>
+    ))}
+  </div>
+);
 
 const Index = () => {
-  const [selectedZone, setSelectedZone] = useState("");
-  const [selectedGuests, setSelectedGuests] = useState(0);
-  const [checkIn, setCheckIn] = useState<Date | undefined>();
-  const [checkOut, setCheckOut] = useState<Date | undefined>();
-  const [showAll, setShowAll] = useState(false);
-  const [showUrgencyBanner, setShowUrgencyBanner] = useState(() => {
-    return sessionStorage.getItem("urgency-banner-closed") !== "true";
-  });
+  const waHero = buildWhatsAppUrl(WA_MSG_HERO);
+  const waPromo = buildWhatsAppUrl(WA_MSG_PROMO);
+  const waFinal = buildWhatsAppUrl(WA_MSG_FINAL);
 
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const zone = (e as CustomEvent).detail;
-      setSelectedZone(zone);
-      setShowAll(false);
-    };
-    window.addEventListener("filter-zone", handler);
-    return () => window.removeEventListener("filter-zone", handler);
-  }, []);
-
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      setTimeout(() => {
-        const el = document.querySelector(hash);
-        if (el) {
-          const y = el.getBoundingClientRect().top + window.scrollY - 80;
-          window.scrollTo({ top: y, behavior: "smooth" });
-        }
-      }, 500);
-    }
-  }, []);
-
-  const filteredProperties = useMemo(() => {
-    const filtered = properties.filter((property) => {
-      const matchesZone = !selectedZone || property.location === selectedZone;
-      const matchesGuests = selectedGuests === 0 || 
-        (selectedGuests === 7 ? property.guests >= 7 : property.guests >= selectedGuests - 1 && property.guests <= selectedGuests);
-      return matchesZone && matchesGuests;
-    });
-    return filtered.sort((a, b) => {
-      const badgeWeight = (p: typeof a) => (p.badge === "popular" ? 2 : p.badge === "demand" ? 1 : 0);
-      const diff = badgeWeight(b) - badgeWeight(a);
-      return diff !== 0 ? diff : b.rating - a.rating;
-    });
-  }, [selectedZone, selectedGuests]);
-
-  const isFiltering = selectedZone || selectedGuests > 0;
-  const displayedProperties = isFiltering || showAll
-    ? filteredProperties
-    : filteredProperties.slice(0, INITIAL_COUNT);
-  const hasMore = !isFiltering && !showAll && filteredProperties.length > INITIAL_COUNT;
-
-  const buildSearchWhatsApp = () => {
-    const parts: string[] = [];
-    if (checkIn) parts.push(`Check-in: ${format(checkIn, "d MMM yyyy", { locale: es })}`);
-    if (checkOut) parts.push(`Check-out: ${format(checkOut, "d MMM yyyy", { locale: es })}`);
-    if (selectedGuests > 0) parts.push(`Huéspedes: ${selectedGuests}`);
-    if (selectedZone) parts.push(`Zona: ${selectedZone}`);
-    const details = parts.length > 0 ? `\n${parts.join("\n")}` : "";
-    return buildWhatsAppUrl(`Hola! Busco hospedaje en Guadalajara.${details} [desde buscador]`);
-  };
-
-  const handleSearch = () => {
-    const el = document.getElementById("propiedades");
-    if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-  };
+  useEffect(() => { captureUtmParams(); }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <a href="#propiedades" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium">
-        Saltar al contenido
-      </a>
+    <div className="min-h-screen w-full overflow-x-hidden">
+      {/* ═══ 1. HERO ═══ */}
+      <section className="relative min-h-screen flex flex-col">
+        <img
+          src={property1}
+          alt="Departamento en Guadalajara"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+        />
+        <div className="absolute inset-0 bg-black/55" />
 
-      {showUrgencyBanner && (
-        <div className="fixed top-0 left-0 right-0 z-[110] flex items-center justify-center px-4 h-9 bg-primary/10 text-sm text-primary font-medium">
-          <span className="text-center">🔥 Marzo y Abril son los meses más reservados — Asegura tu fecha</span>
-          <button onClick={() => { setShowUrgencyBanner(false); sessionStorage.setItem("urgency-banner-closed", "true"); }} className="absolute right-3 top-1/2 -translate-y-1/2 hover:opacity-70 transition-opacity" aria-label="Cerrar banner">
-            <X className="w-4 h-4" />
-          </button>
+        <div className="relative z-10 flex flex-col flex-1 px-5 pt-6 pb-10">
+          {/* Logo */}
+          <div className="mb-auto">
+            <span className="text-white font-bold text-lg tracking-tight">Ubicame</span>
+          </div>
+
+          {/* Content */}
+          <div className="flex flex-col items-center text-center gap-5 mt-auto">
+            {/* Badge */}
+            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-white bg-black/40 backdrop-blur-sm">
+              4.9★ · +10,000 huéspedes · Superhost
+            </span>
+
+            {/* Headline */}
+            <h1
+              className="font-serif font-bold text-white"
+              style={{ fontSize: "clamp(28px, 7vw, 44px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}
+            >
+              Hospédate en Guadalajara — Reserva directo y ahorra
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-white/85 text-base max-w-md">
+              30+ departamentos en Chapultepec, Americana, Providencia y Andares
+            </p>
+
+            {/* CTA */}
+            <a
+              href={waHero}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => trackAndOpenWhatsApp(e, waHero, "hero")}
+              className="btn-whatsapp w-full max-w-sm text-base"
+              style={{ height: 56, borderRadius: 14, fontSize: 17 }}
+            >
+              <WhatsAppIcon /> Ver disponibilidad →
+            </a>
+          </div>
         </div>
-      )}
+      </section>
 
-      <div style={{ paddingTop: showUrgencyBanner ? 36 : 0 }}>
-        <Navbar />
+      {/* ═══ 2. PROMO BANNER ═══ */}
+      <section className="px-5 py-12 text-center" style={{ background: "linear-gradient(135deg, #FF6B4A 0%, #FF4B2B 100%)" }}>
+        <p className="text-white text-2xl font-bold mb-3 leading-tight">
+          🔥 RESERVA 3 NOCHES Y PAGA SOLO 2
+        </p>
+        <p className="text-white/90 text-sm mb-6 max-w-sm mx-auto leading-relaxed">
+          Reservando directo te ahorras la comisión de Airbnb. Mismo depa, mejor precio.
+        </p>
+        <a
+          href={waPromo}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => trackAndOpenWhatsApp(e, waPromo, "promo_banner")}
+          className="btn-whatsapp mx-auto text-base"
+          style={{ height: 52, borderRadius: 12 }}
+        >
+          <WhatsAppIcon /> Aprovecha la promo →
+        </a>
+      </section>
 
-        <header>
-          <Hero />
-        </header>
-
-        <main>
-          {/* 1. Benefits — 3 bullets */}
-          <BenefitsSection />
-
-          {/* 2. Social proof */}
-          <SocialProofSection />
-
-          {/* 3. Properties */}
-          <section id="propiedades" className="section-padding">
-            <div className="max-w-7xl mx-auto">
-              <div className="text-center mb-12">
-                <span className="section-label">Explora</span>
-                <h2 className="section-title">Propiedades destacadas</h2>
-                <p className="section-subtitle">Espacios únicos en las mejores zonas de Guadalajara.</p>
-              </div>
-
-              <FilterBar
-                selectedZone={selectedZone}
-                setSelectedZone={setSelectedZone}
-                selectedGuests={selectedGuests}
-                setSelectedGuests={setSelectedGuests}
-                checkIn={checkIn}
-                setCheckIn={setCheckIn}
-                checkOut={checkOut}
-                setCheckOut={setCheckOut}
-                onSearch={handleSearch}
+      {/* ═══ 3. GALERÍA ═══ */}
+      <section className="px-4 py-12 bg-background">
+        <h2 className="section-title text-center mb-8" style={{ fontSize: 24 }}>
+          Nuestros espacios
+        </h2>
+        <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto">
+          {GALLERY_ITEMS.map((item, i) => (
+            <div key={i} className="relative rounded-xl overflow-hidden aspect-[4/3]">
+              <img
+                src={item.img}
+                alt={`Departamento en ${item.zone}`}
+                className="w-full h-full object-cover"
+                loading="lazy"
               />
-
-              <SearchProvider value={{ checkIn, checkOut, guests: selectedGuests }}>
-              {displayedProperties.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {displayedProperties.map((property, index) => (
-                    <PropertyCard key={property.id} property={property} index={index} />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-16">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
-                    <Home className="w-8 h-8 text-muted-foreground" aria-hidden="true" />
-                  </div>
-                  <p className="text-foreground text-lg font-medium mb-2">No encontramos propiedades con esos filtros</p>
-                  <p className="text-muted-foreground mb-6 max-w-md mx-auto">Escríbenos y te buscamos la opción ideal.</p>
-                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <button onClick={() => { setSelectedZone(""); setSelectedGuests(0); setCheckIn(undefined); setCheckOut(undefined); }} className="btn-primary rounded-lg">
-                      Limpiar filtros
-                    </button>
-                    <a href={buildSearchWhatsApp()} target="_blank" rel="noopener noreferrer" onClick={(e) => trackAndOpenWhatsApp(e, buildSearchWhatsApp(), "empty_filters")} className="btn-whatsapp rounded-lg">
-                      💬 Ayúdame a encontrar
-                    </a>
-                  </div>
-                </div>
-              )}
-              </SearchProvider>
-
-              {hasMore && (
-                <div className="text-center mt-12">
-                  <button onClick={() => { setShowAll(true); (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: "view_all_properties" }); }} className="btn-outline rounded-full">
-                    Ver las {filteredProperties.length}+ propiedades →
-                  </button>
-                </div>
-              )}
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 pt-8">
+                <p className="text-white text-xs font-semibold leading-tight">
+                  {item.zone} · Hasta {item.guests} huéspedes
+                </p>
+              </div>
             </div>
-          </section>
+          ))}
+        </div>
+      </section>
 
-          {/* 4. Medical Tourism */}
-          <Suspense fallback={null}>
-            <MedicalTourismSection />
-          </Suspense>
+      {/* ═══ 4. SOCIAL PROOF + CTA FINAL ═══ */}
+      <section className="px-5 py-14" style={{ background: "hsl(var(--footer-bg))" }}>
+        <h2 className="text-white font-serif font-bold text-center text-2xl mb-8">
+          Lo que dicen nuestros huéspedes
+        </h2>
 
-          {/* 5. How it works */}
-          <Suspense fallback={null}>
-            <HowItWorksSection />
-          </Suspense>
+        <div className="flex flex-col gap-4 max-w-lg mx-auto mb-12">
+          {TESTIMONIALS.map((t, i) => (
+            <div key={i} className="bg-white/10 backdrop-blur-sm rounded-2xl p-5">
+              <StarRow />
+              <p className="text-white/90 text-sm mt-3 leading-relaxed">"{t.quote}"</p>
+              <p className="text-white/60 text-xs mt-3 font-medium">{t.name} · {t.city}</p>
+            </div>
+          ))}
+        </div>
 
-          {/* 6. FAQ */}
-          <Suspense fallback={null}>
-            <FAQSection />
-          </Suspense>
-        </main>
+        {/* CTA Final */}
+        <div className="text-center">
+          <p className="text-white font-serif font-bold text-xl mb-5">
+            ¿Listo para tu próxima estancia?
+          </p>
+          <a
+            href={waFinal}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => trackAndOpenWhatsApp(e, waFinal, "cta_final")}
+            className="btn-whatsapp mx-auto text-base"
+            style={{ height: 56, borderRadius: 14, fontSize: 17 }}
+          >
+            <WhatsAppIcon /> Reservar ahora →
+          </a>
+          <p className="text-white/50 text-xs mt-4">Respuesta en menos de 5 minutos</p>
+        </div>
+      </section>
 
-        {/* 6. Footer */}
-        <Suspense fallback={null}>
-          <Footer />
-        </Suspense>
+      {/* ═══ FOOTER MÍNIMO ═══ */}
+      <footer className="px-5 py-8 text-center" style={{ background: "hsl(0 0% 7%)" }}>
+        <p className="text-white font-bold text-lg mb-3">Ubicame</p>
+        <div className="flex items-center justify-center gap-5 mb-4">
+          <a
+            href={waHero}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/70 hover:text-white text-sm transition-colors"
+          >
+            WhatsApp
+          </a>
+          <a
+            href="https://instagram.com/ubicame.gdl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/70 hover:text-white text-sm transition-colors"
+          >
+            Instagram
+          </a>
+        </div>
+        <p className="text-white/40 text-xs">© 2026 Ubicame</p>
+      </footer>
 
-        <FloatingButtons />
-        <MobileStickyBar />
-        <ExitIntentPopup />
-        <OfflineBanner />
-      </div>
+      {/* Floating WhatsApp button */}
+      <FloatingButtons />
     </div>
   );
 };
