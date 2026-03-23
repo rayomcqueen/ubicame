@@ -8,12 +8,12 @@ const WA_MSG_PROMO = "Hola! 🔥 Me interesa la promo 3x2 en Guadalajara. ¿Me c
 const WA_MSG_FINAL = "Hola! Quiero reservar mi próxima estancia en Guadalajara. ¿Pueden ayudarme? [desde CTA final]";
 
 const GALLERY_ITEMS = [
-  { img: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop", zone: "Chapultepec", guests: 4 },
-  { img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop", zone: "Americana", guests: 2 },
-  { img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop", zone: "Providencia", guests: 6 },
-  { img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop", zone: "Andares", guests: 4 },
-  { img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop", zone: "Chapultepec", guests: 3 },
-  { img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&h=400&fit=crop", zone: "Americana", guests: 5 },
+  { img: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop", zone: "Chapultepec", guests: 4, price: "$1,500" },
+  { img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop", zone: "Americana", guests: 6, price: "$1,800" },
+  { img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop", zone: "Providencia", guests: 8, price: "$2,200" },
+  { img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop", zone: "Andares", guests: 4, price: "$2,500" },
+  { img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop", zone: "Chapultepec", guests: 20, price: "$5,500" },
+  { img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&h=400&fit=crop", zone: "Americana", guests: 2, price: "$1,200" },
 ];
 
 const TESTIMONIALS = [
