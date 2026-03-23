@@ -13,7 +13,7 @@ import FloatingButtons from "@/components/FloatingButtons";
 const WA_URL = "https://wa.me/523333260013?text=Hola%20Ubicame%2C%20vi%20la%20promo%203x2%20y%20quiero%20ver%20disponibilidad";
 
 const GALLERY_ITEMS = [
-  { img: gallery1, zone: "Andares", guests: 4, price: "$1,500" },
+  { img: gallery1, zone: "Andares", guests: 4, price: "$2,300" },
   { img: gallery5, zone: "Midtown", guests: 6, price: "$1,800" },
   { img: gallery3, zone: "Providencia", guests: 8, price: "$2,200" },
   { img: gallery4, zone: "Andares", guests: 4, price: "$2,500" },
