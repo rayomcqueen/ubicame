@@ -84,7 +84,7 @@ const Index = () => {
   return (
     <div ref={containerRef} className="min-h-screen w-full overflow-x-hidden bg-background">
       {/* ═══ 1. HERO ═══ */}
-      <section className="relative min-h-screen flex flex-col">
+      <section className="relative h-[60vh] md:h-[70vh] flex flex-col">
         <img
           src={property1}
           alt="Departamento en Guadalajara"
