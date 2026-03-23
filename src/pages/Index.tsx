@@ -17,10 +17,12 @@ const GALLERY_ITEMS = [
 ];
 
 const TESTIMONIALS = [
-  { quote: "Increíble departamento, super limpio y la atención fue 10/10. Ahorramos un montón vs Airbnb.", name: "María G.", city: "CDMX" },
-  { quote: "Reservé para un viaje médico y me consiguieron un depa cerca del hospital. Todo perfecto.", name: "Carlos R.", city: "Monterrey" },
-  { quote: "Ya es mi tercera vez con Ubicame. Siempre responden rápido y los depas están increíbles.", name: "Ana L.", city: "León" },
+  { quote: "Increíble departamento, súper limpio y la ubicación perfecta en Chapultepec. Definitivamente regresaré.", name: "María G." },
+  { quote: "Mucho mejor que un hotel y a mejor precio. La atención por WhatsApp fue inmediata. 100% recomendado.", name: "Carlos R." },
+  { quote: "Ya es la tercera vez que reservo con Ubicame. Siempre igual de buenos. El depa de Americana es mi favorito.", name: "Ana L." },
 ];
+
+const TRUST_BADGES = ["🏆 Superhost Airbnb", "4.9★ Rating promedio", "+10,000 huéspedes", "30+ propiedades"];
 
 const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -195,13 +197,22 @@ const Index = () => {
           Lo que dicen nuestros huéspedes
         </h2>
 
-        <div className="flex flex-col gap-4 max-w-lg mx-auto mb-12">
+        <div className="flex flex-col gap-4 max-w-lg mx-auto mb-10">
           {TESTIMONIALS.map((t, i) => (
             <div key={i} className="bg-card border border-border rounded-2xl p-5">
               <StarRow />
               <p className="text-foreground/90 font-sans mt-3 leading-relaxed" style={{ fontSize: 14 }}>"{t.quote}"</p>
-              <p className="text-muted-foreground font-sans mt-3 font-medium" style={{ fontSize: 12 }}>{t.name} · {t.city}</p>
+              <p className="text-muted-foreground font-sans mt-3 font-medium" style={{ fontSize: 12 }}>— {t.name}</p>
             </div>
+          ))}
+        </div>
+
+        {/* Trust badges */}
+        <div className="flex flex-wrap justify-center gap-2 max-w-lg mx-auto mb-12">
+          {TRUST_BADGES.map((badge, i) => (
+            <span key={i} className="bg-card border border-border rounded-full px-4 py-2 text-foreground font-sans font-medium" style={{ fontSize: 13 }}>
+              {badge}
+            </span>
           ))}
         </div>
 
