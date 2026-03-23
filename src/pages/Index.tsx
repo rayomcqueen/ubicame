@@ -18,7 +18,7 @@ const GALLERY_ITEMS = [
   { img: gallery3, zone: "Providencia", guests: 8, price: "$2,200" },
   { img: gallery4, zone: "Andares", guests: 4, price: "$2,500" },
   { img: galleryChap20, zone: "Chapultepec", guests: 20, price: "$5,500" },
-  { img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&h=600&fit=crop&q=80", zone: "Americana", guests: 2, price: "$1,200" },
+  { img: gallery6, zone: "Americana", guests: 2, price: "$1,200" },
 ];
 
 const TESTIMONIALS = [
