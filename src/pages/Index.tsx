@@ -4,6 +4,7 @@ import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
 import { trackAndOpenWhatsApp, captureUtmParams } from "@/lib/whatsapp";
 import FloatingButtons from "@/components/FloatingButtons";
 
@@ -11,7 +12,7 @@ const WA_URL = "https://wa.me/523333260013?text=Hola%20Ubicame%2C%20vi%20la%20pr
 
 const GALLERY_ITEMS = [
   { img: gallery1, zone: "Chapultepec", guests: 4, price: "$1,500" },
-  { img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&q=80", zone: "Americana", guests: 6, price: "$1,800" },
+  { img: gallery2, zone: "Americana", guests: 6, price: "$1,800" },
   { img: gallery3, zone: "Providencia", guests: 8, price: "$2,200" },
   { img: gallery4, zone: "Andares", guests: 4, price: "$2,500" },
   { img: gallery5, zone: "Chapultepec", guests: 20, price: "$5,500" },
