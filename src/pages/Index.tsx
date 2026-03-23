@@ -12,7 +12,7 @@ const WA_URL = "https://wa.me/523333260013?text=Hola%20Ubicame%2C%20vi%20la%20pr
 const GALLERY_ITEMS = [
   { img: gallery1, zone: "Chapultepec", guests: 4, price: "$1,500" },
   { img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&q=80", zone: "Americana", guests: 6, price: "$1,800" },
-  { img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&q=80", zone: "Providencia", guests: 8, price: "$2,200" },
+  { img: gallery3, zone: "Providencia", guests: 8, price: "$2,200" },
   { img: gallery4, zone: "Andares", guests: 4, price: "$2,500" },
   { img: gallery5, zone: "Chapultepec", guests: 20, price: "$5,500" },
   { img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&h=600&fit=crop&q=80", zone: "Americana", guests: 2, price: "$1,200" },
