@@ -117,6 +117,9 @@ const Index = () => {
         >
           <WhatsAppIcon /> Aprovecha la promo →
         </a>
+        <p className="text-white/90 text-sm font-bold mt-5">
+          ⏰ Promo válida hasta el 7 de abril 2026
+        </p>
       </section>
 
       {/* ═══ 3. GALERÍA ═══ */}
