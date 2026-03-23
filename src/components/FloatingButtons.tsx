@@ -9,7 +9,7 @@ const FloatingButtons = () => {
       target="_blank"
       rel="noopener noreferrer"
       onClick={(e) => trackAndOpenWhatsApp(e, WA_PROMO_URL, "floating_promo")}
-      className="fixed bottom-6 right-6 z-50 w-[60px] h-[60px] rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+      className="fixed bottom-6 right-6 z-[9999] w-[60px] h-[60px] min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
       style={{ backgroundColor: "#25D366" }}
       aria-label="Contactar por WhatsApp"
     >
