@@ -3,6 +3,7 @@ import property1 from "@/assets/property-1.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 import gallery1 from "@/assets/gallery-1.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
 import { trackAndOpenWhatsApp, captureUtmParams } from "@/lib/whatsapp";
 import FloatingButtons from "@/components/FloatingButtons";
 
