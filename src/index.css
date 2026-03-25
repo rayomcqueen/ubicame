@@ -2,52 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap&font-display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap&font-display=swap');
 
 @layer base {
   :root {
-    /* ── Dark palette ── */
-    --background: 0 0% 6%;           /* #0F0F0F */
-    --foreground: 0 0% 100%;         /* #FFFFFF */
-    --heading: 0 0% 100%;            /* #FFFFFF */
+    /* ── Warm light palette ── */
+    --background: 40 20% 97%;          /* #FAF9F6 warm white */
+    --foreground: 0 0% 12%;            /* #1F1F1F charcoal */
+    --heading: 0 0% 10%;               /* #1A1A1A deep */
 
-    --card: 0 0% 10%;                /* #1A1A1A */
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 100%;
+    --card: 0 0% 100%;                 /* pure white */
+    --card-foreground: 0 0% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 12%;
 
-    /* Primary: coral red — promo/CTA */
-    --primary: 13 78% 57%;           /* #E85D3A */
-    --primary-dark: 13 78% 47%;
+    /* Primary: warm terracotta */
+    --primary: 13 62% 48%;             /* #C4573A */
+    --primary-dark: 13 62% 40%;
     --primary-foreground: 0 0% 100%;
 
-    /* Accent: WhatsApp green — WA buttons only */
-    --accent: 142 70% 49%;           /* #25D366 */
-    --accent-hover: 142 70% 42%;
+    /* Accent: WhatsApp green */
+    --accent: 142 70% 45%;             /* #22C55E */
+    --accent-hover: 142 70% 38%;
     --accent-foreground: 0 0% 100%;
 
     /* Secondary / muted */
-    --secondary: 0 0% 13%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --secondary: 40 10% 93%;           /* warm light gray */
+    --secondary-foreground: 0 0% 12%;
+    --muted: 40 10% 93%;
+    --muted-foreground: 0 0% 45%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;              /* #333 */
-    --input: 0 0% 20%;
-    --ring: 13 78% 57%;
+    --border: 40 10% 88%;              /* warm border */
+    --input: 40 10% 88%;
+    --ring: 13 62% 48%;
     --radius: 0.5rem;
 
     /* Extras */
     --gold: 42 65% 55%;
-    --footer-bg: 0 0% 6%;
+    --footer-bg: 0 0% 8%;
 
-    /* Shadows */
-    --shadow-sm: 0 1px 4px -1px rgba(0,0,0,0.3);
-    --shadow-md: 0 4px 16px -4px rgba(0,0,0,0.4);
-    --shadow-lg: 0 12px 40px -8px rgba(0,0,0,0.5);
+    /* Shadows — softer for light mode */
+    --shadow-sm: 0 1px 3px 0 rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px -2px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 32px -8px rgba(0,0,0,0.12);
   }
 }
 
@@ -61,15 +61,14 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'DM Sans', 'Outfit', system-ui, -apple-system, sans-serif;
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
   }
 
-  /* ── Type scale ── */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'DM Serif Display', 'Playfair Display', serif;
+    font-family: 'DM Serif Display', serif;
     line-height: 1.2;
     color: hsl(var(--heading));
   }
@@ -80,25 +79,23 @@
 }
 
 @layer components {
-  /* ── Section rhythm ── */
   .section-padding {
     @apply py-20 md:py-24 px-6;
   }
 
-  /* ── Section header pattern ── */
   .section-label {
     display: block;
-    font-family: 'DM Sans', 'Outfit', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: hsl(var(--primary));
     margin-bottom: 8px;
   }
 
   .section-title {
-    font-family: 'DM Serif Display', 'Playfair Display', serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 32px;
     font-weight: 700;
     color: hsl(var(--heading));
@@ -115,16 +112,16 @@
     margin-right: auto;
   }
 
-  /* ── Unified buttons ── */
+  /* ── Buttons ── */
   .btn-base {
     @apply inline-flex items-center justify-center gap-2 font-sans font-semibold transition-all duration-200;
     height: 48px;
     padding: 0 28px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 15px;
   }
-  .btn-base:hover { transform: scale(1.02); }
-  .btn-base:active { transform: scale(0.98); }
+  .btn-base:hover { transform: translateY(-1px); }
+  .btn-base:active { transform: translateY(0); }
 
   .btn-primary {
     @apply btn-base text-primary-foreground;
@@ -133,16 +130,17 @@
   }
   .btn-primary:hover {
     background-color: hsl(var(--primary-dark));
+    box-shadow: var(--shadow-md);
   }
 
   .btn-whatsapp {
     @apply btn-base text-accent-foreground;
     background-color: hsl(var(--accent));
-    box-shadow: 0 4px 14px hsl(var(--accent) / 0.3);
+    box-shadow: 0 4px 14px hsl(var(--accent) / 0.25);
   }
   .btn-whatsapp:hover {
     background-color: hsl(var(--accent-hover));
-    box-shadow: 0 6px 20px hsl(var(--accent) / 0.4);
+    box-shadow: 0 6px 20px hsl(var(--accent) / 0.35);
   }
 
   .btn-outline {
@@ -161,20 +159,19 @@
     box-shadow: var(--shadow-lg);
     transition: transform 0.2s;
   }
-  .floating-btn:hover { transform: scale(1.1); }
+  .floating-btn:hover { transform: scale(1.08); }
 
   /* ── Fade-in on scroll ── */
   .fade-section {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
   .fade-section.fade-visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  /* ── Legacy scroll reveal ── */
   .reveal {
     opacity: 0;
     transform: translateY(20px);
@@ -184,17 +181,7 @@
     opacity: 1;
     transform: translateY(0);
   }
-  .reveal-stagger-1 { transition-delay: 0.1s; }
-  .reveal-stagger-2 { transition-delay: 0.2s; }
-  .reveal-stagger-3 { transition-delay: 0.3s; }
-  .reveal-stagger-4 { transition-delay: 0.4s; }
 
-  /* ── CTA pulse ── */
-  .cta-pulse {
-    animation: ctaPulse 3s ease-in-out infinite;
-  }
-
-  /* ── Image skeleton ── */
   .img-skeleton {
     @apply bg-muted;
     background: linear-gradient(90deg, hsl(var(--muted)) 0%, hsl(var(--muted) / 0.5) 50%, hsl(var(--muted)) 100%);
@@ -208,24 +195,11 @@
   .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
   .animate-scale-in { animation: scaleIn 0.4s ease-out forwards; }
 
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
-
-  .shadow-system-sm { box-shadow: var(--shadow-sm); }
-  .shadow-system-md { box-shadow: var(--shadow-md); }
-  .shadow-system-lg { box-shadow: var(--shadow-lg); }
-}
-
-@keyframes ctaPulse {
-  0%, 100% { box-shadow: 0 4px 30px hsl(142 70% 45% / 0.3); }
-  50% { box-shadow: 0 4px 40px hsl(142 70% 45% / 0.6); }
 }
 
 @keyframes shimmer {
@@ -233,14 +207,8 @@
   100% { background-position: 200% 0; }
 }
 
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-.animate-slide-up { animation: slideUp 0.3s ease-out forwards; }
-
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -250,9 +218,15 @@
 }
 
 @keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.95); }
+  from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
 }
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.animate-slide-up { animation: slideUp 0.3s ease-out forwards; }
 
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
@@ -262,16 +236,16 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal { opacity: 1 !important; transform: none !important; }
+  .reveal, .fade-section { opacity: 1 !important; transform: none !important; }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: hsl(var(--muted)); }
-::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.5); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.7); }
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--muted-foreground) / 0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.35); }
 
-/* Mobile type overrides */
+/* Mobile type */
 @media (max-width: 768px) {
   .section-title { font-size: 26px !important; }
 }
